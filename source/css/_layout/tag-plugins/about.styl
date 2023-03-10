@@ -1,0 +1,56 @@
+.tag-plugin.about
+  background: var(--block)
+  border-radius: $border-card
+  padding: 2rem
+  position: relative
+  .nav-back
+    display: none
+    position: absolute
+    line-height: 1
+    overflow: hidden
+    left: 0.75rem
+    top: 0.75rem
+    align-items: center
+    @media screen and (max-width: $device-mobile-max)
+      display: flex
+    svg  
+      width: 1rem
+      height: 1rem
+  .about-header
+    display flex
+    justify-content: center
+    flex-wrap: wrap
+    margin: 1.5rem 0
+    img
+      object-fit: contain
+    >img
+      margin: auto 0
+    >p
+      font-size: $fs-12
+      font-weight: 500
+      color: var(--text-p3)
+      padding-top: 0.75rem
+      strong:first-child
+        font-size: 3rem
+        font-weight: 700
+        color: var(--text-p1)
+        margin-right: 0.75rem
+    .avatar
+      display: inline-flex
+      margin: 0 1rem
+  .about-body
+    >p
+      line-height: 1.5
+      &:first-child
+        margin-top: 2.5rem
+    p+.tag-plugin.navbar .cap
+      margin-top: 1rem
+  .about-header+.about-body
+    margin-top: 2rem
+
+@media screen and (max-width: $device-mobile)
+  .tag-plugin.about
+    padding: 2rem 1rem
+    .about-header
+      p
+        width 100%

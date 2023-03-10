@@ -1,0 +1,100 @@
+.related-wrap
+  padding: 1rem
+  margin: 2rem 0
+  &:empty
+    display: none
+  section.header
+    display: flex
+    justify-content: space-between
+    align-items: center
+    >span.title
+      padding: 0.25rem 0
+  section.footer
+    margin-top: 1rem
+
+  a.more
+    padding: 0.25rem 0.5rem
+    border-radius: $border-block
+    color: var(--text-p1)
+
+
+
+.related-posts
+  max-width: 100%
+  margin: 1rem 0
+  .item
+    line-height: 1.2
+    display: block
+    border-left: 0
+    margin-top: 1rem
+    .title
+      color: var(--text-p1)
+      font-weight: 500
+      font-size: 1rem
+      trans2 color border
+      position: relative
+      padding-bottom: 2px
+      border-bottom: 1px dashed var(--text-meta)
+      line-height: 1.6
+    .excerpt
+      color: var(--text-p3)
+      font-size: $fs-12
+      margin-top: 0.5rem
+      display: -webkit-box
+      -webkit-box-orient: vertical
+      overflow: hidden
+      -webkit-line-clamp: 2
+    &:hover
+      .title
+        color: $color-hover
+        border-bottom: 1px solid $color-hover
+
+
+.related-wrap#read-next
+  .body
+    display: grid
+    grid-gap: 16px
+    grid-template-columns: repeat(auto-fill, "calc((100% - 1 * %s) / 2)" % 16px)
+    .item  
+      border-top: 1px dashed var(--block-border)
+      border-bottom: 1px dashed var(--block-border)
+      padding: 1rem 0
+    .note
+      margin-bottom: 0.75rem
+      font-size: $fs-12
+      color: var(--text-p4)
+      font-weight: 500
+    a
+      margin: 0
+      line-height: 1.2
+      color: var(--text-p1)
+      font-size: $fs-h4
+      &:hover
+        color: $color-hover !important
+    #next
+      text-align: right
+.wiki+.related-wrap#read-next
+  .item
+    a
+      font-size: $fs-h3
+    &#prev a
+      color: var(--text-p3)
+
+
+.related-wrap#comments
+  div.cmt-title
+    p
+      margin: 0
+      font-size: inherit
+      a
+        color: inherit
+        text-decoration: underline
+        &:hover
+          color: $color-hover
+        &:after
+          display: none
+  div.cmt-body
+    min-height: 150px
+    position: relative
+    svg.loading
+      top: 60px

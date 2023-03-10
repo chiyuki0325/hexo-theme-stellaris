@@ -1,0 +1,63 @@
+btn:
+  home: Home
+  blog: Blog
+  wiki: Wiki
+  recent_publish: Recent
+  all_wiki: All Products
+  category: Category
+  categories: Categories
+  tag: Tag
+  tags: Tags
+  archives: Archives
+  getting_started: Getting Started
+  search: Search
+
+meta:
+  recent_update: Recent Update
+  toc: TOC
+  read_next: READ NEXT
+  prev: Prev
+  next: Next
+  older: Older
+  newer: Newer
+  references: References
+  related_posts: Related Posts
+  comment_title: Join the discussion
+  back_to_top: Back to top
+  more: 'More %s'
+  created: 'Posted on'
+  updated: 'Updated on'
+  license: License
+  share: Share
+  date_suffix:
+    just: Just
+    min: minutes ago
+    hour: hours ago
+    day: days ago
+    month: months ago
+
+footer:
+  license: 'All articles in this blog are licensed under %s unless stating additionally.'
+  info_not_open_source: 'This site was deployed by %s using %s.'
+  info_open_source: 'This site was deployed by %s using %s. %s'  #已经改为相关信息
+
+page:
+  error:
+    what: Page Not Found
+    why: The address may be entered incorrectly or the address has been deleted.
+    action: Back to Home
+
+search:
+  search: Search
+  search_in: Search in %s
+  no_results: No Results!
+
+message:
+  copied: Copied!
+
+symbol:
+  comma: ", "
+  period: ". "
+  colon: ": "
+  brackets_l: "("
+  brackets_r: ")"

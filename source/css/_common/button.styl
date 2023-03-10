@@ -1,0 +1,46 @@
+button
+  border: none
+  font-weight: 500
+  outline: none
+  disable-select()
+  cursor: pointer
+
+a.button
+  font-weight: 500
+  line-height: 1
+  padding: 0.75rem 2rem
+  border-radius: 4px
+  trans1: background
+  font-size: $fs-15
+  -moz-box-align: center
+  align-items: center
+  box-sizing: border-box
+  display: inline-flex
+  -moz-box-pack: center
+  justify-content: center
+  text-decoration-line: none
+  vertical-align: middle
+  margin: 0px
+  overflow: hidden
+  border: 1px solid
+  border-color: #d1d1d1
+  outline-style: none
+  padding: 5px 12px
+  min-width: 96px
+  font-weight: 600
+  line-height: 20px
+  transition-duration: 100ms
+  transition-property: background-color, border-color, color;
+  transition-timing-function: cubic-bezier(0.8,0,0.1,1)
+  color: var(--text-revert);
+  background-color: var(--theme-highlight);
+  border-color: transparent;
+  &.theme
+    background: $color-theme
+    color: var(--card)
+    &:hover
+      background-color: var(--theme-cap)
+      border-color: #c7c7c7
+
+a[onclick]:hover
+  cursor: pointer

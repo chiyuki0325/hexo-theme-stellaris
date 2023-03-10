@@ -1,0 +1,53 @@
+<%
+const author = '[@' + config.author + '](' + config.url + config.root + ')';
+//const using = '[' + stellar_info('name') + '](' + stellar_info('tree') + ' "v' + stellar_info('version') + '")';
+const using = '[' + stellar_info('name') + '](' + stellar_info() + ')';
+const source = theme.footer.source;
+const more = theme.footer.more;
+function layoutDiv() {
+  var el = '';
+  el += '<footer class="page-footer reveal fs12">';
+  el += '<hr>';
+  // sitemap
+  if (theme.footer.sitemap && Object.keys(theme.footer.sitemap).length > 0) {
+    el += '<div class="sitemap">';
+    for (let group of Object.keys(theme.footer.sitemap)) {
+      let items = theme.footer.sitemap[group];
+      if (items == undefined || items.length == 0) {
+        continue;
+      }
+      el += '<div class="sitemap-group">';
+      el += '<span class="fs14">' + group + '</span>';
+      items.forEach((item, i) => {
+        el += '<a href="' + url_for(md_link(item)) + '">';
+        el += __(md_text(item));
+        el += '</a>';
+      });
+      el += '</div>';
+    }
+    el += '</div>';
+  }
+  // footer
+  el += '<div class="text">';
+  if (theme.footer.license) {
+    el += markdown(__('footer.license', theme.footer.license));
+  }
+  if (source) {
+    el += markdown(__('footer.info_open_source', author, using, source));
+  } else {
+    el += markdown(__('footer.info_not_open_source', author, using));
+  }
+  if (more) {
+    if ((typeof more == 'string') && more.constructor == String) {
+      el += markdown(more);
+    } else if ((typeof more == 'object') && more.constructor == Array) {
+      more.forEach((item, i) => {
+        el += markdown(item);
+      });
+    }
+  }
+  el += '</div></footer>';
+  return el;
+}
+%>
+<%- layoutDiv() %>

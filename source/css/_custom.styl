@@ -1,0 +1,104 @@
+@require('_defines/const')
+
+// 通用主题色
+//$color-theme = convert(hexo-config('style.color.common.theme'))
+$color-accent = convert(hexo-config('style.color.common.accent'))
+$color-button = convert(hexo-config('style.color.common.button'))
+$color-hover = convert(hexo-config('style.color.common.hover'))
+$fake-mica = #f3f3f3 radial-gradient(#eff4f9 75%, #f3f3f3 100%) no-repeat fixed
+
+// 浅色
+$light-background = #f3f3f3 radial-gradient(#eff4f9 75%, #f3f3f3 100%) no-repeat fixed
+$light-mix = convert(hexo-config('style.color.light.mix'))
+$light-border = #e1e1e3
+$light-color-theme = #0078d4
+$light-block = convert(hexo-config('style.color.light.block'))
+$light-card = convert(hexo-config('style.color.light.card'))
+$light-title = convert(hexo-config('style.color.light.title'))
+$light-text = convert(hexo-config('style.color.light.text'))
+$light-code = convert(hexo-config('style.color.light.code'))
+
+// 深色
+$dark-background = #202020 radial-gradient(#1a1f35 25%, #202020 100%) no-repeat fixed
+$dark-border = hsla(0deg,0%,100%,.1)
+$dark-color-theme = #4cc2ff
+$dark-mix = convert(hexo-config('style.color.dark.mix'))
+$dark-block = convert(hexo-config('style.color.dark.block'))
+$dark-card = convert(hexo-config('style.color.dark.card'))
+$dark-title = convert(hexo-config('style.color.dark.title'))
+$dark-text = convert(hexo-config('style.color.dark.text'))
+$dark-code = convert(hexo-config('style.color.dark.code'))
+
+// 移动端深色背景（OLED调成纯黑可以省电）
+$dark-background-mobile = convert(hexo-config('style.color.dark.background-mobile'))
+
+// 陈叔叔CDN
+@import('//s1.hdslb.com/bfs/static/jinkela/long/font/regular.css')
+
+@font-face {
+  font-family: 'Twemoji';
+  unicode-range: U+0021-10FFFF;
+  font-variant-emoji: emoji;
+  src: local('Twemoji'),
+       url('/fonts/Twemoji.woff2') format('woff2'), // Super Modern Browsers
+       url('/fonts/Twemoji.woff') format('woff'), // Modern Browsers
+       url('/fonts/Twemoji.ttf') format('truetype'), // Dickful Browsers
+       url('/fonts/Twemoji.eot') format('embedded-opentype'), // Super Dickful Browsers
+}
+
+
+$ff-body = "HarmonyOS_Regular", "Twemoji", sans-serif, sans
+$ff-code = monospace
+
+$ff-logo = $ff-body
+
+// font size
+$fs-root = convert(hexo-config('style.font-size'))
+$fs-15 = .9375rem
+$fs-14 = .875rem
+$fs-13 = .8125rem
+$fs-12 = .75rem
+
+$fs-h1   = 1.75rem   // 32px
+$fs-h2   = 1.5rem // 24px
+$fs-h3   = 1.375rem  // 22px
+$fs-h4   = 1.125rem  // 18px
+$fs-h5   = $fs-15
+$fs-h6   = $fs-12
+$fs-p    = $fs-15
+$fs-code = $fs-13
+
+$border-card = 8px
+$border-block = 8px
+$border-image = 6px
+
+// 可以动态变化的属性
+:root
+  --width-left: 288px
+  --width-main: 720px
+  --gap-l: 16px
+  --gap-p: .75rem // gap for paragraph
+  // desktop 2k or larger
+  @media screen and (min-width: $device-2k)
+    --gap-l: 32px
+    --width-left: 352px
+    --width-main: 780px
+  // desktop 4k or larger
+  @media screen and (min-width: $device-4k)
+    --width-main: 860px
+    --gap-l: 64px
+  // iPad 竖屏
+  @media screen and (max-width: $device-tablet)
+    --width-left: 252px
+  // iPad 竖屏
+  @media screen and (max-width: $device-mobile-max)
+    --width-left: 288px
+
+
+
+// shadow
+$boxshadow-card = 0 2px 3px 0px rgba(0, 0, 0, 0.1)
+$boxshadow-float = 0 4px 8px 0px rgba(0, 0, 0, 0.1)
+$boxshadow-card-float = 0 2px 4px 0px rgba(0, 0, 0, 0.1), 0 4px 8px 0px rgba(0, 0, 0, 0.1), 0 8px 16px 0px rgba(0, 0, 0, 0.1)
+$boxshadow-button = 0 0 2px 0px rgba(0, 0, 0, 0.04), 0 0 8px 0px rgba(0, 0, 0, 0.04)
+$boxshadow-block = 0 1px 4px 0px rgba(0, 0, 0, 0.02), 0 2px 8px 0px rgba(0, 0, 0, 0.02)

@@ -1,0 +1,43 @@
+.l_body
+  display: flex
+  margin: auto
+  padding: 0 var(--gap-l)
+  justify-content: center
+
+.l_body .l_left
+  z-index: 8
+  width: var(--width-left)
+  flex-shrink: 0
+  position: sticky
+  position: -webkit-sticky
+  top: 0
+
+.l_body .l_main
+  flex-shrink: 1
+  flex-grow: 1
+  width: 320px
+  max-width: var(--width-main)
+
+
+// 手机布局
+@media screen and (max-width: $device-mobile-max)
+  .mobile-only
+    display: block !important
+  .l_body
+    padding: 0
+    .l_left
+      position: fixed
+      transform: translateX(-320px)
+      margin: 0
+      left: 0
+      //background: var(--site-bg)
+      box-shadow: $boxshadow-card-float
+      z-index: 9
+    .l_main
+      max-width: 100%
+  .l_body.mobile
+    .l_left
+      transition: transform .3s ease-out
+  .l_body.mobile.sidebar
+    .l_left
+      transform: translateX(0px)

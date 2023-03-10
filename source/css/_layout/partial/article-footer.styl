@@ -1,0 +1,53 @@
+.md-text .article-footer
+  margin-top: 4rem
+  padding: 1rem
+  background: var(--block)
+  border-radius: $border-block
+  border: 1px solid var(--block-border)
+  &:empty
+    display: none
+  .header
+    font-weight: 500
+    color: var(--text-p2)
+    font-size: $fs-h4
+  .body
+    input.copy-area
+      margin: 0.75rem 0
+      padding: 0
+      width: 100%
+    p
+      color: var(--text-p2)
+      margin: 0.5em 0
+      a
+        font-weight: unset
+    ul
+      margin: 0
+      overflow: hidden
+    .post-title
+      margin: 0.5rem 0
+      line-height: 1.2
+      word-break: break-all
+  section+section
+    margin-top: 1rem
+    padding-top: 1rem
+    border-top: 1px solid var(--block-border)
+
+.md-text .article-footer .social-wrap
+  grid-gap: 0.5rem 1rem
+  margin: 0
+
+.md-text .article-footer .qrcode
+  width: 128px
+  padding: 4px
+  background: white
+  border-radius: 4px
+  box-shadow: 0 4px 8px 0px rgba(0, 0, 0, 0.1), 0 0 32px 0px rgba(0, 0, 0, 0.1)
+  overflow: hidden
+  trans1 height
+  img
+    object-fit: contain
+
+.md-text .article-footer .qrcode.display
+  margin: 2rem auto 1rem
+  height: 128px !important
+  visibility: visible !important

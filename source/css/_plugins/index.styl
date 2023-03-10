@@ -1,0 +1,25 @@
+// 根据主题配置加载
+if hexo-config('plugins.lazyload.enable')
+  @import 'lazyload'
+if hexo-config('plugins.swiper.enable')
+  @import 'swiper'
+if hexo-config('plugins.scrollreveal.enable')
+  @import 'scrollreveal'
+if hexo-config('plugins.fancybox.enable')
+  @import 'fancybox'
+
+// 搜索
+if hexo-config('search.service') == 'local_search'
+  @import 'search/local-search'
+
+// 评论
+if hexo-config('comments.service') == 'beaudar'
+  @import 'comments/beaudar'
+if hexo-config('comments.service') == 'twikoo'
+  @import 'comments/twikoo'
+if hexo-config('comments.service') == 'utterances'
+  @import 'comments/utterances'
+if hexo-config('comments.service') == 'valine'
+  @import 'comments/valine'
+if hexo-config('comments.service') == 'waline'
+  @import 'comments/waline'

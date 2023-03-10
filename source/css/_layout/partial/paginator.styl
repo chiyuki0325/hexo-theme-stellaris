@@ -1,0 +1,53 @@
+.paginator-wrap
+  //margin-top: 1.5rem
+  display: flex
+  justify-content: center
+  align-items: center
+  vertical-align: center
+  font-size: 1rem
+  font-weight: 700
+  border-radius: $border-card
+  overflow: hidden
+//  box-shadow: 0 2px 8px 0px rgba(0, 0, 0, 0.03)
+  .page-number 
+    padding: 4px 8px
+    border-radius: 6px
+    //background: var(--block)
+    margin: 0.5rem
+    color: var(--text-p3)
+    &:hover
+      color: var(--theme-highlight)
+  .space
+    margin: 1rem
+    color: var(--text-p2)
+  .extend
+    text-align: center
+    background-size: contain
+    width: 1rem
+    height: 1rem
+    background-origin: content-box
+    background-clip: content-box
+    &.next
+      background-image: url('/images/next.svg')
+    &.prev
+      background-image: url('/images/prev.svg')
+  .current
+    //  font-family: $ff-code
+    background: var(--theme-highlight)
+    color: var(--text-revert)
+    &:hover
+      color: var(--text-revert)
+    //color: var(--text-p3)
+  .extend
+    color: var(--text-p3)
+    padding: 1rem
+    line-height: 0
+    filter: grayscale(100%)
+    img
+      height: 1rem
+    &.disable
+      pointer-events: none
+  span.extend
+    opacity: 0.25
+  a.extend:hover
+    filter: unset

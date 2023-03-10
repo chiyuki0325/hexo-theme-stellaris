@@ -1,0 +1,32 @@
+<%
+function layoutDiv() {
+  var el = '';
+  el += '<div class="nav-wrap">';
+  el += '<nav class="sub wiki cap">';
+  // 所有项目
+  el += '<a';
+  if (page.filter === false) {
+    el += ' class="active"';
+  }
+  el += ' href="' + url_for(config.wiki_dir || "/wiki/") + '">' + __("btn.all_wiki") + '</a>';
+  el += '</a>';
+  // 项目分类
+  for (let id of Object.keys(theme.wiki.all_tags)) {
+    let tag = theme.wiki.all_tags[id];
+    let projects = tag.items.filter(item => item.index !== false)
+    if (projects && projects.length > 0) {
+      el += '<a';
+      if (tag.name && tag.name.length > 0 && page.tagName === tag.name) {
+        el += ' class="active"';
+      }
+      el += ' href="' + url_for(tag.path) + '">' + tag.name + '</a>';
+      el += '</a>';
+    }
+  }
+  el += '</nav>';
+  el += '</div>';
+  return el;
+}
+%>
+
+<%- layoutDiv() %>

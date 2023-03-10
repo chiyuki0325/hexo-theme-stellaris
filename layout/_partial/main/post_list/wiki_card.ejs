@@ -1,0 +1,28 @@
+<%
+function layoutDiv() {
+  var el = '';
+  el += '<article class="md-text">';
+  if (proj.logo && proj.logo.src) {
+    el += '<div class="preview">';
+    el += '<img src="' + proj.logo.src + '" alt="logo"';
+    if (proj.logo.small) {
+      el += ' height="' + proj.logo.small + '"';
+    }
+    el += '/>';
+    el += '</div>';
+  }
+  el += '<div class="excerpt">';
+  if (proj.tags && proj.tags.length > 0) {
+    let tag = proj.tags[0];
+    el += '<div class="cap breadcrumb"' + category_color(tag) + '>' + tag + '</div>';
+  }
+  el += '<h2 class="post-title">' + (proj.title || proj.name) + '</h2>';
+  if (proj.description) {
+    el += '<p>' + proj.description + '</p>';
+  }
+  el += '</div>';
+  el += '</article>';
+  return el;
+}
+%>
+<%- layoutDiv() %>

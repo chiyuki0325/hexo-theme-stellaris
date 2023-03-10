@@ -1,0 +1,41 @@
+h1,.h1
+  font-size: $fs-h1
+  font-weight: 700
+  @media screen and (max-width: $device-mobile)
+    font-size: $fs-h1
+h2,.h2
+  font-size: $fs-h2
+h3,.h3
+  font-size: $fs-h3
+h4,.h4
+  font-size: $fs-h4
+h5
+  font-size: $fs-h5
+h6
+  font-size: $fs-h6
+
+// 次级段落字号
+.fs14
+  font-size: $fs-14
+  p
+    font-size: $fs-14 !important
+  li
+    font-size: $fs-14 !important
+// 脚标字号
+.fs12
+  font-size: $fs-12
+
+.widgets
+  .post-title
+    margin: 0.75rem 0
+    line-height: 1.2
+    display: block
+    txt-ellipsis()
+    .cap
+      margin-bottom: 2px
+      opacity: 0.5
+    a
+      color: inherit
+      font-weight: 500
+      &:hover
+        color: $color-hover

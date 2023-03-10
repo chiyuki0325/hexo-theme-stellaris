@@ -1,0 +1,20 @@
+<%
+page.robots = 'noindex,follow';
+if (page.menu_id == undefined) {
+  page.menu_id = 'post';
+}
+%>
+<% if (site.tags.length) { %>
+  <% page.title = __('btn.tags'); %>
+  <% page.layout = 'tags'; %>
+  <%- partial('_partial/main/navbar/list_post') %>
+  <div class='post-list'>
+    <article class='<%- scrollreveal() %>' id='tags'>
+      <% site.tags.sort('length', -1).each(function(tag){ %>
+        <a class='tag' href="<%= url_for(tag.path) %>">
+          <span class='name'><%= tag.name %></span>
+        </a>
+      <% }) %>
+    </article>
+  </div>
+<% } %>

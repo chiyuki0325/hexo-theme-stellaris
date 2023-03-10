@@ -1,0 +1,66 @@
+.nav-wrap
+  position: sticky
+  position: -webkit-sticky
+  margin-top: -0.5rem
+  top: -2px
+  background: var(--site-bg)
+  padding: 0 1rem
+  z-index: 8
+  margin-bottom: 1px
+  //&:after
+    //content: ''
+    //width: 'calc(100% - 2 * %s)' % 1rem
+    //height: 2px
+    //border-radius: 2px
+    //position: absolute
+    //bottom: 0
+    //left: 1rem
+    //background: var(--block-hover)
+
+nav.cap
+  display: flex
+  overflow: auto
+  scrollbar(0, 0)
+  >p
+    margin: 0
+  a
+    padding: .25rem 1rem
+    margin: 10px 0 8px 0
+    line-height: 2
+    color: var(--text-p3)
+    border-radius: 4px
+    font-weight: 500
+    white-space: nowrap
+    position: relative
+    z-index: 1
+    &:after
+      height: 2px
+      position: absolute
+      bottom: -1px
+      left: 1rem
+      right: 1rem
+      background: var(--theme-highlight)
+      border-radius: 2px
+      pointer-events: none
+    &:hover
+      background: var(--block-hover)
+    &.active, &:hover
+      color: var(--text-p1)
+    &.active
+      background: var(--card)
+      //box-shadow: $boxshadow-button
+    &.active:after
+      content: ''
+  a+a
+    margin-left: 4px
+
+@media screen and (max-width: $device-mobile-max)
+  .nav-wrap
+    margin-top: 0
+    padding-left: 0
+    padding-right: 0
+    nav
+      a:first-child
+        margin-left: 1rem
+      a:last-child
+        margin-right: 1rem

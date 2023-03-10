@@ -1,0 +1,63 @@
+btn:
+  home: 主页
+  blog: 文章
+  wiki: 项目
+  recent_publish: 近期发布
+  all_wiki: 所有项目
+  category: 分类
+  categories: 分类
+  tag: 标签
+  tags: 标签
+  archives: 归档
+  getting_started: 开始阅读
+  search: 搜索
+
+meta:
+  recent_update: 最近更新
+  toc: 本文目录
+  read_next: 接下来阅读
+  prev: 回顾上一篇
+  next: 接下来阅读
+  older: 较早文章
+  newer: 较新文章
+  references: 参考资料
+  related_posts: 您可能感兴趣的文章
+  comment_title: 快来参与讨论吧
+  back_to_top: 回到顶部
+  more: '更多%s'
+  created: 发布于
+  updated: 更新于
+  license: 许可协议
+  share: 分享文章
+  date_suffix:
+    just: 刚刚
+    min: 分钟前
+    hour: 小时前
+    day: 天前
+    month: 个月前
+
+footer:
+  license: '本博客所有文章除特别声明外，均采用 %s 许可协议，转载请注明出处。'
+  info_not_open_source: '本站由 %s 创建，使用 %s 作为主题。'
+  info_open_source: '本站由 %s 创建，使用 %s 作为主题。 %s' #已经改为相关信息
+
+page:
+  error:
+    what: 很抱歉，您访问的页面不存在
+    why: 可能是输入地址有误或该地址已被删除
+    action: 返回主页
+
+search:
+  search: 站内搜索
+  search_in: 在 %s 中搜索
+  no_results: 没有找到内容！
+
+message:
+  copied: 复制成功
+
+symbol:
+  comma: "，"
+  period: "。"
+  colon: "："
+  brackets_l: "（"
+  brackets_r: "）"

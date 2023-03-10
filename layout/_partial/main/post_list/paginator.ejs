@@ -1,0 +1,9 @@
+<% if (is_home() && page.total > 1) { %>
+  <div class='paginator-wrap dis-select'>
+  <%- paginator({
+    prev_text: '',
+    next_text: '',
+    force_prev_next:true
+  }) %>
+  </div>
+<% } %>

@@ -1,0 +1,27 @@
+<%
+var loadComment = false;
+if (theme.comments.service && theme.comments.service.length > 0) {
+  if (page.comments == undefined || page.comments != false) {
+    loadComment = true;
+  }
+}
+// 合并项目评论
+if (loadComment && page.layout == 'wiki' && page.wiki) {
+  let proj = theme.wiki.projects[page.wiki];
+  if (proj.comment_title != undefined && page.comment_title == undefined) {
+    if (['utterances', 'beaudar'].includes(theme.comments.service)) {
+      page.comment_title = proj.comment_title;
+    }
+  }
+}
+%>
+<% if (loadComment) { %>
+  <div class='related-wrap md-text reveal' id="comments">
+    <div class='cmt-title cap theme'>
+      <%- page.comment_title != undefined ? markdown(page.comment_title) : __('meta.comment_title') %>
+    </div>
+    <div class='cmt-body <%- theme.comments.service %>'>
+      <%- partial(theme.comments.service + '/layout') %>
+    </div>
+  </div>
+<% } %>

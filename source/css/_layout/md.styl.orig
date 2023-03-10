@@ -1,0 +1,160 @@
+article.md
+  max-width: 100%
+  padding: 1rem
+  color: var(--text-p1)
+  line-height: 1.7
+  word-break: break-word
+
+article.md.excerpt
+  p
+    font-size: $fs-14
+    margin: 1em 0
+
+h1.article-title
+  margin-top: .5em
+  margin-bottom: 1em
+  line-height: 1.2
+  color: var(--text-p0)
+
+article.md.content
+  position: relative
+  margin-bottom: 2rem
+  display: flex
+  flex-direction: column
+  &.indent
+    >p:not([class])
+      text-indent: 'calc(%s * 2)' % $fs-p
+      text-align: justify
+    h1,h2,h3,h4,h5,h6
+      text-align: center
+    >h2:not([class])
+      align-self: center
+      border-bottom-style: dashed
+      border-bottom-color: $color-highlight
+  >:first-child
+    margin-top: 1rem
+  h1:not(:first-child)
+    margin-top: 2em
+  h2:first-child
+    margin-top: 0
+  h2,h3,h4,h5,h6
+    color: var(--text-p0)
+    padding-top: 1rem
+    margin-bottom: .5rem
+    line-height: 1.8
+    &:hover
+      a.headerlink:before
+        opacity: 1
+
+
+
+.md
+  ul:not(:last-child),
+  ol:not(:last-child)
+    padding-bottom: .5rem
+    margin: 0
+  blockquote,ul,ol
+    p,ul,ol
+      font-size: $fs-14
+      line-height: 1.5
+  p,blockquote,.tag-plugin,ul,ol,.highlight,table
+    *
+      --gap-p: .5rem
+  p,>ul:not(:last-child),>ol:not(:last-child)
+    margin-top: 'calc(%s - 4px)' % var(--gap-p)
+    margin-bottom: 'calc(%s - 4px)' % var(--gap-p)
+  .tag-plugin,iframe
+    margin-top: var(--gap-p)
+    margin-bottom: var(--gap-p)
+  p,.tag-plugin
+    .highlight,table
+      --gap-p: 1rem
+  iframe
+    display: block
+
+// titles
+article.md.content
+  a.headerlink:before
+    opacity: 0
+    content: '#'
+    position: absolute
+    margin-left: -0.75em
+  h2
+    margin-top: 2rem
+    border-bottom: 1px solid var(--block-border)
+    font-weight: 400
+  h3
+    margin-top: 1.5rem
+    font-weight: 400
+  h4,h5,h6
+    font-weight: 500
+  h1+h2
+    margin-top: -0.5rem
+  h2+h3
+    margin-top: -0.5rem
+  h3+h4
+    margin-top: -0.5rem
+  h4+h5
+    margin-top: -0.5rem
+  h5+h6
+    margin-top: -0.5rem
+
+article.md p
+  font-size: $fs-p
+
+article.md pre
+  -webkit-font-smoothing: auto
+  -moz-osx-font-smoothing: auto
+
+article.md
+  .center
+    align-self: center
+
+// div
+article.md>div
+  margin: var(--gap-p) 0
+// blockquote
+article.md blockquote
+  margin-left: 0
+  margin-right: 0
+  padding: 1rem
+  background: var(--card)
+  border-left: 6px solid $color-theme
+  border-radius: $border-block
+  color: var(--text-p2)
+  box-shadow: $boxshadow-card
+
+
+article.md img
+  border-radius: $border-image
+  margin: auto
+  display: block
+
+article.md 
+  p:not([class]), li:not([class])
+    a:not([class])
+      position: relative
+      text-decoration: none
+      &:after
+        content: ''
+        position: absolute
+        border-radius: 2px
+        bottom: 0
+        left: 2px
+        right: 2px
+        height: 1px
+        opacity: 0.5
+        background: $color-link
+        trans1: all
+      &:hover
+        border-bottom: none
+        color: $color-link
+        // color: darken($color-hover, 10)
+        // background: alpha($color-hover, 0.08)
+        &:after
+          height: 100%
+          opacity: 0.2
+          bottom: 0
+          left: 0
+          right: 0
+          // background-color: alpha($color-hover, 0.08)

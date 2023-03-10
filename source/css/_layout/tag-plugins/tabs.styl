@@ -1,0 +1,86 @@
+.tag-plugin.tabs
+  position: relative
+  margin-top: 1rem
+  margin-bottom: 1rem
+  display: flex
+  flex-direction: column
+  &[align=left]
+    align-items: flex-start
+    .nav-tabs
+      align-self: flex-start
+  &[align=center]
+    align-items: center
+  &[align=right]
+    align-items: flex-end
+    .nav-tabs
+      align-self: flex-end
+
+.tag-plugin.tabs
+  ul.nav-tabs
+    display: flex
+    align-self: center
+    overflow: scroll visible
+    scrollbar(0, 0)
+    max-width: 100%
+    white-space: nowrap
+    margin: 0 !important
+    line-height: 1.5
+    position: relative
+    padding: 8px 0
+    &:after
+      content: ''
+      position: absolute
+      background: var(--block-hover)
+      width: 100%
+      height: 2px
+      bottom: 0
+      left: 0
+      border-radius: 2px
+    li.tab
+      list-style-type: none
+      a
+        display: block
+        cursor: pointer
+        padding: .25rem .75rem
+        font-size: $fs-13
+        line-height: inherit
+        font-weight: 500
+        color: var(--text-p3)
+        border-radius: 4px
+        position: relative
+        margin: 0 2px
+        &:hover
+          color: var(--text-p1)
+          background: var(--block-hover)
+        i
+          pointer-events: none
+      &.active a
+        cursor: default
+        color: var(--text-p1)
+        background: var(--card)
+        box-shadow: $boxshadow-button
+        &:after
+          content: ''
+          z-index: 1
+          position: absolute
+          background: $color-theme
+          height: 2px
+          bottom: -8px
+          left: .75rem
+          right: .75rem
+          border-radius: 2px
+
+  .tab-content
+    max-width: 100%
+    text-align: justify
+    margin-top: .5rem
+    .tab-pane
+      &:not(.active)
+        display: none
+      &.active
+        display: block
+
+.md-text.indent .tag-plugin.tabs .tab-content p:not([class])
+  text-indent: 'calc(%s * 2)' % $fs-p
+  a
+    text-indent: 0

@@ -1,0 +1,49 @@
+.l_left>.footer
+  margin: 0.5rem var(--gap-l) 1rem
+
+.social-wrap
+  display: grid
+  grid-gap: 0.25rem 0.25rem
+  grid-template-columns: repeat(auto-fill, 32px)
+  a.social
+    line-height: 0
+    display: inline-block
+    padding: 6px
+    border-radius: 4px
+    filter: grayscale(100%)
+    overflow: hidden
+    background: transparent
+    border: 0px solid var(--block-border);
+    trans3: background transform border
+    &:hover
+      color: $color-hover
+      z-index: 1
+      filter: unset
+      transform: translateY(-1px)
+      background: var(--card)
+      border: 1px solid var(--block-border);
+      //box-shadow: 2px 4px 8px #ddd, -2px -4px 8px #fff
+      if hexo-config('style.darkmode') == 'auto'
+        @media (prefers-color-scheme: dark)
+          //box-shadow: none
+      //if hexo-config('style.darkmode') == 'always'
+        //box-shadow: none
+
+.proj-wrap
+  display: grid
+  grid-gap: 0.25rem 0.25rem
+  a.item
+    border-radius: 4px
+    font-size: $fs-13
+    font-weight: 500
+    color: var(--text-p2)
+    background: var(--block)
+    border: 1px solid var(--block-border)
+    overflow: hidden
+    padding: .75em
+    text-align: center
+    svg
+      margin-right: .5em
+    &:hover
+      color: $color-hover
+      background: var(--card)

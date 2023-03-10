@@ -1,0 +1,63 @@
+btn:
+  home: 首頁
+  blog: 網誌
+  wiki: Wiki
+  recent_publish: 近期發布
+  all_wiki: 所有 Wiki
+  category: 分類
+  categories: 分類
+  tag: 標籤
+  tags: 標籤
+  archives: 封存
+  getting_started: 開始使用
+  search: 搜索
+
+meta:
+  recent_update: 最近更新
+  toc: 本文目錄
+  read_next: 接下來閱讀
+  prev: 回顧上一篇
+  next: 接下來閱讀
+  older: 較早文章
+  newer: 較新文章
+  references: 參考資料
+  related_posts: 您可能感興趣的文章
+  comment_title: 參與討論
+  back_to_top: 回到頁首
+  more: '更多%s'
+  created: 發布於
+  updated: 更新於
+  license: 授權條款
+  share: 分享文章
+  date_suffix:
+    just: 剛剛
+    min: 分鐘前
+    hour: 小時前
+    day: 天前
+    month: 個月前
+
+footer:
+  license: '本網誌所有文章除特別聲明外，均採用 %s 授權條款。轉載請註明出處。'
+  info_not_open_source: '本站由 %s 建立，使用 %s 作為主題。'
+  info_open_source: '本站由 %s 建立，使用 %s 作為主題。 %s' #已经改为相关信息
+
+page:
+  error:
+    what: 抱歉，找不到您存取的頁面
+    why: 可能是網址有誤或已經刪除
+    action: 返回首頁
+
+search:
+  search: 站內搜索
+  search_in: 在 %s 中搜索
+  no_results: 沒有找到內容！
+
+message:
+  copied: 複製成功
+
+symbol:
+  comma: "，"
+  period: "。"
+  colon: "："
+  brackets_l: "（"
+  brackets_r: "）"
