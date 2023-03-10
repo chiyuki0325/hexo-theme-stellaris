@@ -5,13 +5,14 @@ const PostCard = require('./components/main/post_list/post_card.jsx');
 const WikiCard = require('./components/main/post_list/wiki_card.jsx');
 
 const LayoutPostCard = (props) => {
-    const {post, url_for} = props;
+    const {post, url_for, scroll_reveal} = props;
     let className;
     if (post.cover !== undefined && post.poster !== undefined) {
-        className = 'post-card post photo reveal';
+        className = 'post-card post photo ';
     } else {
-        className = 'post-card post reveal';
+        className = 'post-card post ';
     }
+    className += scroll_reveal;
     return (
         <a className={className} href={url_for(post.link || post.path)} key={post.path}>
             <PostCard post={post} {...props}/>
@@ -19,13 +20,14 @@ const LayoutPostCard = (props) => {
     )
 }
 const LayoutWikiCard = (props) => {
-    const {proj, url_for} = props;
+    const {proj, url_for, scroll_reveal} = props;
     let className;
     if (proj.cover !== undefined && proj.poster !== undefined) {
-        className = 'post-card wiki photo reveal';
+        className = 'post-card wiki photo ';
     } else {
-        className = 'post-card wiki reveal';
+        className = 'post-card wiki ';
     }
+    className += scroll_reveal;
     return (
         <a className={className} href={url_for(proj.link || proj.path)} key={proj.path}>
             <WikiCard proj={proj} {...props}/>
@@ -34,43 +36,43 @@ const LayoutWikiCard = (props) => {
 }
 
 const LayoutPosts = (props) => {
-    const {config, is_home, page, site} = props;
+    const PostCards = (props) => {
+        const {config, is_home, page, site} = props;
+        const post_cards = [];
+        if (is_home()) {
+            if (page.current === 1) {
+                // Pinned posts
+                const pinned = site.posts.filter((post) => post.pin !== undefined).sort(
+                    (config.index_generator && config.index_generator.order_by) || '-date'
+                );
+                pinned.forEach((post) => {
+                    post_cards.push(<LayoutPostCard post={post} {...props}/>);
+                })
+                // Normal posts
+                page.posts.forEach((post) => {
+                    if (post.pin === undefined) {
+                        post_cards.push(<LayoutPostCard post={post} {...props}/>);
+                    }
+                })
+            } else {
+                page.posts.forEach((post) => {
+                    if (post.pin === undefined) {
+                        post_cards.push(<LayoutPostCard post={post} {...props}/>);
+                    }
+                })
+            }
+        }
+        return post_cards;
+    }
     return (
         <div className="post-list post">
-            {(() => {
-                const post_cards = [];
-                if (is_home()) {
-                    if (page.current === 1) {
-                        // Pinned posts
-                        const pinned = site.posts.filter((post) => post.pin !== undefined).sort(
-                            (config.index_generator && config.index_generator.order_by) || '-date'
-                        );
-                        pinned.forEach((post) => {
-                            post_cards.push(<LayoutPostCard post={post} {...props}/>);
-                        })
-                        // Normal posts
-                        page.posts.forEach((post) => {
-                            if (post.pin === undefined) {
-                                post_cards.push(<LayoutPostCard post={post} {...props}/>);
-                            }
-                        })
-                    } else {
-                        page.posts.forEach((post) => {
-                            if (post.pin === undefined) {
-                                post_cards.push(<LayoutPostCard post={post} {...props}/>);
-                            }
-                        })
-                    }
-                }
-                return post_cards;
-            })()}
+            <PostCards {...props}/>
         </div>
     )
 }
 
 const LayoutWikis = (props) => {
     const {page, theme} = props;
-    const wikis = [];
     const elements = [];
     const projects = theme.wiki.projects;
     for (let proj_name of Object.keys(projects)) {
