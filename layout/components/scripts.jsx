@@ -1,6 +1,7 @@
+const CommentsScript = require('./plugins/comments/script.jsx');
 const generateStellarScript = props => {
     const {theme, __, url_for} = props;
-    const stellarScript = `
+    return `
       stellar = {
         // 懒加载 css https://github.com/filamentgroup/loadCSS
         loadCSS: (href, before, media, attributes) => {
@@ -135,7 +136,6 @@ const generateStellarScript = props => {
       }
       stellar.plugins.instant_click = Object.assign(${JSON.stringify(theme.plugins.instant_click)});
     `;
-    return stellarScript;
 }
 const ImportJS = props => {
     const {theme} = props;
@@ -161,7 +161,7 @@ const Scripts = props => {
             <script type="text/javascript" dangerouslySetInnerHTML={{__html: generateStellarScript(props)}}/>
             <ImportJS {...props}/>
             <script type="text/javascript" src="/js/outdated_check.js" data-no-instant="true"/>
-            <div dangerouslySetInnerHTML={{__html: partial('./_partial/plugins/comments/script')}}/>
+            <CommentsScript {...props}/>
         </div>
     )
 }

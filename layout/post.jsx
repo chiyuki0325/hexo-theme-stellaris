@@ -4,6 +4,7 @@ const MathJax = require('./mathjax.jsx');
 const ArticleFooter = require('./components/main/article/article_footer.jsx');
 const ReadNext = require('./components/main/article/read_next.jsx');
 const RelatedPosts = require('./components/main/article/related_posts.jsx');
+const Comments = require('./components/plugins/comments/layout.jsx');
 const PostTitle = props => {
     const {page} = props;
     const title = page.h1 || page.title;
@@ -36,7 +37,7 @@ const Post = props => {
             </article>
             <ReadNext {...props}/>
             <RelatedPosts {...props}/>
-            <div dangerouslySetInnerHTML={{__html: partial('_partial/plugins/comments/layout')}}/>
+            <Comments {...props}/>
         </Fragment>
     )
 }

@@ -4,6 +4,7 @@ const Breadcrumb = require('./components/main/navbar/breadcrumb.jsx');
 const MathJax = require('./mathjax.jsx');
 const ArticleFooter = require('./components/main/article/article_footer.jsx');
 const ReadNext = require('./components/main/article/read_next.jsx');
+const Comments = require('./components/plugins/comments/layout.jsx');
 const WikiTitle = props => {
     const {page} = props;
     const title = page.h1 || page.title;
@@ -23,8 +24,8 @@ const Wiki = props => {
         page.layout = 'wiki_index';
     }
     if (page.title === undefined) {
-        if (page.tagName) {
-            page.title = page.tagName;
+        if (page.tag_name) {
+            page.title = page.tag_name;
         } else {
             page.title = __('btn.wiki');
         }
@@ -48,7 +49,7 @@ const Wiki = props => {
                     <ArticleFooter {...props}/>
                 </article>
                 <ReadNext {...props}/>
-                <div dangerouslySetInnerHTML={{__html: partial('_partial/plugins/comments/layout')}}/>
+                <Comments {...props}/>
             </Fragment>
         )
     }

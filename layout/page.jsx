@@ -1,6 +1,7 @@
 const Breadcrumb = require('./components/main/navbar/breadcrumb.jsx');
 const NavBarListPost = require('./components/main/navbar/list_post.jsx');
 const ArticleFooter = require('./components/main/article/article_footer.jsx');
+const Comments = require('./components/plugins/comments/layout.jsx');
 const PageTitle = props => {
     const {page} = props;
     const title = page.h1 || page.title;
@@ -34,7 +35,7 @@ const Page = props => {
         </article>
     )
     elements.push(
-        <div dangerouslySetInnerHTML={{__html: partial('_partial/plugins/comments/layout')}}/>
+        <Comments {...props}/>
     )
     return elements;
 }
