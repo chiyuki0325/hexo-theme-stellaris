@@ -1,6 +1,7 @@
 const {Fragment} = require('react');
 const Breadcrumb = require('./components/main/navbar/breadcrumb.jsx');
 const MathJax = require('./mathjax.jsx');
+const ArticleFooter = require('./components/main/article/article_footer.jsx');
 const PostTitle = props => {
     const {page} = props;
     const title = page.h1 || page.title;
@@ -29,7 +30,7 @@ const Post = props => {
                      id={page.title}>
                 <PostTitle {...props}/>
                 <div dangerouslySetInnerHTML={{__html: page.content}}/>
-                <div dangerouslySetInnerHTML={{__html: partial('_partial/main/article/article_footer')}}/>
+                <ArticleFooter {...props}/>
             </article>
             <div dangerouslySetInnerHTML={{__html: partial('_partial/main/article/read_next')}}/>
             <div dangerouslySetInnerHTML={{__html: partial('_partial/main/article/related_posts')}}/>

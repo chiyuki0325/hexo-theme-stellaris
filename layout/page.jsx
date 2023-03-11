@@ -1,5 +1,6 @@
 const Breadcrumb = require('./components/main/navbar/breadcrumb.jsx');
 const NavBarListPost = require('./components/main/navbar/list_post.jsx');
+const ArticleFooter = require('./components/main/article/article_footer.jsx');
 const PageTitle = props => {
     const {page} = props;
     const title = page.h1 || page.title;
@@ -29,7 +30,7 @@ const Page = props => {
         <article className={`md-text content ${page.layout} ${page.indent ? 'indent' : ''} ${scroll_reveal()}`}>
             {page.h1 || page.title ? <PageTitle {...props}/> : <></>}
             {page.content ? <div dangerouslySetInnerHTML={{__html: page.content}}/> : <></>}
-            <div dangerouslySetInnerHTML={{__html: partial('_partial/main/article/article_footer')}}/>
+            <ArticleFooter {...props}/>
         </article>
     )
     elements.push(

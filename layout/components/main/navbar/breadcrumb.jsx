@@ -29,8 +29,7 @@ const Breadcrumb = props => {
                     <Category {...props}/>
                 </div>
                 <div id="post-meta">
-                    {__("meta.created")}&nbsp;
-                    <time dateTime={date_xml(page.updated)}>{date(page.updated, config.date_format)}</time>
+                    {__("meta.created")}&nbsp;<time dateTime={date_xml(page.updated)}>{date(page.updated, config.date_format)}</time>
                     <span id="outdated"></span>
                 </div>
             </div>
@@ -72,8 +71,7 @@ const Breadcrumb = props => {
                     <ProjectName {...props}/>
                 </div>
                 <div id="post-meta">
-                    {__("meta.created")}&nbsp;
-                    <time dateTime={date_xml(page.updated)}>{date(page.updated, config.date_format)}</time>
+                    {__("meta.created")}&nbsp;<time dateTime={date_xml(page.updated)}>{date(page.updated, config.date_format)}</time>
                 </div>
             </div>
         )
