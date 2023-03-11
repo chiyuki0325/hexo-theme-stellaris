@@ -17,5 +17,5 @@ function checkOutdatedBrowser(){
 }
 
 if (checkOutdatedBrowser() === false) {
-    document.getElementById("start").innerHTML = '<div style="margin-top: 32px"><h1>喔唷!</h1><p><span>你的浏览器太老了，无法正常浏览本站。</span><br/><span>请升级你的浏览器。</span></p><hr/><p><span>支持的浏览器版本如下:</span><ul><li>Chrome 49+</li><li>Firefox 45+</li><li>Edge 14+</li><li>Opera 36+</li><li>Safari 10+</li></ul></p></div>"
+    document.getElementById("start").innerHTML = '<div style="margin-top: 32px"><h1>喔唷!</h1><p><span>你的浏览器太老了，无法正常浏览本站。</span><br/><span>请升级你的浏览器。</span></p><hr/><p><span>支持的浏览器版本如下:</span><ul><li>Chrome 49+</li><li>Firefox 45+</li><li>Edge 14+</li><li>Opera 36+</li><li>Safari 10+</li></ul></p></div>';
 }
