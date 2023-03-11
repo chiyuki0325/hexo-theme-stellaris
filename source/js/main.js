@@ -82,10 +82,9 @@ const hud = {
 
 // defines
 
-const l_body = document.querySelector('.l_body');
-
 const sidebar = {
   toggle: () => {
+    const l_body = document.querySelector('.l_body');
     if (l_body) {
       l_body.classList.add('mobile');
       l_body.classList.toggle("sidebar");
@@ -131,8 +130,11 @@ const init = {
   sidebar: () => {
     stellar.jQuery(() => {
       $(".toc#toc a.toc-link").click(function (e) {
+        const l_body = document.querySelector('.l_body');
         l_body.classList.remove("sidebar");
       });
+      /*<button type='button' className='sidebar-toggle mobile' onClick="sidebar.toggle()">*/
+      $("#toggle-sidebar").attr("onclick", "sidebar.toggle()");
     })
   },
   relativeDate: (selector) => {

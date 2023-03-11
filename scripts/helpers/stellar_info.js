@@ -9,7 +9,7 @@ hexo.extend.helper.register('stellar_info', function(args){
   if (!args) {
     return repo;
   } else if (args == 'name') {
-    return 'Stellar';
+    return 'Stellaris';
   } else if (args == 'version') {
     return version;
   } else if (args == 'issues') {

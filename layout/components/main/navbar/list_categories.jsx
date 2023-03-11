@@ -62,6 +62,8 @@ const Category = (props) => {
                 <ListCategories categories={page.categories} {...props}/>
             </Fragment>
         )
+    } else {
+        return <></>;
     }
 }
 
