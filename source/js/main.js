@@ -6,7 +6,7 @@ console.log(
 console.log('-- By YidaozhanYa');
 
 // utils
-util = {
+const util = {
 
     // https://github.com/jerryc127/hexo-theme-butterfly
     diffDate: (d, more = false) => {
@@ -63,7 +63,7 @@ util = {
     },
 }
 
-hud = {
+const hud = {
     toast: (msg, duration) => {
         duration = isNaN(duration) ? 2000 : duration;
         var el = document.createElement('div');
@@ -84,7 +84,7 @@ hud = {
 
 // defines
 
-sidebar = {
+const sidebar = {
     toggle: () => {
         const l_body = document.querySelector('.l_body');
         if (l_body) {

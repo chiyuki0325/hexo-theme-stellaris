@@ -161,6 +161,7 @@ const Scripts = props => {
             <script type="text/javascript" dangerouslySetInnerHTML={{__html: generateStellarScript(props)}}/>
             <ImportJS {...props}/>
             <script type="text/javascript" src="/js/outdated_check.js" data-no-instant="true"/>
+            <script type="text/javascript" src="/js/check_outdated_browser.js" data-no-instant="true"/>
             <CommentsScript {...props}/>
         </div>
     )
