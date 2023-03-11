@@ -2,8 +2,8 @@ const Layout = props => {
     const {page, partial, body} = props;
     const Head = require('./components/head.jsx');
     const Cover = require('./components/cover/cover.jsx');
-    const SidebarIndex = partial('_partial/sidebar/index');
-    const HeaderIndex = partial('_partial/main/header/index');
+    const Sidebar = require('./components/sidebar/sidebar.jsx');
+    const Header = require('./components/main/header.jsx');
     const Scripts = require('./components/scripts.jsx');
     const Footer = require('./components/main/footer.jsx');
     const MenuButton = require('./components/menu_button.jsx');
@@ -14,10 +14,10 @@ const Layout = props => {
         <Cover {...props}/>
         <div className='l_body' id='start'>
             <aside className='l_left' layout={page.layout}>
-                <div dangerouslySetInnerHTML={{__html: SidebarIndex}}/>
+                <Sidebar {...props}/>
             </aside>
             <div className={"l_main" + (page.content ? "" : " list")}>
-                <div dangerouslySetInnerHTML={{__html: HeaderIndex}}/>
+                <Header {...props}/>
                 <div dangerouslySetInnerHTML={{__html: body}}/>
                 <Footer {...props}/>
                 <MenuButton />

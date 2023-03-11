@@ -114,8 +114,8 @@ const ArticleFooter = props => {
                                                 )
                                             case 'wechat':
                                                 return (
-                                                    <a className="social share-item wechat"
-                                                       id="share-button-wechat"
+                                                    <a className="social share-item wechat on-click-event"
+                                                       data-on-click="util.toggle('qrcode-wechat');"
                                                        key={item}
                                                     >
                                                         <img src='/images/wechat.svg' alt='wechat'/>
@@ -132,10 +132,9 @@ const ArticleFooter = props => {
                                                 )
                                             case 'link':
                                                 return (
-                                                    <a className="social share-item link"
-                                                       id="share-button-link"
+                                                    <a className="social share-item link on-click-event"
+                                                       data-on-click={`util.copy('copy-link', "${__('message.copied')}")`}
                                                        key={item}
-                                                       data-copied-message={__('message.copied')}
                                                     >
                                                         <img src='/images/link_icon.svg' alt='link'/>
                                                     </a>

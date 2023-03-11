@@ -135,22 +135,16 @@ const init = {
                 const l_body = document.querySelector('.l_body');
                 l_body.classList.remove("sidebar");
             });
-            /*<button type='button' className='sidebar-toggle mobile' onClick="sidebar.toggle()">*/
-            $("#toggle-sidebar").click(() => {
-                sidebar.toggle()
-            });
         })
     },
-    shareButton: () => {
+    registerOnClick: () => {
         stellar.jQuery(() => {
-            $('#share-button-wechat').click(() => {
-                util.toggle('qrcode-wechat');
-            })
-            const shareButtonLink = $('#share-button-link');
-            shareButtonLink.click(() => {
-                util.copy(
-                    'copy-link',
-                    shareButtonLink.attr('data-copied-message')
+            const elements = $('.on-click-event');
+            elements.each((e) => {
+                const el = $(elements[e]);
+                el.attr(
+                    'onclick',
+                    el.attr('data-on-click')
                 )
             })
         })
@@ -199,7 +193,7 @@ const init = {
 const initAll = () => {
     init.toc()
     init.sidebar()
-    init.shareButton()
+    init.registerOnClick()
     init.relativeDate(document.querySelectorAll('#post-meta time'))
     init.registerTabsTag()
 }
