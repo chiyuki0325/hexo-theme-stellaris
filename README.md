@@ -1,13 +1,18 @@
-# 📑 Stellaris - 强大、优雅、现代的 Hexo 主题 [WIP]
+# 📑 Stellaris - 强大、优雅、现代的 Hexo 主题
 
-hexo-theme-stellaris 分叉自 [hexo-theme-stellar](https://github.com/xaoxuu/hexo-theme-stellar)，支持丰富的标签和动态数据组件。本主题为[我的博客](https://blog.yidaozhan.top)打造。
+hexo-theme-stellaris 分叉自 [hexo-theme-stellar](https://github.com/xaoxuu/hexo-theme-stellar)，支持丰富的标签和动态数据组件。
+
+**本主题为[一刀斩の小窝](https://blog.yidaozhan.top)专门开发，有些功能我没有用到，不保证完全可用。**
+
 
 ### 与原主题的区别
 
 - 样式: 使用 Fluent Design 设计规范重新设计样式。
-- 代码: 使用 React JSX 重写。
+- 代码: 使用 React 重写所有模板。
 
 ### 安装
+
+本主题不会上架 npm，所以请使用 git 子模块的方式安装。
 
 - 环境需求
     ```
@@ -17,7 +22,14 @@ hexo-theme-stellaris 分叉自 [hexo-theme-stellar](https://github.com/xaoxuu/he
     npm: 6.14.13 ~ 8.19.2
     ```
 
-- 将主题安装为子模块。
+- 安装依赖
+    ```bash
+    npm install hexo-renderer-jsx --save
+    // or
+    yarn add hexo-renderer-jsx
+    ```
+
+- 将主题安装为子模块
     ```bash
     git submodule add https://github.com/YidaozhanY/hexo-theme-stellaris.git themes/stellaris
     ```
