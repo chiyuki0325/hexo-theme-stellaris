@@ -23,6 +23,8 @@ const Title = (props) => {
             title = __('btn.category') + __('symbol.colon') + page.category + ' - ' + config.title;
         } else if (page.tag) {
             title = __('btn.tag') + __('symbol.colon') + page.tag + ' - ' + config.title;
+        } else {
+            title = config.title;
         }
         return <title>{title}</title>;
     }

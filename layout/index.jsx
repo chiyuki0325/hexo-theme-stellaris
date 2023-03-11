@@ -36,33 +36,35 @@ const LayoutWikiCard = (props) => {
     )
 }
 
-const LayoutPosts = (props) => {
-    const PostCards = (props) => {
+const LayoutPosts = props => {
+    const PostCards = props => {
         const {config, is_home, page, site} = props;
         const post_cards = [];
+        const posts = page.posts || props.posts;
         if (is_home()) {
             if (page.current === 1) {
                 // Pinned posts
                 const pinned = site.posts.filter((post) => post.pin !== undefined).sort(
                     (config.index_generator && config.index_generator.order_by) || '-date'
                 );
-                pinned.forEach((post) => {
+                pinned.forEach(post => {
                     post_cards.push(<LayoutPostCard post={post} {...props}/>);
                 })
-                // Normal posts
-                page.posts.forEach((post) => {
-                    if (post.pin === undefined) {
-                        post_cards.push(<LayoutPostCard post={post} {...props}/>);
-                    }
-                })
-            } else {
-                page.posts.forEach((post) => {
-                    if (post.pin === undefined) {
-                        post_cards.push(<LayoutPostCard post={post} {...props}/>);
-                    }
-                })
             }
+            // Normal posts
+            posts.forEach(post => {
+                if (post.pin === undefined) {
+                    post_cards.push(<LayoutPostCard post={post} {...props}/>);
+                }
+            })
+        } else {
+            posts.forEach(post => {
+                if (post.pin === undefined) {
+                    post_cards.push(<LayoutPostCard post={post} {...props}/>);
+                }
+            })
         }
+
         return post_cards;
     }
     return (
