@@ -1,4 +1,5 @@
 const {Fragment} = require('react');
+const OpenGraphArguments = require('./head/open_graph.jsx');
 const Title = (props) => {
     const {page, theme, config, __} = props;
     if (page.seo_title) {
@@ -80,11 +81,11 @@ const OpenGraph = (props) => {
             return <></>;
         }
     }
-    const {theme, open_graph} = props;
+    const {theme} = props;
     if (theme.open_graph && theme.open_graph.enable) {
         return (
             <Fragment>
-                <Fragment dangerouslySetInnerHTML={{__html: open_graph(openGraphArguments(props))}}></Fragment>
+                <OpenGraphArguments {...props} {...openGraphArguments(props)} />
                 <OpenGraphCover {...props}/>
             </Fragment>
         )
@@ -94,11 +95,26 @@ const OpenGraph = (props) => {
 }
 
 const Feed = (props) => {
-    const {config, feed_tag} = props;
+    const {config, url_for} = props;
     if (config.feed && config.feed.path) {
-        return (
-            <Fragment dangerouslySetInnerHTML={{__html: feed_tag(config.feed.path, {title: config.title})}}></Fragment>
-        )
+        // feed_tag.js to jsx
+        if (typeof config.feed.type === 'string') {
+            return (
+                <link rel="alternate"
+                      href={url_for(config.feed.path)} type={`application/${config.feed.type}+xml`}
+                      title={config.title}/>
+            )
+        } else {
+            const results = [];
+            for (const i in config.feed.type) {
+                results.push(
+                    <link rel="alternate"
+                          href={url_for(config.feed.path[i])} type={`application/${config.feed.type[i]}+xml`}
+                          key={i} title={config.title}/>
+                )
+            }
+            return results;
+        }
     } else {
         return <></>;
     }
@@ -148,24 +164,7 @@ const ImportKatex = (props) => {
         return <></>;
     }
 }
-const ImportInjectHead = (props) => {
-    const lines = [];
-    const {config} = props;
-    if (config.inject && config.inject.head) {
-        (config.inject.head || []).forEach(
-            (item) => {
-                lines.push(
-                    <>
-                        {item}
-                    </>
-                );
-            }
-        );
-        return lines
-    } else {
-        return <></>;
-    }
-}
+
 
 module.exports = function Head(props) {
     const {stellar_info} = props;
@@ -199,7 +198,6 @@ module.exports = function Head(props) {
             <ImportCSS {...props}/>
             <ImportHighlightJSTheme {...props}/>
             <ImportKatex {...props}/>
-            <ImportInjectHead {...props}/>
         </head>
     )
 }
