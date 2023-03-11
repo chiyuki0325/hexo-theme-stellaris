@@ -1,8 +1,8 @@
 ######## Stellar info ########
 stellar:
-  version: '1.17.2'
-  homepage: 'https://xaoxuu.com/wiki/stellar/'
-  repo: 'https://github.com/YidaozhanYa/hexo-theme-stellar'
+  version: '1.0.0'
+  homepage: 'https://blog.yidaozhan.top/'
+  repo: 'https://github.com/YidaozhanYa/hexo-theme-stellaris'
   cdn_css: # Use cdn links instead of /css/main.css
   cdn_js: # Use cdn links instead of /js/main.js
 
@@ -19,10 +19,10 @@ sidebar:
     avatar: '[config.avatar](/about/)' # you can set avatar link in _config.yml or '[https://xxx.png](/about/)'
     title: '[config.title](/)' # you can set html tag like: '[<img no-lazy height="32px" src="xxx"/>](/)'
   menu:
-    # post: '[btn.blog](/)'
-    # wiki: '[btn.wiki](/wiki/)'
-    # friends: '[友链](/friends/)'
-    # about: '[关于](/about/)'
+  # post: '[btn.blog](/)'
+  # wiki: '[btn.wiki](/wiki/)'
+  # friends: '[友链](/friends/)'
+  # about: '[关于](/about/)'
   # Sidebar widgets
   widgets:
     #### 自动生成的页面 ####
@@ -121,7 +121,7 @@ comments:
     appId: # your appId
     appKey: # your appKey
     placeholder:
-    requiredFields: [nick, mail]
+    requiredFields: [ nick, mail ]
     enableQQ: true # Unstable avatar link
     recordIP: false # Record commenter IP
     avatar: robohash # gravatar style https://valine.js.org/avatar
@@ -129,7 +129,7 @@ comments:
     lang: zh-cn
     highlight: true
     mathJax: false
-    tagMeta: [博主, 小伙伴, 访客] # 标签要显示的文字,默认'博主,小伙伴,访客'
+    tagMeta: [ 博主, 小伙伴, 访客 ] # 标签要显示的文字,默认'博主,小伙伴,访客'
     metaPlaceholder:
       nick: "昵称/QQ号(必填)"
       mail: "邮箱（必填，完全保密）"
@@ -193,34 +193,34 @@ comments:
 ######## Footer ########
 footer:
   social:
-    # github:
-    #   icon: '<img src="https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.3/social/08a41b181ce68.svg"/>'
-    #   url: /
-    # music:
-    #   icon: '<img src="https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.3/social/3845874.svg"/>'
-    #   url: /
-    # unsplash:
-    #   icon: '<img src="https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.3/social/3616429.svg"/>'
-    #   url: /
-    # comments:
-    #   icon: '<img src="https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.3/social/942ebbf1a4b91.svg"/>'
-    #   url: /about/#comments
+  # github:
+  #   icon: '<img src="https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.3/social/08a41b181ce68.svg"/>'
+  #   url: /
+  # music:
+  #   icon: '<img src="https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.3/social/3845874.svg"/>'
+  #   url: /
+  # unsplash:
+  #   icon: '<img src="https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.3/social/3616429.svg"/>'
+  #   url: /
+  # comments:
+  #   icon: '<img src="https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.3/social/942ebbf1a4b91.svg"/>'
+  #   url: /about/#comments
   sitemap:
-    # '博客':
-    #   - '[近期](/)'
-    #   - '[分类](/)'
-    #   - '[标签](/)'
-    #   - '[归档](/)'
-    # '项目':
-    #   - '[开源库](/)'
-    # '社交':
-    #   - '[友链](/)'
-    #   - '[留言板](/)'
-    # '更多':
-    #   - '[关于本站](/)'
-    #   - '[GitHub](/)'
+  # '博客':
+  #   - '[近期](/)'
+  #   - '[分类](/)'
+  #   - '[标签](/)'
+  #   - '[归档](/)'
+  # '项目':
+  #   - '[开源库](/)'
+  # '社交':
+  #   - '[友链](/)'
+  #   - '[留言板](/)'
+  # '更多':
+  #   - '[关于本站](/)'
+  #   - '[GitHub](/)'
   content: | # 支持 Markdown 格式
-    本站由 [@anonymity](/) 使用 [Stellar](https://github.com/xaoxuu/hexo-theme-stellar) 主题创建。
+    本站由 [@anonymity](/) 使用 [Stellaris](https://github.com/YidaozhanYa/hexo-theme-stellaris) 主题创建。
     本博客所有文章除特别声明外，均采用 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) 许可协议，转载请注明出处。
   # 主题用户越多，开发者维护和更新的积极性就越高，如果您喜欢本主题，请在适当的位置显示主题信息和仓库链接以表支持。
 
