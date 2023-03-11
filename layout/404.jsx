@@ -1,3 +1,4 @@
+const Comments = require('./components/plugins/comments/layout.jsx');
 const ErrorPage = (props) => {
     const {config, __} = props;
     const {partial} = props;
@@ -14,7 +15,7 @@ const ErrorPage = (props) => {
             <p className='why'>{__('page.error.why')}</p>
             <br/>
             <a className='button theme' id='back' href={config.root}>{__('page.error.action')}</a>
-            <div dangerouslySetInnerHTML={{__html: partial('_partial/plugins/comments/layout')}}/>
+            <Comments {...props}/>
         </article>
     )
 }
