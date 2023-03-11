@@ -196,13 +196,18 @@ const init = {
 
 }
 
-
+const initAll = () => {
+    init.toc()
+    init.sidebar()
+    init.shareButton()
+    init.relativeDate(document.querySelectorAll('#post-meta time'))
+    init.registerTabsTag()
+}
 // init
-init.toc()
-init.sidebar()
-init.shareButton()
-init.relativeDate(document.querySelectorAll('#post-meta time'))
-init.registerTabsTag()
+InstantClick.on('change', () => {
+    initAll()
+});
+initAll()
 
 // scrollreveal
 if (stellar.plugins.scrollreveal) {
@@ -295,27 +300,33 @@ if (stellar.plugins.swiper) {
 }
 
 // fancybox
-if (stellar.plugins.fancybox) {
-    let selector = 'img[fancybox]:not(.error)';
-    if (stellar.plugins.fancybox.selector) {
-        selector += `, ${stellar.plugins.fancybox.selector}`
-    }
-    if (document.querySelectorAll(selector).length !== 0) {
-        stellar.loadCSS(stellar.plugins.fancybox.css);
-        stellar.loadScript(stellar.plugins.fancybox.js, {defer: true}).then(function () {
-            Fancybox.bind(selector, {
-                groupAll: true,
-                hideScrollbar: false,
-                Thumbs: {
-                    autoStart: false,
-                },
-                caption: function (fancybox, carousel, slide) {
-                    return slide.$trigger.alt || null
-                }
-            });
-        })
+const initFancyBox = () => {
+    if (stellar.plugins.fancybox) {
+        let selector = 'img[fancybox]:not(.error)';
+        if (stellar.plugins.fancybox.selector) {
+            selector += `, ${stellar.plugins.fancybox.selector}`
+        }
+        if (document.querySelectorAll(selector).length !== 0) {
+            stellar.loadCSS(stellar.plugins.fancybox.css);
+            stellar.loadScript(stellar.plugins.fancybox.js, {defer: true}).then(function () {
+                Fancybox.bind(selector, {
+                    groupAll: true,
+                    hideScrollbar: false,
+                    Thumbs: {
+                        autoStart: false,
+                    },
+                    caption: function (fancybox, carousel, slide) {
+                        return slide.$trigger.alt || null
+                    }
+                });
+            })
+        }
     }
 }
+InstantClick.on('change', () => {
+    initFancyBox();
+});
+initFancyBox();
 
 
 if (stellar.search.service) {
