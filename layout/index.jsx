@@ -13,7 +13,7 @@ const LayoutPostCard = (props) => {
     } else {
         className = 'post-card post ';
     }
-    className += scroll_reveal;
+    className += scroll_reveal();
     return (
         <a className={className} href={url_for(post.link || post.path)} key={post.path}>
             <PostCard post={post} {...props}/>
@@ -28,9 +28,9 @@ const LayoutWikiCard = (props) => {
     } else {
         className = 'post-card wiki ';
     }
-    className += scroll_reveal;
+    className += scroll_reveal();
     return (
-        <a className={className} href={url_for(proj.link || proj.path)} key={proj.path}>
+        <a className={className} href={url_for(proj.homepage.link || proj.homepage.path)} key={proj.path}>
             <WikiCard proj={proj} {...props}/>
         </a>
     )
@@ -85,14 +85,14 @@ const LayoutWikis = (props) => {
             // all wikis
             elements.push(
                 <div className="post-list wiki" key={proj_name}>
-                    <LayoutWikiCard proj={proj.homepage} {...props}/>
+                    <LayoutWikiCard proj={proj} {...props}/>
                 </div>
             )
         } else if (proj.tags && proj.tags.includes(page.tagName) === true) {
             // filtered wikis
             elements.push(
                 <div className="post-list wiki filter" key={proj_name}>
-                    <LayoutWikiCard proj={proj.homepage} {...props}/>
+                    <LayoutWikiCard proj={proj} {...props}/>
                 </div>
             )
         }

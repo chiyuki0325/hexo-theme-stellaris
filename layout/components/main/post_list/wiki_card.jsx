@@ -7,6 +7,8 @@ module.exports = function WikiCard(props) {
                     <img src={proj.logo.src} alt="logo" height={proj.logo.small ? proj.logo.small : ''}/>
                 </div>
             );
+        } else {
+            return <></>;
         }
     }
     const ProjectCategories = (props) => {
@@ -14,12 +16,16 @@ module.exports = function WikiCard(props) {
         if (proj.tags && proj.tags.length > 0) {
             const tag = proj.tags[0];
             return <div className="cap breadcrumb" style={category_color(tag)}>{tag}</div>;
+        } else {
+            return <></>;
         }
     }
     const ProjectDescription = (props) => {
         const {proj} = props;
         if (proj.description) {
             return <p>{proj.description}</p>;
+        } else {
+            return <></>;
         }
     }
     const {proj} = props;
