@@ -11,7 +11,7 @@ hexo.on('generateBefore', () => {
 
 hexo.on('ready', () => {
   const { version, homepage, repository } = require('../../package.json');
-  hexo.log.info(`Welcome to Stellar ${version}
+  hexo.log.info(`Welcome to Stellaris ${version}
 DOCS  ${homepage}
 REPO  ${repository.url}
   `);
