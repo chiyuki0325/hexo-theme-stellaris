@@ -3,6 +3,7 @@ const Index = require('./index.jsx');
 const Breadcrumb = require('./components/main/navbar/breadcrumb.jsx');
 const MathJax = require('./mathjax.jsx');
 const ArticleFooter = require('./components/main/article/article_footer.jsx');
+const ReadNext = require('./components/main/article/read_next.jsx');
 const WikiTitle = props => {
     const {page} = props;
     const title = page.h1 || page.title;
@@ -46,7 +47,7 @@ const Wiki = props => {
                     <div dangerouslySetInnerHTML={{__html: page.content}}/>
                     <ArticleFooter {...props}/>
                 </article>
-                <div dangerouslySetInnerHTML={{__html: partial('_partial/main/article/read_next')}}/>
+                <ReadNext {...props}/>
                 <div dangerouslySetInnerHTML={{__html: partial('_partial/plugins/comments/layout')}}/>
             </Fragment>
         )

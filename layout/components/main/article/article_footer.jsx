@@ -28,7 +28,7 @@ const ArticleFooter = props => {
                             <ul>
                                 {page.references.map(item => {
                                     return (
-                                        <li className="post-title">
+                                        <li className="post-title" key={item.url}>
                                             <a href={item.url}
                                                target={item.url.includes('://') ? '_blank' : ''}
                                                rel={item.url.includes('://') ?
