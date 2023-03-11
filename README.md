@@ -15,6 +15,7 @@ hexo-theme-stellaris 分叉自 [hexo-theme-stellar](https://github.com/xaoxuu/he
 
 - 样式: 使用 Fluent Design 设计规范重新设计样式。
 - 代码: 使用 React 重写所有模板。
+- 性能优化: 使用 InstantClick 加速页面加载。
 
 ### 安装
 
