@@ -6,7 +6,7 @@ console.log(
 console.log('-- By YidaozhanYa');
 
 // utils
-const util = {
+util = {
 
     // https://github.com/jerryc127/hexo-theme-butterfly
     diffDate: (d, more = false) => {
@@ -63,7 +63,7 @@ const util = {
     },
 }
 
-const hud = {
+hud = {
     toast: (msg, duration) => {
         duration = isNaN(duration) ? 2000 : duration;
         var el = document.createElement('div');
@@ -84,7 +84,7 @@ const hud = {
 
 // defines
 
-const sidebar = {
+sidebar = {
     toggle: () => {
         const l_body = document.querySelector('.l_body');
         if (l_body) {
@@ -196,6 +196,7 @@ const initAll = () => {
     init.registerOnClick()
     init.relativeDate(document.querySelectorAll('#post-meta time'))
     init.registerTabsTag()
+    console.log(`New page loaded: ${window.location.pathname}`)
 }
 // init
 InstantClick.on('change', () => {

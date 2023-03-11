@@ -70,7 +70,7 @@ const Sidebar = props => {
                                 let main = proj.name || proj.title || page.wiki || page.title;
                                 let url = proj.homepage.path;
                                 let sub = proj.subtitle;
-                                return <HeaderTitle main={main} url={url} sub={sub} {...props}/>
+                                return <HeaderTitle {...props} main={main} url={url} sub={sub}/>
                             })()}
                         </div>
                     </widget>
@@ -97,10 +97,9 @@ const Sidebar = props => {
                     Object.assign(widget, w)
                 }
                 if (widget && widget.layout) {
-                    // compatible
+                    const Widget = require('../widgets/' + widget.layout + '.jsx');
                     elements.push(
-                        <div dangerouslySetInnerHTML={{__html: partial('_partial/widgets/' + widget.layout, {item: widget})}}
-                             key={widget.layout}/>
+                        <Widget {...props} {...widget} key={widget.layout} key={name}/>
                     )
                 }
             });
@@ -150,7 +149,8 @@ const Sidebar = props => {
     }
     return (
         <Fragment>
-            {(page.header === undefined || page.header === 'left' || page.header === 'auto') && <SidebarHeader where="sidebar" {...props}/>}
+            {(page.header === undefined || page.header === 'left' || page.header === 'auto') &&
+                <SidebarHeader where="sidebar" {...props}/>}
             <Widgets {...props}/>
             <Footer {...props}/>
         </Fragment>

@@ -9,8 +9,10 @@ const judgeOutdated = () => {
 
 
 InstantClick.on('change', () => {
-    const outdated = document.getElementById("outdated");
-    if (judgeOutdated() && outdated) {
-        outdated.innerText = "，文章内容可能已经过时"
+    const outdatedEl = document.getElementById("outdated");
+    if (outdatedEl !== null) {
+        if (judgeOutdated()) {
+            outdatedEl.innerText = "，文章内容可能已经过时"
+        }
     }
 });

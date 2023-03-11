@@ -22,7 +22,7 @@ const SidebarHeader = props => {
         if (main) {
             let url = md_link(theme.sidebar.logo.title);
             let sub = config.subtitle;
-            return <HeaderTitle main={main} url={url} sub={sub} {...props} />
+            return <HeaderTitle {...props} main={main} url={url} sub={sub} />
         }
     }
 

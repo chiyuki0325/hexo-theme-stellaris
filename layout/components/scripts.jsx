@@ -156,7 +156,7 @@ const Scripts = props => {
         <div className="scripts">
             <script src={theme.plugins.instant_click.js} data-no-instant="true"/>
             <script data-no-instant="true" type="text/javascript">
-                InstantClick.init();
+                {"InstantClick.init();"}
             </script>
             <script type="text/javascript" dangerouslySetInnerHTML={{__html: generateStellarScript(props)}}/>
             <ImportJS {...props}/>

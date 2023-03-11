@@ -1,5 +1,5 @@
 const Layout = props => {
-    const {page, partial, body} = props;
+    const {page, body} = props;
     const Head = require('./components/head.jsx');
     const Cover = require('./components/cover/cover.jsx');
     const Sidebar = require('./components/sidebar/sidebar.jsx');
