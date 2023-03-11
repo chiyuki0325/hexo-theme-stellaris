@@ -1,4 +1,4 @@
-const checkOutdatedBrowser = () => {
+function checkOutdatedBrowser(){
     "use strict";
 
     if ("ActiveXObject" in window) {
