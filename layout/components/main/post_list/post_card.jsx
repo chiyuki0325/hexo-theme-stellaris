@@ -80,9 +80,9 @@ module.exports = function PostCard(props) {
         return (
             <div className="meta cap">
                     <span className="cap" id="post-meta">
-                        {__("meta.created")}&nbsp;
-                        <time dateTime={date_xml(post.date)}>{date(post.date, config.date_format)}</time>
+                        {__("meta.created")}&nbsp;<time dateTime={date_xml(post.date)}>{date(post.date, config.date_format)}</time>
                     </span>
+                <Category {...props}/>
             </div>
         )
     }
@@ -100,7 +100,8 @@ module.exports = function PostCard(props) {
                 if (postCategories.length > 0) {
                     let category = postCategories.shift();
                     elements.push(
-                        <span className={"cap breadcrumb" + category_color(category)} key={category}>{category}</span>
+                        <span className="cap breadcrumb" style={category_color(category)}
+                              key={category}>{category}</span>
                     );
                 }
             }
@@ -123,8 +124,6 @@ module.exports = function PostCard(props) {
                 <Excerpt {...props}/>
                 {/* meta */}
                 <Meta {...props}/>
-                {/* 分类 */}
-                <Category {...props}/>
             </article>
         )
     }

@@ -1,9 +1,9 @@
 console.log(
-  `\n %c Hexo theme Stellar %c ${stellar.github} %c \n \n`,
+  `\n %c Hexo theme Stellaris %c ${stellar.github} %c \n \n`,
   "color: #eff4f9; background: #030307; padding: 5px; border-radius: 4px 0 0 4px;",
   "background: #eff4f9; padding: 5px; border-radius: 0 4px 4px 0;"
 );
-console.log('-- Modified by YidaozhanYa');
+console.log('-- By YidaozhanYa');
 
 // utils
 const util = {
@@ -332,29 +332,4 @@ if (stellar.search.service) {
       });
     })
   }
-}
-
-
-// heti
-if (stellar.plugins.heti) {
-  stellar.loadCSS(stellar.plugins.heti.css);
-  stellar.loadScript(stellar.plugins.heti.js, { defer: true }).then(function () {
-    const heti = new Heti('.heti');
-    
-    // Copied from heti.autoSpacing() without DOMContentLoaded.
-    // https://github.com/sivan/heti/blob/eadee6a3b748b3b7924a9e7d5b395d4bce479c9a/js/heti-addon.js
-    //
-    // We managed to minimize the code modification to ensure .autoSpacing()
-    // is synced with upstream; therefore, we use `.bind()` to emulate the 
-    // behavior of .autoSpacing() so we can even modify almost no code.
-    void (function () {
-      const $$rootList = document.querySelectorAll(this.rootSelector)
-
-      for (let $$root of $$rootList) {
-        this.spacingElement($$root)
-      }
-    }).bind(heti)();
-
-    stellar.plugins.heti.enable = false;
-  });
 }

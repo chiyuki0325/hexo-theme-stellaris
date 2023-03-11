@@ -3,6 +3,7 @@ const NavBarListPost = require('./components/main/navbar/list_post.jsx');
 const NavBarListWiki = require('./components/main/navbar/list_wiki.jsx');
 const PostCard = require('./components/main/post_list/post_card.jsx');
 const WikiCard = require('./components/main/post_list/wiki_card.jsx');
+const Paginator = require('./components/main/post_list/paginator.jsx');
 
 const LayoutPostCard = (props) => {
     const {post, url_for, scroll_reveal} = props;
@@ -119,6 +120,7 @@ module.exports = function Index(props) {
             <Fragment>
                 <NavBarListPost {...props}/>
                 <LayoutPosts {...props}/>
+                <Paginator {...props}/>
             </Fragment>
         );
     } else if (page.menu_id === 'wiki') {

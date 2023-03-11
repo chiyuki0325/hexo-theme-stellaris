@@ -4,7 +4,7 @@ module.exports = function Layout(props) {
     const CoverIndex = partial('_partial/cover/index');
     const SidebarIndex = partial('_partial/sidebar/index');
     const HeaderIndex = partial('_partial/main/header/index');
-    const ScriptsIndex = partial('_partial/scripts/index');
+    const Scripts = require('./components/scripts.jsx');
     const Footer = partial('_partial/main/footer');
     const MenuButton = partial('_partial/menubtn');
     return (
@@ -22,9 +22,7 @@ module.exports = function Layout(props) {
             >
             </div>
         </div>
-        <div className="scripts">
-            <div dangerouslySetInnerHTML={{__html: ScriptsIndex}}/>
-        </div>
+        <Scripts {...props}/>
         </body>
         </html>
     )

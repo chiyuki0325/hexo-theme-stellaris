@@ -13,7 +13,7 @@ module.exports = function WikiCard(props) {
         const {proj, category_color} = props;
         if (proj.tags && proj.tags.length > 0) {
             const tag = proj.tags[0];
-            return <div className={"cap breadcrumb" + category_color(tag)}>{tag}</div>;
+            return <div className="cap breadcrumb" style={category_color(tag)}>{tag}</div>;
         }
     }
     const ProjectDescription = (props) => {

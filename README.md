@@ -17,9 +17,19 @@ hexo-theme-stellaris 分叉自 [hexo-theme-stellar](https://github.com/xaoxuu/he
     npm: 6.14.13 ~ 8.19.2
     ```
 
-- 运行 `yarn add hexo-theme-stellaris` 或 `npm i hexo-theme-stellaris` 安装主题。
+- 将主题安装为子模块。
+    ```bash
+    git submodule add https://github.com/YidaozhanY/hexo-theme-stellaris.git themes/stellaris
+    ```
 
 - 在 `config.yml` 中添加 `theme: stellaris`。
+
+### 更新
+
+- 更新主题
+    ```bash
+    git submodule update --remote --merge
+    ```
 
 ### 文档
 
