@@ -4,6 +4,12 @@ hexo-theme-stellaris 分叉自 [hexo-theme-stellar](https://github.com/xaoxuu/he
 
 **本主题为[一刀斩の小窝](https://blog.yidaozhan.top)专门开发，有些功能我没有用到，不保证完全可用。**
 
+> 我是星
+> 利剑开刃寒光锋芒的银星
+> 绝不消隐
+> 不回顾永难再折返的故园的光阴
+> 决意前进
+> —— 《夜航星》
 
 ### 与原主题的区别
 
