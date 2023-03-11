@@ -160,6 +160,7 @@ const Scripts = props => {
             </script>
             <script type="text/javascript" dangerouslySetInnerHTML={{__html: generateStellarScript(props)}}/>
             <ImportJS {...props}/>
+            <script type="text/javascript" src="/outdated_check.js"/>
             <div dangerouslySetInnerHTML={{__html: partial('./_partial/plugins/comments/script')}}/>
         </div>
     )

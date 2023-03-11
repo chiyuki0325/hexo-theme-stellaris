@@ -33,3 +33,5 @@ const MathJax = props => {
         return <></>;
     }
 }
+
+module.exports = MathJax;
