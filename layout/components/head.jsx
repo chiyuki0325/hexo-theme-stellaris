@@ -169,10 +169,10 @@ const ImportKatex = (props) => {
 
 
 module.exports = function Head(props) {
-    const {stellar_info} = props;
+    const {stellar_info, env} = props;
     return (
         <head>
-            <meta name="generator" content="Hexo"/>
+            <meta name="generator" content={`Hexo ${env.version}`}/>
             <meta name='hexo-theme' content={stellar_info('tree')}/>
             <meta charSet="utf-8"/>
             <Robots {...props}/>

@@ -33,21 +33,9 @@ $dark-code = convert(hexo-config('style.color.dark.code'))
 $dark-background-mobile = convert(hexo-config('style.color.dark.background-mobile'))
 
 // 陈叔叔CDN
-@import('https://s1.hdslb.com/bfs/static/jinkela/long/font/regular.css')
+@import('//s1.hdslb.com/bfs/static/jinkela/long/font/regular.css')
 
-@font-face {
-  font-family: 'Twemoji';
-  unicode-range: U+0021-10FFFF;
-  font-variant-emoji: emoji;
-  src: local('Twemoji'),
-       url('/fonts/Twemoji.woff2') format('woff2'), // Super Modern Browsers
-       url('/fonts/Twemoji.woff') format('woff'), // Modern Browsers
-       url('/fonts/Twemoji.ttf') format('truetype'), // Dickful Browsers
-       url('/fonts/Twemoji.eot') format('embedded-opentype'), // Super Dickful Browsers
-}
-
-
-$ff-body = "HarmonyOS_Regular", "Twemoji", sans-serif, sans
+$ff-body = "HarmonyOS_Regular", sans-serif, sans
 $ff-code = monospace
 
 $ff-logo = $ff-body

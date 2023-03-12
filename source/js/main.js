@@ -1,9 +1,10 @@
 console.log(
     `\n %c Hexo theme Stellaris %c ${stellar.github} %c \n \n`,
     "color: #eff4f9; background: #030307; padding: 5px; border-radius: 4px 0 0 4px;",
-    "background: #eff4f9; padding: 5px; border-radius: 0 4px 4px 0;"
+    "background: #eff4f9; padding: 5px; border-radius: 0 4px 4px 0;",
+    ""
 );
-console.log('-- By YidaozhanYa');
+console.log('By YidaozhanYa');
 
 // utils
 const util = {
