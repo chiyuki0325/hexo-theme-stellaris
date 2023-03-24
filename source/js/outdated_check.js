@@ -1,5 +1,6 @@
 const judgeOutdated = () => {
-    const postDate = new Date(document.getElementById("post-meta").firstElementChild.dateTime);
+    const postMetaTimes = document.getElementById("post-meta").getElementsByTagName("time");
+    const postDate = new Date(postMetaTimes[postMetaTimes.length - 1].dateTime);
     const nowDate = new Date();
     //判断这两个日期是否相差三个月以上
     if (nowDate.getFullYear() - postDate.getFullYear() > 0) {

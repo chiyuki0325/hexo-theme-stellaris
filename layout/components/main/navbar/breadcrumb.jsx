@@ -1,5 +1,27 @@
 const {Fragment} = require('react');
 const Category = require('./list_categories.jsx');
+const CreatedUpdatedDate = props => {
+    const {__, page, config, date, date_xml} = props;
+    return (
+        <Fragment>
+            {__("meta.created")}&nbsp;
+            <time dateTime={date_xml(page.date)}>{date(page.date, config.date_format)}</time>
+            {(() => {
+                if (page.updated !== page.date) {
+                    return (
+                        <Fragment>
+                            ，{__("meta.updated")}&nbsp;
+                            <time dateTime={date_xml(page.updated)}>{date(page.updated, config.date_format)}</time>
+                        </Fragment>
+                    );
+                } else {
+                    return <></>;
+                }
+            })()}
+        </Fragment>
+    )
+}
+
 const Breadcrumb = props => {
     const {theme, page, config, date, date_xml, url_for, __, md_link, md_text} = props;
 
@@ -29,7 +51,7 @@ const Breadcrumb = props => {
                     <Category {...props}/>
                 </div>
                 <div id="post-meta">
-                    {__("meta.created")}&nbsp;<time dateTime={date_xml(page.updated)}>{date(page.updated, config.date_format)}</time>
+                    <CreatedUpdatedDate {...props}/>
                     <span id="outdated"></span>
                 </div>
             </div>
@@ -71,7 +93,7 @@ const Breadcrumb = props => {
                     <ProjectName {...props}/>
                 </div>
                 <div id="post-meta">
-                    {__("meta.created")}&nbsp;<time dateTime={date_xml(page.updated)}>{date(page.updated, config.date_format)}</time>
+                    <CreatedUpdatedDate {...props}/>
                 </div>
             </div>
         )
