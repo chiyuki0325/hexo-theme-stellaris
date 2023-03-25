@@ -58,6 +58,11 @@ const Footer = props => {
                                 {__html: markdown(__('footer.info_not_open_source', author, using))}
                             }/>
                 }
+                <div>{__('footer.powered_by_1')}<a href="https://hexo.io">Hexo</a>{__('footer.powered_by_2')}<a href="https://reactjs.org">React</a>{__('footer.powered_by_3')}</div>
+                {
+                    theme.footer.icp &&
+                    <div dangerouslySetInnerHTML={{__html: markdown(theme.footer.icp)}}/>
+                }
                 {
                     more && ((() => {
                         if ((typeof more == 'string') && more.constructor === String) {

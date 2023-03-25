@@ -39,8 +39,10 @@ meta:
 footer:
   license: 'All articles in this blog are licensed under %s unless stating additionally.'
   info_not_open_source: 'This site was deployed by %s using %s.'
-  info_open_source: 'This site was deployed by %s using %s. %s'  #已经改为相关信息
-
+  info_open_source: 'This site was deployed by %s using %s. You can find the source code in %s.'  #已经改为相关信息
+  powered_by_1: 'Powered by '
+  powered_by_2: ' & '
+  powered_by_3: ''
 page:
   error:
     what: Page Not Found

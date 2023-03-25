@@ -39,7 +39,10 @@ meta:
 footer:
   license: '本網誌所有文章除特別聲明外，均採用 %s 授權條款。轉載請註明出處。'
   info_not_open_source: '本站由 %s 建立，使用 %s 作為主題。'
-  info_open_source: '本站由 %s 建立，使用 %s 作為主題。 %s' #已经改为相关信息
+  info_open_source: '本站由 %s 建立，使用 %s 作為主題。您可以在 %s 找到本站原始碼。'
+  powered_by_1: '由 '
+  powered_by_2: ' 和 '
+  powered_by_3: ' 強力驅動'
 
 page:
   error:

@@ -219,9 +219,9 @@ footer:
   # '更多':
   #   - '[关于本站](/)'
   #   - '[GitHub](/)'
-  content: | # 支持 Markdown 格式
-    本站由 [@anonymity](/) 使用 [Stellaris](https://github.com/YidaozhanYa/hexo-theme-stellaris) 主题创建。
-    本博客所有文章除特别声明外，均采用 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) 许可协议，转载请注明出处。
+  license: '[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)'
+  # source:
+  # icp:
   # 主题用户越多，开发者维护和更新的积极性就越高，如果您喜欢本主题，请在适当的位置显示主题信息和仓库链接以表支持。
 
 
@@ -373,6 +373,6 @@ default:
   image: https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/image/2659360.svg
 
 api_host:
-  ghapi: https://r.ydz1.gq/https://api.github.com
+  ghapi: https://api.github.com
   ghraw: https://www.githubs.cn/raw-githubusercontent
-  gist: https://r.ydz1.gq/https://gist.github.com
+  gist: https://gist.github.com
