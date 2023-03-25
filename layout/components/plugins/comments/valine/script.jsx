@@ -26,6 +26,9 @@ const ValineScript = props => {
           if (!path) {
             path = decodeURI(window.location.pathname);
           }
+          if (!path.endsWith('/')) {
+            path += '/';
+          }
           var valine = new Valine();
           valine.init(Object.assign(${JSON.stringify(theme.comments.valine)}, {
             el: '#valine_container',
