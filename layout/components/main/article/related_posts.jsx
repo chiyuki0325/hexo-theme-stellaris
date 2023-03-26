@@ -15,7 +15,7 @@ const RelatedPostsHelper = props => {
 
     const elements = [
         <section className='header' key='header'>
-            <div className='title cap theme'>${title}</div>
+            <div className='title cap theme'>{title}</div>
         </section>
     ];
 
