@@ -138,7 +138,7 @@ const init = {
             });
         })
     },
-    registerOnClick: () => {
+    hydrate: () => {
         stellar.jQuery(() => {
             const elements = $('.on-click-event');
             elements.each((e) => {
@@ -147,6 +147,7 @@ const init = {
                     'onclick',
                     el.attr('data-on-click')
                 )
+                el.removeAttr('data-on-click')
             })
         })
     },
@@ -194,7 +195,7 @@ const init = {
 const initAll = () => {
     init.toc()
     init.sidebar()
-    init.registerOnClick()
+    init.hydrate()
     init.relativeDate(document.querySelectorAll('#post-meta time'))
     init.registerTabsTag()
     console.log(`New page loaded: ${window.location.pathname}`)
