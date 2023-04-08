@@ -32,15 +32,19 @@ hexo-theme-stellaris 分叉自 [hexo-theme-stellar](https://github.com/xaoxuu/he
 - 安装依赖
     ```bash
     npm install hexo-renderer-jsx --save
-    // or
-    yarn add hexo-renderer-jsx
     ```
-
+    
+    ```bash
+    npm install node-fetch@2 --save
+    // bilicard 插件所需
+    ```
+    
 - 将主题安装为子模块
+    
     ```bash
     git submodule add https://github.com/YidaozhanY/hexo-theme-stellaris.git themes/stellaris
     ```
-
+    
 - 在 `config.yml` 中添加 `theme: stellaris`。
 
 ### 更新
