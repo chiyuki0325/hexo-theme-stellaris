@@ -1,19 +1,19 @@
 /**
  * video.js v1 | https://github.com/YidaozhanYa/hexo-theme-stellaris
- * {% video src %}
+ * {% video src [ratio:aspect-ratio] %}
  */
 
 
 'use strict';
 
 hexo.extend.tag.register('video', (args) => {
-    args = hexo.args.map(args, [], ['src'])
+    args = hexo.args.map(args, ['ratio'], ['src'])
     return `
 <script src="https://cdn.bootcdn.net/ajax/libs/artplayer/4.6.2/artplayer.min.js"></script>
 <style>
     .video-div {
-        width: var(--width-main);
-        height: calc(calc(var(--width-main) / 16) * 9);
+        width: 100%;
+        aspect-ratio: ${args.ratio || '16 / 9'};
         border-radius: 4px;
     }
 </style>
