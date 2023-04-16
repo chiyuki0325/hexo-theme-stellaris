@@ -132,12 +132,10 @@ const ImportCSS = (props) => {
 }
 
 const FavIcon = (props) => {
-    const {config, favicon} = props;
+    const {config, url_for} = props;
     if (config.favicon) {
         return (
-            <>
-                {favicon(config.favicon)}
-            </>
+            <link rel='shortcut icon' href={url_for(config.favicon)}/>
         )
     } else {
         return <></>;
