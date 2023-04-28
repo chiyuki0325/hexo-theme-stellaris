@@ -189,7 +189,27 @@ const init = {
 
         window.dispatchEvent(new Event('tabs:register'));
     },
-
+    outdatedCheck: () => {
+        const outdatedEl = document.getElementById("outdated");
+        if (!outdatedEl) return;
+        const judgeOutdated = (postDate, nowDate) => {
+            //判断这两个日期是否相差三个月以上
+            if (nowDate.getFullYear() - postDate.getFullYear() > 0) {
+                return true;
+            } else {
+                return nowDate.getMonth() - postDate.getMonth() > 2;
+            }
+        }
+        const postMetaTimes = document.getElementById("post-meta").getElementsByTagName("time");
+        if (outdatedEl !== null) {
+            if (judgeOutdated(
+                new Date(postMetaTimes[postMetaTimes.length - 1].dateTime), // postDate
+                new Date() // nowDate
+            )) {
+                outdatedEl.innerText = "，文章内容可能已经过时"
+            }
+        }
+    }
 }
 
 const initAll = () => {
@@ -198,13 +218,19 @@ const initAll = () => {
     init.hydrate()
     init.relativeDate(document.querySelectorAll('#post-meta time'))
     init.registerTabsTag()
+    init.outdatedCheck()
     console.log(`New page loaded: ${window.location.pathname}`)
 }
 // init
-InstantClick.on('change', () => {
-    initAll()
-});
-initAll()
+InstantClick.on(
+    'change',
+    initAll
+);
+window.addEventListener(
+    "load",
+    initAll,
+    false
+);
 
 // scrollreveal
 if (stellar.plugins.scrollreveal) {
@@ -217,12 +243,12 @@ if (stellar.plugins.scrollreveal) {
             easing: "ease-out"
         });
     }
-    stellar.loadScript(stellar.plugins.scrollreveal.js).then(() => {
-        reveal();
-    });
-    InstantClick.on('change', () => {
-        reveal();
-    });
+    stellar.loadScript(stellar.plugins.scrollreveal.js).then(
+        reveal
+    );
+    InstantClick.on('change',
+        reveal
+    );
 }
 
 // lazyload
@@ -244,7 +270,9 @@ if (stellar.plugins.lazyload) {
         false
     );
     InstantClick.on('change', () => {
-        window.lazyLoadInstance?.update();
+        if ('lazyLoadInstance' in window) {
+            window.lazyLoadInstance.update();
+        }
     });
 }
 
@@ -320,23 +348,33 @@ const initFancyBox = () => {
         }
     }
 }
-InstantClick.on('change', () => {
-    initFancyBox();
-});
-initFancyBox();
+InstantClick.on(
+    'change',
+    initFancyBox
+);
+window.addEventListener(
+    "load",
+    initFancyBox,
+    false
+);
 
 
 if (stellar.search.service) {
     if (stellar.search.service == 'local_search') {
         stellar.jQuery(() => {
             stellar.loadScript('/js/search/local-search.js', {defer: true}).then(function () {
-                var $inputArea = $("input#search-input");
+                const $inputArea = $("input#search-input");
                 if ($inputArea.length == 0) {
                     return;
                 }
-                var $resultArea = document.querySelector("div#search-result");
+                const $resultArea = document.querySelector("div#search-result");
                 $inputArea.focus(function () {
-                    var path = stellar.search[stellar.search.service]?.path || '/search.json';
+                    let path;
+                    if (stellar.search.service in stellar.search) {
+                        path = stellar.search[stellar.search.service].path;
+                    } else {
+                        path = '/search.json';
+                    }
                     if (!path.startsWith('/')) {
                         path = '/' + path;
                     }
@@ -348,7 +386,7 @@ if (stellar.search.service) {
                         e.preventDefault();
                     }
                 });
-                var observer = new MutationObserver(function (mutationsList, observer) {
+                const observer = new MutationObserver(function (mutationsList, observer) {
                     if (mutationsList.length == 1) {
                         if (mutationsList[0].addedNodes.length) {
                             $('.search-wrapper').removeClass('noresult');

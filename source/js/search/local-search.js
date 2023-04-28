@@ -54,8 +54,12 @@ var searchFunc = function(path, filter, searchId, contentId) {
         }
         // perform local searching
         datas.forEach(function(data) {
-          if (!data.title?.trim().length) { return }
-          if (!data.content?.trim().length) { return }
+          if (data.title) {
+            if (!data.title.trim().length) { return }
+          }
+          if (data.content) {
+            if (!data.content.trim().length) { return }
+          }
           var matches = 0;
           if (filter && !data.path.includes(filter)) {
             return;
