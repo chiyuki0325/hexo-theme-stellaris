@@ -360,6 +360,7 @@ style:
       title: '#fff' # 标题文本颜色
       text: '#eee' # 正文文本颜色
       code: '#eee' # 行内代码颜色
+  animated_avatar:
     animate: auto # auto, always
     background: https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.2/avatar/round/rainbow64@3x.webp
   codeblock:
