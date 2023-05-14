@@ -1,3 +1,4 @@
+const {Fragment} = require('react');
 const HeaderTitle = props => {
     const {main, url, sub, url_for} = props;
     return (
