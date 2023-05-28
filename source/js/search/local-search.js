@@ -64,7 +64,7 @@ var searchFunc = function(path, filter, searchId, contentId) {
           if (filter && !data.path.includes(filter)) {
             return;
           }
-          var dataTitle = data.title.trim();
+          var dataTitle = data.title ? data.title.trim() : '';
           var dataTitleLowerCase = dataTitle.toLowerCase();
           var dataContent = data.content;
           var dataContentLowerCase = dataContent.toLowerCase();
