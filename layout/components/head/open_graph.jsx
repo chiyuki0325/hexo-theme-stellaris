@@ -160,7 +160,11 @@ const OpenGraphArguments = (props) => {
         twitter_image = new URL(twitter_image, url || config.url);
         result.push(<OG name="twitter:image" content={twitter_image} escape={false}/>);
     } else if (images.length) {
-        result.push(<OG name="twitter:image" content={images[0]} escape={false}/>);
+        if (page.cover !== undefined && page.layout === 'post' && page.cover.includes('/')) {
+            result.push(<OG name="twitter:image" content={page.cover} escape={false}/>);
+        } else {
+            result.push(<OG name="twitter:image" content={images[0]} escape={false}/>);
+        }
     }
 
     if (props.twitter_id) {
