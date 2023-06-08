@@ -118,6 +118,12 @@ const OpenGraphArguments = (props) => {
     images = images.map(path => new URL(path, url || config.url).toString())
         .filter(url => !url.startsWith('data:'));
 
+    if (page.layout === 'post' && page.cover !== undefined) {
+        if (page.cover.includes('/')) {
+            result.push(<OG name="og:image" content={page.cover} escape={false}/>);
+        }
+    }
+
     images.forEach(path => {
         result.push(<OG name="og:image" content={path} escape={false}/>);
     });

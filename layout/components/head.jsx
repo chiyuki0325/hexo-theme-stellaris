@@ -71,24 +71,11 @@ const OpenGraph = (props) => {
         }
         return args;
     }
-    const OpenGraphCover = (props) => {
-        const {page} = props;
-        if (page.layout === 'post' && page.cover !== undefined) {
-            if (page.cover.includes('/')) {
-                return <meta property="og:image" content={page.cover}/>;
-            } else {
-                return <></>;
-            }
-        } else {
-            return <></>;
-        }
-    }
     const {theme} = props;
     if (theme.open_graph && theme.open_graph.enable) {
         return (
             <Fragment>
                 <OpenGraphArguments {...props} {...openGraphArguments(props)} />
-                <OpenGraphCover {...props}/>
             </Fragment>
         )
     } else {
