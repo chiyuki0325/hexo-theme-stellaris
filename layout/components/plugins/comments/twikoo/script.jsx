@@ -18,6 +18,9 @@ const TwikooScript = props => {
       InstantClick.on('change', () => {
         load_twikoo();
       });
+      window.addEventListener(
+          "load", load_twikoo, false
+      );
     `
     return <script data-no-instant="true" dangerouslySetInnerHTML={{__html: generatedScript}}/>
 }

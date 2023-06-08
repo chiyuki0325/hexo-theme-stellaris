@@ -19,6 +19,9 @@ const WalineScript = props => {
       InstantClick.on('change', () => {
         load_comment();
       });
+      window.addEventListener(
+          "load", load_comment, false
+      );
     `
     return <script data-no-instant="true" dangerouslySetInnerHTML={{__html: generatedScript}}/>
 }

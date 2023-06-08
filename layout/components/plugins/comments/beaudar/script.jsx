@@ -24,6 +24,9 @@ const BeaudarScript = props => {
       InstantClick.on('change', () => {
         loadBeaudar();
       });
+      window.addEventListener(
+          "load", loadBeaudar, false
+      );
     `
     return <script data-no-instant="true" dangerouslySetInnerHTML={{__html: generatedScript}}/>
 }

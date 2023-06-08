@@ -24,6 +24,9 @@ const UtterancesScript = props => {
       InstantClick.on('change', () => {
         loadUtterances();
       });
+      window.addEventListener(
+          "load", loadUtterances, false
+      );
     `
     return <script data-no-instant="true" dangerouslySetInnerHTML={{__html: generatedScript}}/>
 }
