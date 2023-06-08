@@ -76,31 +76,33 @@ const OpenGraphArguments = (props) => {
         ).replace(/\n/g, ' '); // Replace new lines by spaces
     }
 
+    let images = props.image || props.images || page.photos || [];
+    if (!Array.isArray(images)) images = [images];
+    if (!images.length && content) {
+        images = images.slice();
+
+        if (content.includes('<img')) {
+            let img;
+            const imgPattern = /<img [^>]*src=['"]([^'"]+)([^>]*>)/gi;
+            while ((img = imgPattern.exec(content)) !== null) {
+                images.push(img[1]);
+            }
+        }
+
+    }
+    images = images.map(path => new URL(path, url || config.url).toString())
+        .filter(url => !url.startsWith('data:'));
+
+    let result = [];
+
     if (page.cover !== undefined && page.layout === 'post' && page.cover.includes('/')) {
         result.push(<OG name="og:image" content={page.cover} escape={false}/>);
     } else {
-        let images = props.image || props.images || page.photos || [];
-        if (!Array.isArray(images)) images = [images];
-        if (!images.length && content) {
-            images = images.slice();
-
-            if (content.includes('<img')) {
-                let img;
-                const imgPattern = /<img [^>]*src=['"]([^'"]+)([^>]*>)/gi;
-                while ((img = imgPattern.exec(content)) !== null) {
-                    images.push(img[1]);
-                }
-            }
-
-        }
-        images = images.map(path => new URL(path, url || config.url).toString())
-            .filter(url => !url.startsWith('data:'));
         images.forEach(path => {
             result.push(<OG name="og:image" content={path} escape={false}/>);
         });
     }
 
-    let result = [];
 
     if (description) {
         result.push(<Meta name="description" content={description}/>);
