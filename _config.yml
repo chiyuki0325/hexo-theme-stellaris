@@ -67,6 +67,8 @@ article:
   related_posts:
     enable: false
     max_count: 5
+  # 标记为可能过期的文章距今月份数
+  outdate_month: 2
 
 search:
   service: local_search # local_search, todo...

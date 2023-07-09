@@ -62,7 +62,16 @@ hexo-theme-stellaris 分叉自 [hexo-theme-stellar](https://github.com/xaoxuu/he
       js: https://cdn.bootcdn.net/ajax/libs/instantclick/3.1.0/instantclick.min.js
   ```
 
-- 颜色配置部分进行了一些修改，
+- 颜色配置部分进行了一些修改。
+
+- 增加了文章过期提示功能。
+
+  ```yaml
+  article:
+    outdate_month: 2
+  ```
+
+  > 发布于 3 个月前，更新于 3 个月前，文章内容可能已经过时
 
 #### 标签插件
 

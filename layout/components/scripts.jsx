@@ -135,6 +135,9 @@ const generateStellarScript = props => {
         stellar.plugins.fancybox = Object.assign(${JSON.stringify(theme.plugins.fancybox)});
       }
       stellar.plugins.instant_click = Object.assign(${JSON.stringify(theme.plugins.instant_click)});
+      stellar.article = {
+        outdate_month: ${theme.article.outdate_month}
+      };
     `;
 }
 const ImportJS = props => {

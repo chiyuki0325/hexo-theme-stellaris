@@ -197,7 +197,7 @@ const init = {
             if (nowDate.getFullYear() - postDate.getFullYear() > 0) {
                 return true;
             } else {
-                return nowDate.getMonth() - postDate.getMonth() > 2;
+                return nowDate.getMonth() - postDate.getMonth() > stellar.article.outdate_month;
             }
         }
         const postMetaTimes = document.getElementById("post-meta").getElementsByTagName("time");
