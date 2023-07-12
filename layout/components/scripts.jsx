@@ -105,7 +105,7 @@ const generateStellarScript = props => {
     
       // required plugins (only load if needs)
       stellar.plugins = {
-        jQuery: '${url_for(theme.plugins.jquery || "https://fastly.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js")}'
+        jQuery: '${(theme.plugins.jquery || "https://fastly.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js")}'
       };
     
       if ('${theme.search.service}') {
