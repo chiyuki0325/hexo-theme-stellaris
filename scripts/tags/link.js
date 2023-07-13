@@ -7,7 +7,7 @@
 
 'use strict';
 
-const full_url_for = hexo.extend.helper.get('full_url_for').bind(hexo);
+const full_url_for = require('hexo-util').full_url_for.bind(hexo);
 
 hexo.extend.tag.register('link', function(args) {
   args = hexo.args.map(args, ['icon', 'desc'], ['url', 'title']);
