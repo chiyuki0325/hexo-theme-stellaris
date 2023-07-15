@@ -90,3 +90,9 @@ hexo-theme-stellaris 分叉自 [hexo-theme-stellar](https://github.com/xaoxuu/he
   ```
 
   效果见[博客 about 页面](https://blog.yidaozhan.top/about#%E6%9F%A5%E6%88%90%E5%88%86)。
+
+#### Telegram Instant View
+
+本主题编写了模板以适配 Telegram Instant View。
+
+你可以在此[获取模板](https://blog.yidaozhan.top/2023/07/15/stellaris-instant-view-template/)，并且查阅[官方文档](https://instantview.telegram.org/)以了解如何在你的博客中使用。
