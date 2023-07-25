@@ -1,6 +1,6 @@
 {
   "name": "hexo-theme-stellaris",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Powerful, elegant and modern Hexo theme, forked from hexo-theme-stellar.",
   "main": "package.json",
   "scripts": {
@@ -17,6 +17,7 @@
     "stellaris"
   ],
   "author": "[@YidaozhanYa](https://github.com/YidaozhanYa/)",
+  "email": "ydz@yidaozhan.top",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/YidaozhanYa/hexo-theme-stellaris/issues/"
