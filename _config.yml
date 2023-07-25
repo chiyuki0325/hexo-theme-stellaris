@@ -251,7 +251,8 @@ tag_plugins:
     tieba: https://fastly.jsdelivr.net/gh/cdn-x/emoji/tieba/%s.png
   # {% image %}
   image:
-    fancybox: # true, false
+    fancybox: false # true, false
+    parse_markdown: true # 把 markdown 格式的图片解析成图片标签
   # {% timeline %}
   timeline:
     max-height: 80vh
