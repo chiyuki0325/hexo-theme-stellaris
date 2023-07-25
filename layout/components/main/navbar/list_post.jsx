@@ -54,7 +54,7 @@ module.exports = function NavBarListPost(props) {
                         for (let key of Object.keys(postIndex)) {
                             elements.push(
                                 <a
-                                    className={(full_url_for(page.path) === full_url_for(postIndex[key])) ? "active" : ""}
+                                    className={full_url_for(page.path).startsWith(full_url_for(obj[key])) ? "active" : ""}
                                     href={url_for(postIndex[key])}>
                                     key={key}
                                     {key}
