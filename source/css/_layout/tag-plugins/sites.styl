@@ -52,6 +52,13 @@
       height: 120px
     object-fit: cover
     //box-shadow: 0 1px 2px 0px rgba(0, 0, 0, 0.2)
+
+    if hexo-config('style.darkmode') == 'auto'
+      @media (prefers-color-scheme: dark)
+        filter: brightness(0.7)
+
+    if hexo-config('style.darkmode') == 'always'
+      filter: brightness(0.7)
   .info
     margin-top: 0.5rem
     margin-left:0.3rem
