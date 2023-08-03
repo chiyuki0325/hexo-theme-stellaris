@@ -32,10 +32,12 @@ $dark-code = convert(hexo-config('style.color.dark.code'))
 // 移动端深色背景（OLED调成纯黑可以省电）
 $dark-background-mobile = convert(hexo-config('style.color.dark.background-mobile'))
 
-// 陈叔叔CDN
-@import('//s1.hdslb.com/bfs/static/jinkela/long/font/regular.css')
+// 字体
+$font-css = hexo-config('style.font.css')
+$font-face = convert(hexo-config('style.font.name'))
+@import($font-css)
 
-$ff-body = "HarmonyOS_Regular", sans-serif, sans
+$ff-body = $font-face, sans-serif, sans
 $ff-code = monospace
 
 $ff-logo = $ff-body

@@ -369,6 +369,9 @@ style:
   codeblock:
     scrollbar: 4px
     highlightjs_theme: https://fastly.jsdelivr.net/gh/highlightjs/cdn-release@11.5.0/build/styles/atom-one-dark.min.css
+  font:
+    name: "HarmonyOS_Regular"
+    css: "https://s1.hdslb.com/bfs/static/jinkela/long/font/regular.css"
 
 default:
   avatar: https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/avatar/round/3442075.svg
