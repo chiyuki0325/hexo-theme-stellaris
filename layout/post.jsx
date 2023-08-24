@@ -1,6 +1,5 @@
 const {Fragment} = require('react');
 const Breadcrumb = require('./components/main/navbar/breadcrumb.jsx');
-const MathJax = require('./mathjax.jsx');
 const ArticleFooter = require('./components/main/article/article_footer.jsx');
 const ReadNext = require('./components/main/article/read_next.jsx');
 const RelatedPosts = require('./components/main/article/related_posts.jsx');
@@ -25,9 +24,6 @@ const Post = props => {
     }
     return (
         <Fragment>
-            {(() => {
-                if (page.mathjax === true) return (<MathJax {...props}/>)
-            })()}
             <Breadcrumb {...props}/>
             <article className={`md-text content ${page.layout} ${page.indent ? 'indent' : ''} ${scroll_reveal()}`}
                      id={page.title}>
