@@ -54,7 +54,7 @@ const ReadNext = props => {
                 </section>
             </div>
         )
-    }
+    } else return <></>
 }
 
 module.exports = ReadNext;

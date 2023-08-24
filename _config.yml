@@ -321,10 +321,11 @@ plugins:
 
 
   # MathJax
-  # 需在Markdown文件开头加入mathjax: true
-  # 推荐使用Pandoc: npm uninstall hexo-renderer-marked --save & npm install hexo-renderer-pandoc --save
+  # 需在 Markdown 文件开头加入 mathjax: true
+  # 推荐使用 Pandoc: npm uninstall hexo-renderer-marked --save & npm install hexo-renderer-pandoc --save
   mathjax:
     enable: false
+    per_page: false # 启用后无需在文章开头加 mathjax: true 即可启用
     cdn: https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML
 
   # Katex - The fastest math typesetting library for the web

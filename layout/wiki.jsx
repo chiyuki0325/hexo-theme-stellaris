@@ -1,7 +1,6 @@
 const {Fragment} = require('react');
 const Index = require('./index.jsx');
 const Breadcrumb = require('./components/main/navbar/breadcrumb.jsx');
-const MathJax = require('./mathjax.jsx');
 const ArticleFooter = require('./components/main/article/article_footer.jsx');
 const ReadNext = require('./components/main/article/read_next.jsx');
 const Comments = require('./components/plugins/comments/layout.jsx');
@@ -38,9 +37,6 @@ const Wiki = props => {
         }
         return (
             <Fragment>
-                {(() => {
-                    if (page.mathjax === true) return (<MathJax {...props}/>)
-                })()}
                 <Breadcrumb {...props}/>
                 <article className={`md-text content ${page.layout} ${page.indent ? 'indent' : ''} ${scroll_reveal()}`}
                          id={page.title}>

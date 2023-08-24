@@ -84,6 +84,18 @@ npm update hexo-theme-stellaris
 
   > 发布于 3 个月前，更新于 3 个月前，文章内容可能已经过时
 
+- MathJax 增加了 `per_page` 选项，开启后无需在每个页面的 front-matter 处添加 `mathjax: true` 即可开启 MathJax。
+  ```yaml
+  plugins:
+    # MathJax
+    # 需在 Markdown 文件开头加入 mathjax: true
+    # 推荐使用 Pandoc: npm uninstall hexo-renderer-marked --save & npm install hexo-renderer-pandoc --save
+    mathjax:
+      enable: false
+      per_page: false # 启用后无需在文章开头加 mathjax: true 即可启用
+      cdn: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js # 请使用 3.x 以上版本的 mathjax
+  ```
+
 #### 标签插件
 
 - 原主题更名数次的 [ablock](https://xaoxuu.com/wiki/stellar/tag-plugins/container/#ablock-%E6%99%AE%E9%80%9A%E5%9D%97%E5%AE%B9%E5%99%A8) 容器标签被改回了 border。
