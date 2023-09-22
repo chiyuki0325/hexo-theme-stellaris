@@ -8,10 +8,10 @@ $color-hover = convert(hexo-config('style.color.common.hover'))
 $fake-mica = #f3f3f3 radial-gradient(#eff4f9 75%, #f3f3f3 100%) no-repeat fixed
 
 // 浅色
-$light-background = #f3f3f3 radial-gradient(#eff4f9 75%, #f3f3f3 100%) no-repeat fixed
+$light-background = convert(hexo-config('style.color.light.background'))
 $light-mix = convert(hexo-config('style.color.light.mix'))
 $light-border = #e1e1e3
-$light-color-theme = #0078d4
+$light-color-theme = convert(hexo-config('style.color.light.theme'))
 $light-block = convert(hexo-config('style.color.light.block'))
 $light-card = convert(hexo-config('style.color.light.card'))
 $light-title = convert(hexo-config('style.color.light.title'))
@@ -19,9 +19,9 @@ $light-text = convert(hexo-config('style.color.light.text'))
 $light-code = convert(hexo-config('style.color.light.code'))
 
 // 深色
-$dark-background = #202020 radial-gradient(#1a1f35 25%, #202020 100%) no-repeat fixed
+$dark-background = convert(hexo-config('style.color.dark.background'))
 $dark-border = hsla(0deg,0%,100%,.1)
-$dark-color-theme = #4cc2ff
+$dark-color-theme = convert(hexo-config('style.color.dark.theme'))
 $dark-mix = convert(hexo-config('style.color.dark.mix'))
 $dark-block = convert(hexo-config('style.color.dark.block'))
 $dark-card = convert(hexo-config('style.color.dark.card'))
