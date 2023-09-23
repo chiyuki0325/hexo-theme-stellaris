@@ -1,13 +1,21 @@
+const {Fragment} = require('react')
+
 const CommentsScript = props => {
-    const {theme} = props;
-    if (theme.comments.service === false || theme.comments.service === null ){
-        return null
+    const commentService = props.theme.comments.service
+    if (commentService === false || commentService === null ){
+        return <Fragment></Fragment>
     } else {
-        const CommentScript = require('./' + theme.comments.service + '/script.jsx');
-    return (
-        <CommentScript {...props} />
-    )
+        try {
+            const CommentScript = require(`./${commentService}/script.jsx`)
+            return <CommentScript {...props} />
+        } catch (e) {
+            if (e.code === 'MODULE_NOT_FOUND') {
+                return <Fragment></Fragment>
+            } else {
+                throw(e)
+            }
+        }
     }
 }
 
-module.exports = CommentsScript;
+module.exports = CommentsScript
