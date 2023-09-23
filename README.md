@@ -61,9 +61,20 @@ npm update hexo-theme-stellaris
 
 ### 文档
 
-可以适当参考 [原主题文档](https://xaoxuu.com/wiki/stellar/)。
+可以适当参考 [原主题文档](https://xaoxuu.com/wiki/stellar/)，或对照配置文件的注释。
 
-#### 配置
+#### 相关文章推荐
+
+要启用此功能，请先安装 `hexo-related-popular-posts`，之后在配置文件中启用 `article.related_posts`。
+
+```yaml
+article:
+  related_posts:
+    enable: true
+    max_count: 5
+```
+
+#### 配置的变更
 
 - 预加载插件改为 InstantClick。
 
@@ -95,6 +106,8 @@ npm update hexo-theme-stellaris
       per_page: false # 启用后无需在文章开头加 mathjax: true 即可启用
       cdn: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js # 请使用 3.x 以上版本的 mathjax
   ```
+
+- 本主题没有移植原主题的一些功能（因为我没有用到，比如时间线，友链朋友圈和赫蹏），如有需要请在 issue 中提出，我会进行移植。
 
 #### 标签插件
 

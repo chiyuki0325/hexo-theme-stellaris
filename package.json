@@ -3,8 +3,7 @@
   "version": "1.2.0",
   "description": "Powerful, elegant and modern Hexo theme, forked from hexo-theme-stellar.",
   "main": "package.json",
-  "scripts": {
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "https://github.com/YidaozhanYa/hexo-theme-stellaris.git"
@@ -23,10 +22,10 @@
   },
   "dependencies": {
     "hexo-renderer-jsx": "^1.0.1",
-    "hexo-renderer-stylus": "^2.1.0",
-    "node-fetch": "^2.6.9"
+    "hexo-renderer-stylus": "^3.0.0",
+    "node-fetch": "^2.7.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
-  "homepage": "https://blog.yidaozhan.top/",
-  "devDependencies": {
-  }
+  "homepage": "https://blog.yidaozhan.top/"
 }
