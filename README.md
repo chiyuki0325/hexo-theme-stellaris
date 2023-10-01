@@ -84,7 +84,9 @@ article:
       js: https://cdn.bootcdn.net/ajax/libs/instantclick/3.1.0/instantclick.min.js
   ```
 
-- 颜色配置部分进行了一些修改。
+- 颜色配置部分进行了一些修改，详见配置文件。
+
+- 支持自定义字体，详见配置文件。
 
 - 增加了文章过期提示功能。
 
@@ -126,9 +128,19 @@ article:
   ```
 
   效果见[博客 about 页面](https://blog.yidaozhan.top/about#%E6%9F%A5%E6%88%90%E5%88%86)。
+  
+- 新增了 Bilibili 视频卡片插件 bilicard。
+
+  ```jinja2
+  {% bilicard BVID %}
+  ```
 
 #### Telegram Instant View
 
 本主题编写了模板以适配 Telegram Instant View。
 
 你可以在此[获取模板](https://blog.yidaozhan.top/2023/07/15/stellaris-instant-view-template/)，并且查阅[官方文档](https://instantview.telegram.org/)以了解如何在你的博客中使用。
+
+#### 子目录部署
+
+本主题支持子目录部署（实验性）。
