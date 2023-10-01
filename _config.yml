@@ -1,6 +1,6 @@
 ######## Stellar info ########
 stellar:
-  version: '1.4.0'
+  version: '1.4.1'
   homepage: 'https://blog.yidaozhan.top/'
   repo: 'https://github.com/YidaozhanYa/hexo-theme-stellaris'
   cdn_css: # Use cdn links instead of /css/main.css
