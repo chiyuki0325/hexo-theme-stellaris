@@ -7,8 +7,7 @@
 
 const fetch = require('node-fetch')
 
-const {image_proxy} = hexo.theme.config.tag_plugins.bilicard
-const cardTemplate = ({ v_id, v_cover, v_time, v_title, v_playview, v_danmaku, v_type, v_upname }) =>
+const cardTemplate = ({ v_id, v_cover, v_time, v_title, v_playview, v_danmaku, v_type, v_upname }, image_proxy) =>
     `<link rel="stylesheet" href="/css/bilicard.css">
     <div class="bvideo"><a href="//www.bilibili.com/video/${v_id}" target="_blank">
         <div class="bvideo-box">
@@ -67,5 +66,5 @@ const getVideoMessage = async (id) => {
 }
 
 hexo.extend.tag.register("bilicard", async (args) => {
-    return await cardTemplate(await getVideoMessage(args[0]));
+    return await cardTemplate(await getVideoMessage(args[0]), hexo.theme.config.tag_plugins.bilicard.image_proxy);
 }, { async: true });
