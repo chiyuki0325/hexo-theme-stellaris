@@ -84,7 +84,7 @@
         }
         this.layoutDiv({
           el, api,
-          avatar: '/images/avatar.svg'
+          avatar: stellar.root + 'images/avatar.svg'
         });
       }
     }

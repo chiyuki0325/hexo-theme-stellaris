@@ -87,7 +87,7 @@ module.exports = function PostCard(props) {
         )
     }
     const Category = (props) => {
-        const {post, category_color} = props;
+        const {post, category_color, url_for} = props;
         const elements = [];
         if (post.categories && post.categories.length > 0) {
             if (post.layout === 'post' && post.categories && post.categories.length > 0) {
@@ -108,7 +108,7 @@ module.exports = function PostCard(props) {
         }
         if (post.pin) {
             elements.push(
-                <span className="pin" key='pin'><img src="/images/pin.svg" alt="pin"/></span>
+                <span className="pin" key='pin'><img src={url_for("/images/pin.svg")} alt="pin"/></span>
             );
         }
         return elements;

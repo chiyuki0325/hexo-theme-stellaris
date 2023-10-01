@@ -79,8 +79,8 @@
         this.layout({
           el, api,
           class: el.getAttribute('class'),
-          avatar: '/images/avatar.svg',
-          screenshot: '/images/cover.svg'
+          avatar: stellar.root + 'images/avatar.svg',
+          screenshot: stellar.root + 'images/cover.svg'
         })
       }
     }

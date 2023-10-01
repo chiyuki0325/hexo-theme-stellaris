@@ -72,7 +72,7 @@ const ArticleFooter = props => {
         }
     }
     const ShareSection = props => {
-        const {theme, page, __, truncate, strip_html, config} = props;
+        const {theme, page, __, truncate, strip_html, config, url_for} = props;
         if (page.layout === 'post') {
             if (theme.article.share && page.share !== false) {
                 return (
@@ -109,7 +109,7 @@ const ArticleFooter = props => {
                                                        href={`https://service.weibo.com/share/share.php?title=${shareTitle}&url=${page.permalink}${sharePic}&searchPic=false&style=simple&summary=${shareSummary}`}
                                                        key={item}
                                                     >
-                                                        <img src='/images/weibo.svg' alt='weibo'/>
+                                                        <img src={url_for('/images/weibo.svg')} alt='weibo'/>
                                                     </a>
                                                 )
                                             case 'wechat':
@@ -118,7 +118,7 @@ const ArticleFooter = props => {
                                                        data-on-click="util.toggle('qrcode-wechat');"
                                                        key={item}
                                                     >
-                                                        <img src='/images/wechat.svg' alt='wechat'/>
+                                                        <img src={url_for('/images/wechat.svg')} alt='wechat'/>
                                                     </a>
                                                 )
                                             case 'email':
@@ -127,7 +127,7 @@ const ArticleFooter = props => {
                                                        href={`mailto:?subject=${shareTitle}&body=${shareSummary} ${page.permalink}`}
                                                        key={item}
                                                     >
-                                                        <img src='/images/email.svg' alt='email'/>
+                                                        <img src={url_for('/images/email.svg')} alt='email'/>
                                                     </a>
                                                 )
                                             case 'link':
@@ -136,7 +136,7 @@ const ArticleFooter = props => {
                                                        data-on-click={`util.copy('copy-link', "${__('message.copied')}")`}
                                                        key={item}
                                                     >
-                                                        <img src='/images/link_icon.svg' alt='link'/>
+                                                        <img src={url_for('/images/link_icon.svg')} alt='link'/>
                                                     </a>
                                                 )
                                         }
