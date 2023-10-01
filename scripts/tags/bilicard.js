@@ -7,14 +7,14 @@
 
 const fetch = require('node-fetch')
 
-const imageProxy = "https://images.weserv.nl/?url="
+const {image_proxy} = hexo.theme.config.tag_plugins.bilicard
 const cardTemplate = ({ v_id, v_cover, v_time, v_title, v_playview, v_danmaku, v_type, v_upname }) =>
     `<link rel="stylesheet" href="/css/bilicard.css">
     <div class="bvideo"><a href="//www.bilibili.com/video/${v_id}" target="_blank">
         <div class="bvideo-box">
             <div class="bvideo-cover">
                 <div class="cover-default"></div>
-                <div class="bvideo-cover-layer" style="background-image:url(${imageProxy}${v_cover}@320w_200h_1c_!web-space-index-myvideo.webp)">
+                <div class="bvideo-cover-layer" style="background-image:url(${image_proxy}${v_cover}@320w_200h_1c_!web-space-index-myvideo.webp)">
                     <i class="icon-video"></i>
                 </div>
                 <span class="duration">${v_time}</span>
