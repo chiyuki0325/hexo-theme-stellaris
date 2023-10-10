@@ -10,6 +10,9 @@ const WalineScript = props => {
           if (!path) {
             path = decodeURI(window.location.pathname);
           }
+          if (!path.endsWith('/')) {
+            path += '/';
+          }
           Waline.init(Object.assign(${JSON.stringify(theme.comments.waline)}, {
             el: '#waline_container',
             path: path,
