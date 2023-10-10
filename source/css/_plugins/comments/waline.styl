@@ -5,8 +5,8 @@
   --waline-light-grey: #999;
   --waline-dark-grey: #666;
   /* 主题色 */
-  --waline-theme-color: $color-button
-  --waline-active-color: $color-button
+  --waline-theme-color: $color-theme
+  --waline-active-color: $color-theme
   /* 布局颜色 */
   --waline-color: #444;
   --waline-bgcolor: #fff;
@@ -32,6 +32,9 @@
   --waline-border: 1px solid var(--waline-border-color);
   --waline-avatar-radius: 50%;
   --waline-box-shadow: none;
+
+  .wl-panel
+    margin: unset !important;
   
 
   @media (prefers-color-scheme: dark)
@@ -58,4 +61,3 @@
     font-weight: bold;
     font-size: 1.25em;
     color: #fff;
-
