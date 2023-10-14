@@ -273,6 +273,7 @@ const stellaris = {
             window.dispatchEvent(new Event('tabs:register'))
         },
         outdatedCheck: () => {
+            if (stellar.article.outdate_month == 0) return
             const outdatedEl = document.getElementById("outdated")
             if (!outdatedEl) return
 

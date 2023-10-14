@@ -2,13 +2,15 @@ const CommentsScript = require('./plugins/comments/script.jsx');
 const MathJaxScripts = require('./plugins/mathjax/script.jsx');
 const generateStellarScript = props => {
     const {theme, __, url_for, page, post} = props
-    let outdateMonth
-    if (post && ('outdate_month' in post)) {
-      outdateMonth = post.outdate_month
-    } else if (page && ('outdate_month' in page)) {
-      outdateMonth = page.outdate_month
-    } else {
-      outdateMonth = theme.article.outdate_month
+    let outdateMonth = 0
+    if (theme.article?.outdated_check.enabled == true) {
+      if (post && ('outdate_month' in post)) {
+        outdateMonth = post.outdate_month
+      } else if (page && ('outdate_month' in page)) {
+        outdateMonth = page.outdate_month
+      } else {
+        outdateMonth = theme.article?.outdated_check?.month || 0
+      }
     }
     return `
       stellar = {
