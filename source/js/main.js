@@ -376,7 +376,7 @@ const stellaris = {
             }
         },
         fancyBox: () => {
-            if (stellar.plugins.fancybox && ('FancyBox' in window)) {
+            if (stellar.plugins.fancybox && ('Fancybox' in window)) {
                 const selector = stellaris.pluginsConfig.fancyBoxSelector
                 if (document.querySelectorAll(selector).length !== 0) {
                     Fancybox.bind(selector, {
