@@ -2,7 +2,7 @@
 
 hexo-theme-stellaris 分叉自 [hexo-theme-stellar](https://github.com/xaoxuu/hexo-theme-stellar)，基于[hexo-renderer-jsx](https://github.com/hexojs/hexo-renderer-jsx)，支持丰富的标签和动态数据组件。
 
-**本主题为[一刀斩の小窝](https://blog.yidaozhan.top)专门开发，原主题的有些功能我没有用到（比如 Waline、Utterances 评论区等），不保证完全可用。**
+**本主题为[一刀斩の小窝](https://blog.yidaozhan.top)专门开发，原主题的有些功能我没有用到（比如 Utterances、时间线、issues API 等），不保证完全可用。**
 
 ### 与原主题的区别
 
