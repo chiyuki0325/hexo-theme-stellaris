@@ -1,87 +1,113 @@
-######## Stellar info ########
+######## hexo-theme-stellaris ########
 stellar:
-  version: '1.4.6'
+  version: '1.4.7'
   homepage: 'https://blog.yidaozhan.top/'
   repo: 'https://github.com/YidaozhanYa/hexo-theme-stellaris'
-  cdn_css: # Use cdn links instead of /css/main.css
-  cdn_js: # Use cdn links instead of /js/main.js
+  cdn_css:  # 如果你使用 CDN，可以上传 /css/main.css 并在此输入对应的链接
+  cdn_js:  # 如果你使用 CDN，可以上传 /js/main.js 并在此输入对应的链接
 
 
-######## head tags ########
+######## 网页头部信息 ########
 open_graph:
+  # 启用 Open Graph 以在 Twitter 和 Telegram 等平台中获得更好的链接预览体验
   enable: true
-  twitter_id: # for open_graph meta
+  twitter_id:
 
 
-######## Sidebar ########
+######## 侧边栏 ########
 sidebar:
   logo:
-    avatar: '[config.avatar](/about/)' # you can set avatar link in _config.yml or '[https://xxx.png](/about/)'
-    title: '[config.title](/)' # you can set html tag like: '[<img no-lazy height="32px" src="xxx"/>](/)'
+    # 请在 Hexo 的 _config.yml 中设置头像链接
+    # 或使用 Markdown 语法自定义（如 '[https://xxx.png](/about/)'）
+    avatar: '[config.avatar](/about/)'
+
+    # 可以使用 Markdown 语法自定义，支持 HTML 标签
+    #（如 '[<img no-lazy height="32px" src="xxx"/>](/)'）
+    title: '[config.title](/)'
   menu:
-  # post: '[btn.blog](/)'
-  # wiki: '[btn.wiki](/wiki/)'
-  # friends: '[友链](/friends/)'
-  # about: '[关于](/about/)'
-  # Sidebar widgets
+    # 侧边栏顶部的链接按钮
+    # post: '[btn.blog](/)'
+    # wiki: '[btn.wiki](/wiki/)'
+    # friends: '[友链](/friends/)'
+    # about: '[关于](/about/)'
   widgets:
-    #### 自动生成的页面 ####
+    # 各个页面对应的侧边栏挂件
+    # 挂件可在 source/_data/widgets.yml 中配置
+    # 可参考 https://github.com/YidaozhanYa/hexo-theme-stellaris/blob/main/_data/widgets.yml
+
+    ### 博客自动生成的导航页面和系统页面
     # 主页
-    home: search, welcome, recent, timeline # for home
+    home: search, welcome, recent
     # 博客索引页
-    blog_index: search_blog, recent, timeline # for categories/tags/archives
+    blog_index: search_blog, recent  # categories/tags/archives
     # 文档索引页
-    wiki_index: search_docs, recent, timeline # for wiki
-    # 其它（404）
-    others: search, welcome, recent, timeline # for 404 and ...
-    #### 手动创建的页面 ####
-    # 文章内页
-    post: toc, ghrepo, search, ghissues # for pages using 'layout:post'
-    # 文档内页
-    wiki: search, ghrepo, toc, ghissues, related # for pages using 'layout:wiki'
-    # 其它 layout:page 的页面
-    page: welcome, toc, search # for custom pages using 'layout:page'
+    wiki_index: search_docs, recent  # wiki
+    # 其它（404 等）
+    others: search, welcome, recent  # 404 等系统页面
+
+    ### 手动创建的页面
+    # 使用 'layout: post' 的页面，如博客文章内页
+    post: toc, ghrepo, search, ghissues
+    # 使用 'layout: wiki' 的页面，如 wiki 文档内页
+    wiki: search, ghrepo, toc, ghissues, related
+    # 使用 'layout: page' 的自定义页面
+    page: welcome, toc, search
 
 
-######## Main ########
+######## 全局 ########
 breadcrumb:
-  home: home # config.title / config.author / home or custom content
+  # 面包屑导航栏中最左侧内容
+  home: home  # config.title / config.author / home 或自定义内容
 
-######## Article ########
+
+######## 博客文章 ########
 article:
   # 如果没有指定封面，是否根据 tags 作为关键词搜索封面图片？
-  auto_cover: false # search from https://source.unsplash.com/
+  auto_cover: false  # 从 https://source.unsplash.com/ 中自动搜索封面
   # 如果没有指定横幅，是否根据 tags 作为关键词搜索横幅图片？
-  auto_banner: false # search from https://source.unsplash.com/
+  auto_banner: false  # 从 https://source.unsplash.com/ 中自动搜索封面
   # 如果没有指定 excerpt 和 description，将自动取多长的内容作为文章摘要？
   auto_excerpt: 200
   # 分类颜色
   category_color:
+    # 分类名: 分类颜色色号
     '新闻稿': '#DA0F47'
   # 文章许可协议
   license: '本文采用[署名-非商业性使用-相同方式共享 4.0 国际](https://creativecommons.org/licenses/by-nc-sa/4.0/)许可协议，转载请注明出处。'
   # 分享
   share: # [wechat, weibo, email, link]
-  # 相关文章，需要安装插件 (for layout: post)
-  # npm i hexo-related-popular-posts
   related_posts:
+    # 相关文章，需要安装插件 (仅对博客文章 (layout: post) 可用)
+    # pnpm i hexo-related-popular-posts
     enable: false
     max_count: 5
-  # 标记为可能过期的文章距今月份数
   outdated_check:
+    # 文章过期检查，在文章发布后多少个月提示文章可能过期
     enabled: true
     month: 2
 
-search:
-  service: local_search # local_search, todo...
-  local_search: # 在 front-matter 中设置 indexing:false 来避免被搜索索引
-    js: /js/search/local_search.js
-    path: /search.json # 搜索文件存放位置
 
-######## Comments ########
+######## 文章搜索 ########
+search:
+  # service 设置为 local_search 以启用文章搜索
+  # 在文章 front-matter 中设置 'indexing: false' 来避免被搜索索引
+  service: local_search
+  local_search:
+    # 如果你使用 CDN，可以上传 /js/search/local_search.js 并在此输入对应的链接
+    js: /js/search/local_search.js
+    path: /search.json  # 搜索索引文件存放位置
+
+
+######## 评论 ########
 comments:
+  # 支持 beaudar, utterances, valine (不推荐), waline 和 twikoo
+  # Stellaris 的维护者只使用过 Valine 和 Waline
+  # 故未对其它评论系统进行较好的适配
+  # 如果你在使用其它评论系统时遇到功能或样式 bug，而该评论系统在原 Stellar 主题中正常工作
+  # 请提交 issue 反馈
   service: # beaudar, utterances, valine, twikoo, waline
-  # beaudar
+
+  ### beaudar
   # https://beaudar.lipk.org/
   beaudar:
     repo: xxx/xxx
@@ -94,7 +120,8 @@ comments:
     keep-theme: # true/false
     loading: false
     branch: main
-  # utterances
+
+  ### utterances
   # https://utteranc.es/
   utterances:
     repo: xxx/xxx
@@ -102,7 +129,8 @@ comments:
     issue-number:
     theme: preferred-color-scheme
     label:
-  # giscus
+
+  ### giscus
   # https://giscus.app/zh-CN
   giscus:
     data-repo: xxx/xxx # [在此输入仓库]
@@ -119,6 +147,9 @@ comments:
     data-loading: lazy
     crossorigin: anonymous
 
+  ### Valine
+  # https://valine.js.org
+  ### Valine 因存在 **安全问题**，不推荐使用。
   valine:
     js: https://fastly.jsdelivr.net/gh/XuxuGood/simple-blog-cdn@main/js/Valine.min.js
     appId: # your appId
@@ -137,20 +168,22 @@ comments:
       nick: "昵称/QQ号(必填)"
       mail: "邮箱（必填，完全保密）"
       link: "网址(https://)"
-    master: #md5加密后的博主邮箱
-      - 6783037F2DF30EAB99F9FC256157D875
-    friends: #md5加密后的小伙伴邮箱
-      - 6783037F2DF30EAB99F9FC256157D875
+
   # Twikoo
   # https://twikoo.js.org/
   twikoo:
     js: https://fastly.jsdelivr.net/npm/twikoo@1.4.0/dist/twikoo.all.min.js # 建议锁定版本
     envId: https://xxx # vercel函数
+
+  # Waline
+  # https://waline.js.org/
   waline:
     js: https://unpkg.com/@waline/client@v2/dist/waline.js
     css: https://unpkg.com/@waline/client@v2/dist/waline.css
-    # Waline server address url, you should set this to your own link
+    # Waline 服务器地址
     serverURL:
+
+    ### 以下配置可能 **已经过时**。请参考 Waline 官方文档。
 
     # If false, comment count will only be displayed in post page, not in home page
     commentCount: true
@@ -193,49 +226,54 @@ comments:
     # comment per page
     # pageSize: 10
 
-######## Footer ########
+
+######## 页脚 ########
 footer:
   social:
-  # github:
-  #   icon: '<img src="https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.3/social/08a41b181ce68.svg"/>'
-  #   url: /
-  # music:
-  #   icon: '<img src="https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.3/social/3845874.svg"/>'
-  #   url: /
-  # unsplash:
-  #   icon: '<img src="https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.3/social/3616429.svg"/>'
-  #   url: /
-  # comments:
-  #   icon: '<img src="https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.3/social/942ebbf1a4b91.svg"/>'
-  #   url: /about/#comments
+    ### 社交平台链接按钮（使用 HTML 语法）
+    # github:
+    #   icon: '<img src="https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.3/social/08a41b181ce68.svg"/>'
+    #   url: /
+    # music:
+    #   icon: '<img src="https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.3/social/3845874.svg"/>'
+    #   url: /
+    # unsplash:
+    #   icon: '<img src="https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.3/social/3616429.svg"/>'
+    #   url: /
+    # comments:
+    #   icon: '<img src="https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.3/social/942ebbf1a4b91.svg"/>'
+    #   url: /about/#comments
   sitemap:
-  # '博客':
-  #   - '[近期](/)'
-  #   - '[分类](/)'
-  #   - '[标签](/)'
-  #   - '[归档](/)'
-  # '项目':
-  #   - '[开源库](/)'
-  # '社交':
-  #   - '[友链](/)'
-  #   - '[留言板](/)'
-  # '更多':
-  #   - '[关于本站](/)'
-  #   - '[GitHub](/)'
+    ### 页脚网站地图按钮（使用 Markdown 语法）
+    # '博客':
+    #   - '[近期](/)'
+    #   - '[分类](/)'
+    #   - '[标签](/)'
+    #   - '[归档](/)'
+    # '项目':
+    #   - '[开源库](/)'
+    # '社交':
+    #   - '[友链](/)'
+    #   - '[留言板](/)'
+    # '更多':
+    #   - '[关于本站](/)'
+    #   - '[GitHub](/)'
   license: '[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)'
-  # source:
-  # icp:
+  source: https://github.com/YidaozhanYa/hexo-theme-stellaris  # 主题源码信息
+  # icp:  # ICP 备案信息
   # 主题用户越多，开发者维护和更新的积极性就越高，如果您喜欢本主题，请在适当的位置显示主题信息和仓库链接以表支持。
 
 
-######## Tag Plugins ########
+######## 标签插件 ########
 tag_plugins:
   # {% note text %}
   note:
-    default_color: '' # light, dark, red, orange, yellow, green, cyan, blue, purple, warning, error
+    default_color: ''  # light, dark, red, orange, yellow, green, cyan, blue, purple, warning, error
+
   # {% checkbox %}
   checkbox:
-    interactive: false # enable interactive for user
+    interactive: false  # 用户是否可切换勾选
+
   # {% quot %}
   quot:
     default: # 可以自行配置多种图标方案
@@ -243,6 +281,7 @@ tag_plugins:
       suffix: https://s2.loli.net/2022/01/04/NORdtjlAhifZSns.png
     hashtag:
       prefix: https://s2.loli.net/2022/01/04/UvHcsa73jQPnobq.png
+
   # {% emoji %}
   emoji:
     default: https://fastly.jsdelivr.net/gh/cdn-x/emoji/qq/%s.gif
@@ -250,83 +289,93 @@ tag_plugins:
     qq: https://fastly.jsdelivr.net/gh/cdn-x/emoji/qq/%s.gif
     aru: https://fastly.jsdelivr.net/gh/cdn-x/emoji/aru-l/%s.gif
     tieba: https://fastly.jsdelivr.net/gh/cdn-x/emoji/tieba/%s.png
+
   # {% image %}
   image:
     fancybox: false # true, false
     parse_markdown: true # 把 markdown 格式的图片解析成图片标签
+
   # {% timeline %}
   timeline:
     max-height: 80vh
+
   # {% mark %}
   mark:
     default_color: dark # light, dark, red, orange, yellow, green, cyan, blue, purple, warning, error
+
   # {% tag %}
   tag:
     default_color: yellow # red, orange, yellow, green, cyan, blue, purple
+
   # {% bilicard %}
   bilicard:
     enable: true
     image_proxy: "https://images.weserv.nl/?url="
 
-######## JS Plugins ########
-plugins:
-  ## required plugins ##
-  # jquery
-  jquery: https://fastly.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js
 
-  # stellar api
+######## JS 插件 ########
+plugins:
+  ### 必须加载的核心 JS
+  jquery: https://fastly.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js
+  marked: https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js
+  instant_click:
+    js: https://cdn.bootcdn.net/ajax/libs/instantclick/3.1.0/instantclick.min.js
+
+  ### 主题动态布局插件
   stellar:
     sites: /js/plugins/sites.js
     friends: /js/plugins/friends.js
     ghinfo: /js/plugins/ghinfo.js
+    # Stellaris 维护者并不使用 timeline 插件
+    # 如在使用过程中遇到问题，请提出 issue 汇报。
     timeline: /js/plugins/timeline.js
     linkcard: /js/plugins/linkcard.js
     fcircle: /js/plugins/fcircle.js
-  
 
-  marked: https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js
+  ### 可选插件
 
-  ## optional plugins ##
-  # preload
-  instant_click:
-    js: https://cdn.bootcdn.net/ajax/libs/instantclick/3.1.0/instantclick.min.js
-
-  # image lazyload
+  # 图片懒加载
   # https://www.npmjs.com/package/vanilla-lazyload
   lazyload:
-    enable: true # [hexo clean && hexo s] is required after changing this value.
+    enable: true  # [hexo clean && hexo s] is required after changing this value.
     js: https://fastly.jsdelivr.net/npm/vanilla-lazyload@17.3.1/dist/lazyload.min.js
     transition: blur # blur, fade
 
+  # 页面滚动动画
   # https://scrollrevealjs.org/api/reveal.html
   scrollreveal:
-    enable: #true
+    enable: true
     js: https://fastly.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js
     distance: 8px
-    duration: 500 # ms
-    interval: 100 # ms
-    scale: 1 # 0.1~1
+    duration: 500  # ms
+    interval: 100  # ms
+    scale: 1  # 0.1~1
 
+  # 使用 Fancybox 提供 **{% image %} 图片标签插件** 的点击放大视图
+  # 注：**可能并不支持原生 Markdown 图片语法！**
   # https://fancyapps.com/docs/ui/fancybox/
-  # available for {% image xxx %}
   fancybox:
     enable: true
     js: https://fastly.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js
     css: https://fastly.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css
     # 可以处理评论区的图片（不支持 iframe 类评论系统）例如：
-    # 使用valine评论可以写: .vcontent img:not(.vemoji)
-    # 使用twikoo评论可以写: .tk-content img:not([class*="emo"])
-    # 使用waline评论可以写: #waline_container .vcontent img
+    # 使用 valine 评论可以写: .vcontent img:not(.vemoji)
+    # 使用 twikoo 评论可以写: .tk-content img:not([class*="emo"])
+    # 使用 waline 评论可以写: #waline_container .vcontent img
     selector: .swiper-slide img # 多个选择器用英文逗号隔开
 
+
   # swiper
+  # https://swiperjs.com/
   swiper:
     enable: true
-    css: https://unpkg.com/swiper@6/swiper-bundle.min.css
-    js: https://unpkg.com/swiper@6/swiper-bundle.min.js
+    css: https://unpkg.com/swiper@11/swiper-bundle.min.css
+    js: https://unpkg.com/swiper@11/swiper-bundle.min.js
 
 
-  # MathJax
+  ### 数学公式插件（可二选一）
+
+  # 使用 MathJax 提供数学公式支持
   # 需在 Markdown 文件开头加入 mathjax: true
   # 推荐使用 Pandoc: npm uninstall hexo-renderer-marked --save & npm install hexo-renderer-pandoc --save
   mathjax:
@@ -334,7 +383,7 @@ plugins:
     per_page: false # 启用后无需在文章开头加 mathjax: true 即可启用
     cdn: https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML
 
-  # Katex - The fastest math typesetting library for the web
+  # 使用 Katex 提供数学公式支持
   # https://katex.org/docs/autorender.html
   # https://github.com/KaTeX/KaTeX
   # 使用 hexo-renderer-markdown-it-plus 作为公式渲染器：npm uninstall hexo-renderer-marked --save npm install hexo-renderer-markdown-it-plus --save
@@ -344,6 +393,9 @@ plugins:
     min_js: <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js" integrity="sha384-X/XCfMm41VSsqRNQgDerQczD69XqmjOOOwYQvr/uuC+j4OPoNhVgjdGFwhvN02Ja" crossorigin="anonymous"></script>
     auto_render_min_js: <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"onload="renderMathInElement(document.body);"></script>
 
+
+
+######## 样式 ########
 style:
   darkmode: auto # auto / always / false
   smooth_scroll: true # true / false
@@ -379,8 +431,10 @@ style:
   codeblock:
     scrollbar: 4px
     highlightjs_theme: https://fastly.jsdelivr.net/gh/highlightjs/cdn-release@11.5.0/build/styles/atom-one-dark.min.css
-  font:
-    name: "HarmonyOS_Regular"
+  font_face: "HarmonyOS_Regular"
+  custom_font_css:
+    # 自定义字体
+    enabled: true
     css: "https://s1.hdslb.com/bfs/static/jinkela/long/font/regular.css"
 
 default:

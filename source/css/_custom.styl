@@ -33,9 +33,10 @@ $dark-code = convert(hexo-config('style.color.dark.code'))
 $dark-background-mobile = convert(hexo-config('style.color.dark.background-mobile'))
 
 // 字体
-$font-css = hexo-config('style.font.css')
-$font-face = convert(hexo-config('style.font.name'))
-@import($font-css)
+$font-face = convert(hexo-config('style.font_face'))
+if hexo-config('style.custom_font_css.enabled')
+  $font-css = hexo-config('style.custom_font_css.css')
+  @import($font-css)
 
 $ff-body = $font-face, sans-serif, sans
 $ff-code = monospace

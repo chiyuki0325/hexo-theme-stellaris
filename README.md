@@ -6,10 +6,10 @@ hexo-theme-stellaris 分叉自 [hexo-theme-stellar](https://github.com/xaoxuu/he
 
 ### 与原主题的区别
 
-- 样式: 使用 Fluent Design 设计规范重新设计样式。
-- 代码: 使用 React 重写所有模板。
+- 样式: 使用 Fluent Design 设计风格重新设计样式。
+- 代码: 使用 JSX 重写所有模板。
 - 性能优化: 使用 InstantClick 进行页面加载优化。
-- 功能: 增加了文章过期提示等实用功能。
+- 功能: 增加了文章过期提示、哔哩哔哩视频卡片等实用功能和组件。
 
 ### 安装
 
