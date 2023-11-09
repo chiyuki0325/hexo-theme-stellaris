@@ -26,7 +26,7 @@ const PostCover = props => {
         }
     }
     let imageElement = '';
-    if (theme.plugins.lazyload && theme.plugins.lazyload.enable) {
+    if (theme.plugins.lazyload && theme.plugins.lazyload.enabled) {
         imageElement = <div className="lazy img bg" data-bg={coverUrl}></div>
     } else {
         imageElement = <div className="lazy img bg" style={{backgroundImage: `url("${coverUrl}")`}}></div>

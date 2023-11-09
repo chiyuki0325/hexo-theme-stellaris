@@ -1,6 +1,6 @@
 ######## hexo-theme-stellaris ########
 stellar:
-  version: '1.4.8'
+  version: '1.5.0'
   homepage: 'https://blog.yidaozhan.top/'
   repo: 'https://github.com/YidaozhanYa/hexo-theme-stellaris'
   cdn_css:  # 如果你使用 CDN，可以上传 /css/main.css 并在此输入对应的链接
@@ -8,11 +8,11 @@ stellar:
 
 
 ######## 网页头部信息 ########
-open_graph:
-  # 启用 Open Graph 以在 Twitter 和 Telegram 等平台中获得更好的链接预览体验
-  enable: true
+head:
+  open_graph:
+    # 启用 Open Graph 以在 Twitter 和 Telegram 等平台中获得更好的链接预览体验
+    enabled: true
   twitter_id:
-
 
 ######## 侧边栏 ########
 sidebar:
@@ -79,7 +79,7 @@ article:
   related_posts:
     # 相关文章，需要安装插件 (仅对博客文章 (layout: post) 可用)
     # pnpm i hexo-related-popular-posts
-    enable: false
+    enabled: false
     max_count: 5
   outdated_check:
     # 文章过期检查，在文章发布后多少个月提示文章可能过期
@@ -309,12 +309,15 @@ tag_plugins:
 
   # {% bilicard %}
   bilicard:
-    enable: true
+    enabled: true
     image_proxy: "https://images.weserv.nl/?url="
 
 
 ######## JS 插件 ########
 plugins:
+  ### 在头部信息中写入 dns-prefetch 和 preconnect 以加快加载
+  prefetch_and_preconnect: [ "https://fastly.jsdelivr.net", "https://cdn.bootcdn.net" ]
+
   ### 必须加载的核心 JS
   jquery: https://fastly.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js
   marked: https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js
@@ -337,14 +340,14 @@ plugins:
   # 图片懒加载
   # https://www.npmjs.com/package/vanilla-lazyload
   lazyload:
-    enable: true  # [hexo clean && hexo s] is required after changing this value.
+    enabled: true  # [hexo clean && hexo s] is required after changing this value.
     js: https://fastly.jsdelivr.net/npm/vanilla-lazyload@17.3.1/dist/lazyload.min.js
     transition: blur # blur, fade
 
   # 页面滚动动画
   # https://scrollrevealjs.org/api/reveal.html
   scrollreveal:
-    enable: true
+    enabled: true
     js: https://fastly.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js
     distance: 8px
     duration: 500  # ms
@@ -355,7 +358,7 @@ plugins:
   # 注：**可能并不支持原生 Markdown 图片语法！**
   # https://fancyapps.com/docs/ui/fancybox/
   fancybox:
-    enable: true
+    enabled: true
     js: https://fastly.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js
     css: https://fastly.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css
     # 可以处理评论区的图片（不支持 iframe 类评论系统）例如：
@@ -368,7 +371,7 @@ plugins:
   # swiper
   # https://swiperjs.com/
   swiper:
-    enable: true
+    enabled: true
     css: https://unpkg.com/swiper@11/swiper-bundle.min.css
     js: https://unpkg.com/swiper@11/swiper-bundle.min.js
 
@@ -379,7 +382,7 @@ plugins:
   # 需在 Markdown 文件开头加入 mathjax: true
   # 推荐使用 Pandoc: npm uninstall hexo-renderer-marked --save & npm install hexo-renderer-pandoc --save
   mathjax:
-    enable: false
+    enabled: false
     per_page: false # 启用后无需在文章开头加 mathjax: true 即可启用
     cdn: https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML
 
@@ -388,11 +391,11 @@ plugins:
   # https://github.com/KaTeX/KaTeX
   # 使用 hexo-renderer-markdown-it-plus 作为公式渲染器：npm uninstall hexo-renderer-marked --save npm install hexo-renderer-markdown-it-plus --save
   katex:
-    enable: false
+    enabled: false
+    # 使用 HTML 语法
     min_css: <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC" crossorigin="anonymous">
     min_js: <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js" integrity="sha384-X/XCfMm41VSsqRNQgDerQczD69XqmjOOOwYQvr/uuC+j4OPoNhVgjdGFwhvN02Ja" crossorigin="anonymous"></script>
     auto_render_min_js: <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"onload="renderMathInElement(document.body);"></script>
-
 
 
 ######## 样式 ########
@@ -437,13 +440,29 @@ style:
     enabled: true
     css: "https://s1.hdslb.com/bfs/static/jinkela/long/font/regular.css"
 
+
+######## 缺省资源文件 ########
 default:
   avatar: https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/avatar/round/3442075.svg
   link: https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/link/8f277b4ee0ecd.svg
   cover: https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/cover/76b86c0226ffd.svg
   image: https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/image/2659360.svg
 
+
+######## API ########
 api_host:
   ghapi: https://api.github.com
   ghraw: https://www.githubs.cn/raw-githubusercontent
   gist: https://gist.github.com
+
+
+######## 自定义插件 ########
+inject:
+  # script:
+  # - src: "https://example.com/my_script.js"
+  #   async: false
+  #   defer: false
+  #   # data-no-instant 为 InstantClick 属性，决定某脚本在页面切换时是否重新加载
+  #   # 如果此脚本只需要加载一次（比如添加全局对象），那么为 true
+  #   # 如果此脚本每页都需要重复加载（比如编辑页面元素或需要使用 window.onload），那么为 false
+  #   data-no-instant: true

@@ -2,7 +2,7 @@
 
 hexo.extend.helper.register('scroll_reveal', function (args) {
     const cfg = hexo.theme.config;
-    if (cfg.plugins.scrollreveal && cfg.plugins.scrollreveal.enable) {
+    if (cfg.plugins.scrollreveal && cfg.plugins.scrollreveal.enabled) {
         return ' reveal';
     }
     return '';
@@ -12,7 +12,7 @@ hexo.extend.helper.register('scroll_reveal', function (args) {
 
 hexo.extend.helper.register('scrollreveal', function (args) {
     const cfg = hexo.theme.config;
-    if (cfg.plugins.scrollreveal && cfg.plugins.scrollreveal.enable) {
+    if (cfg.plugins.scrollreveal && cfg.plugins.scrollreveal.enabled) {
         return ' reveal';
     }
     return '';

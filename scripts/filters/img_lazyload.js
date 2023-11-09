@@ -9,7 +9,7 @@ const fs = require('hexo-fs');
 
 function lazyProcess(htmlContent) {
   const cfg = this.theme.config.plugins.lazyload;
-  if (cfg == undefined || cfg.enable != true) {
+  if (cfg == undefined || cfg.enabled != true) {
     return htmlContent;
   }
   return htmlContent.replace(/<img(.*?)src="(.*?)"(.*?)>/gi, function(imgTag, src_before, src_value, src_after) {

@@ -35,7 +35,7 @@ hexo.extend.tag.register('link', function(args) {
 
   function loadIcon() {
     var el = '';
-    if (hexo.theme.config.plugins.lazyload && hexo.theme.config.plugins.lazyload.enable) {
+    if (hexo.theme.config.plugins.lazyload && hexo.theme.config.plugins.lazyload.enabled) {
       el += '<div class="lazy img" data-bg="' + (args.icon || hexo.theme.config.default.link) + '"></div>';
     } else {
       el += '<div class="lazy img" style="background-image:url(&quot;' + (args.icon || hexo.theme.config.default.link) + '&quot;)"></div>';

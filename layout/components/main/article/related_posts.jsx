@@ -11,7 +11,7 @@ const RelatedPostsHelper = props => {
         return '';
     }
     const cfg = theme.article.related_posts;
-    if (cfg.enable !== true) return;
+    if (cfg.enabled !== true) return;
 
     const elements = [
         <section className='header' key='header'>
@@ -72,7 +72,7 @@ const RelatedPostsHelper = props => {
 }
 const RelatedPosts = props => {
     const {theme, page, __, popular_posts_json} = props;
-    if (theme.article.related_posts.enable) {
+    if (theme.article.related_posts.enabled) {
         return (
             <div className="related-wrap reveal"
                  id="related-posts">

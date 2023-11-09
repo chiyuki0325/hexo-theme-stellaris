@@ -2,10 +2,10 @@ const MathJaxScripts = (props) => {
     const { theme } = props;
     const { plugins } = theme;
     const { mathjax } = plugins;
-    const { enable, cdn } = mathjax;
+    const { enabled, cdn } = mathjax;
 
     
-    if (enable) {
+    if (enabled) {
         const loadMathScript = `
             function loadMathJax() {    
                 if (typeof MathJax == "undefined")  // 没有载入脚本就先载入脚本

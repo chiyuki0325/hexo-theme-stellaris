@@ -134,16 +134,16 @@ const generateStellarScript = props => {
     
       stellar.plugins.marked = Object.assign(${JSON.stringify(theme.plugins.marked)});
       // optional plugins
-      if ('${theme.plugins.lazyload.enable}' == 'true') {
+      if ('${theme.plugins.lazyload.enabled}' == 'true') {
         stellar.plugins.lazyload = Object.assign(${JSON.stringify(theme.plugins.lazyload)});
       }
-      if ('${theme.plugins.swiper.enable}' == 'true') {
+      if ('${theme.plugins.swiper.enabled}' == 'true') {
         stellar.plugins.swiper = Object.assign(${JSON.stringify(theme.plugins.swiper)});
       }
-      if ('${theme.plugins.scrollreveal.enable}' == 'true') {
+      if ('${theme.plugins.scrollreveal.enabled}' == 'true') {
         stellar.plugins.scrollreveal = Object.assign(${JSON.stringify(theme.plugins.scrollreveal)});
       }
-      if ('${theme.plugins.fancybox.enable}' == 'true') {
+      if ('${theme.plugins.fancybox.enabled}' == 'true') {
         stellar.plugins.fancybox = Object.assign(${JSON.stringify(theme.plugins.fancybox)});
       }
       stellar.plugins.instant_click = Object.assign(${JSON.stringify(theme.plugins.instant_click)});
@@ -152,19 +152,36 @@ const generateStellarScript = props => {
       };
     `;
 }
+
 const ImportJS = props => {
-    const {join} = require("path")
     const {theme, url_for} = props
+    let stellarJsUrl
     if (theme.stellar.cdn_js) {
-        return (
-            <script src={theme.stellar.cdn_js} type="text/javascript" async={true} data-no-instant="true"/>
-        )
+        stellarJsUrl = theme.stellar.cdn_js
     } else {
-        return (
-            <script src={join(url_for(), '/js/main.js')} type="text/javascript" async={true} data-no-instant="true"/>
-        )
+        stellarJsUrl = require("path").join(url_for(), '/js/main.js')
     }
+    return <script src={stellarJsUrl} type="text/javascript" async={true} data-no-instant="true"/>
 }
+
+const InjectScripts = props => {
+    const {theme} = props
+    let scripts = []
+    if (theme.inject && theme.inject.script && theme.inject.script.length > 0) {
+        for (const script of theme.inject.script) {
+            scripts.push(<script src={script.src}
+                                 key={script.src}
+                                 async={script.async || false}
+                                 defer={script.defer || false}
+                                 data-no-instant={script["data-no-instant"] || true}
+                         />)
+        }
+    }
+    return <>
+        {scripts}
+    </>
+}
+
 const Scripts = props => {
     const {join} = require("path")
     const {theme, page, url_for} = props
@@ -180,7 +197,9 @@ const Scripts = props => {
             <CommentsScript {...props}/>
             {(() => {
                  if (theme.plugins.mathjax.per_page === true || page.mathjax === true) return (<MathJaxScripts {...props}/>)
-             })()}
+            })()}
+
+            <InjectScripts {...props} />
         </div>
     )
 }

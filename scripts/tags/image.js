@@ -18,7 +18,7 @@ hexo.extend.tag.register('image', function(args) {
   }
   // fancybox
   var fancybox = false
-  if (hexo.theme.config.plugins.fancybox && hexo.theme.config.plugins.fancybox.enable) {
+  if (hexo.theme.config.plugins.fancybox && hexo.theme.config.plugins.fancybox.enabled) {
     // 主题配置
     if (hexo.theme.config.tag_plugins.image && hexo.theme.config.tag_plugins.image.fancybox) {
       fancybox = hexo.theme.config.tag_plugins.image.fancybox
