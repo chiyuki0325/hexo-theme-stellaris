@@ -21,6 +21,14 @@
     margin: 1rem
     color: var(--text-p2)
   .extend
+    color: var(--text-p3)
+    padding: 1rem
+    line-height: 0
+    filter: grayscale(100%)
+    img
+      height: 1rem
+    &.disable
+      pointer-events: none
     text-align: center
     background-size: contain
     width: 1rem
@@ -31,6 +39,11 @@
       background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE4IDNDMTguNTEyOCAzIDE4LjkzNTUgMy4zODYwNCAxOC45OTMzIDMuODgzMzhMMTkgNFYyMEMxOSAyMC41NTIzIDE4LjU1MjMgMjEgMTggMjFDMTcuNDg3MiAyMSAxNy4wNjQ1IDIwLjYxNCAxNy4wMDY3IDIwLjExNjZMMTcgMjBWNEMxNyAzLjQ0NzcyIDE3LjQ0NzcgMyAxOCAzWk01LjI5Mjg5IDMuMjkyODlDNS42NTMzOCAyLjkzMjQxIDYuMjIwNjEgMi45MDQ2OCA2LjYxMjkgMy4yMDk3TDYuNzA3MTEgMy4yOTI4OUwxNC43MDcxIDExLjI5MjlDMTUuMDY3NiAxMS42NTM0IDE1LjA5NTMgMTIuMjIwNiAxNC43OTAzIDEyLjYxMjlMMTQuNzA3MSAxMi43MDcxTDYuNzA3MTEgMjAuNzA3MUM2LjMxNjU4IDIxLjA5NzYgNS42ODM0MiAyMS4wOTc2IDUuMjkyODkgMjAuNzA3MUM0LjkzMjQxIDIwLjM0NjYgNC45MDQ2OCAxOS43Nzk0IDUuMjA5NyAxOS4zODcxTDUuMjkyODkgMTkuMjkyOUwxMi41ODU4IDEyTDUuMjkyODkgNC43MDcxMUM0LjkwMjM3IDQuMzE2NTggNC45MDIzNyAzLjY4MzQyIDUuMjkyODkgMy4yOTI4OVoiIGZpbGw9IiMyMTIxMjEiLz4KPC9zdmc+")
     &.prev
       background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNiAzQzUuNDg3MTYgMyA1LjA2NDQ5IDMuMzg2MDQgNS4wMDY3MyAzLjg4MzM4TDUgNFYyMEM1IDIwLjU1MjMgNS40NDc3MiAyMSA2IDIxQzYuNTEyODQgMjEgNi45MzU1MSAyMC42MTQgNi45OTMyNyAyMC4xMTY2TDcgMjBWNEM3IDMuNDQ3NzIgNi41NTIyOCAzIDYgM1pNMTguNzA3MSAzLjI5Mjg5QzE4LjM0NjYgMi45MzI0MSAxNy43Nzk0IDIuOTA0NjggMTcuMzg3MSAzLjIwOTdMMTcuMjkyOSAzLjI5Mjg5TDkuMjkyODkgMTEuMjkyOUM4LjkzMjQxIDExLjY1MzQgOC45MDQ2OCAxMi4yMjA2IDkuMjA5NyAxMi42MTI5TDkuMjkyODkgMTIuNzA3MUwxNy4yOTI5IDIwLjcwNzFDMTcuNjgzNCAyMS4wOTc2IDE4LjMxNjYgMjEuMDk3NiAxOC43MDcxIDIwLjcwNzFDMTkuMDY3NiAyMC4zNDY2IDE5LjA5NTMgMTkuNzc5NCAxOC43OTAzIDE5LjM4NzFMMTguNzA3MSAxOS4yOTI5TDExLjQxNDIgMTJMMTguNzA3MSA0LjcwNzExQzE5LjA5NzYgNC4zMTY1OCAxOS4wOTc2IDMuNjgzNDIgMTguNzA3MSAzLjI5Mjg5WiIgZmlsbD0iIzIxMjEyMSIvPgo8L3N2Zz4=")
+    if hexo-config('style.darkmode') == 'auto'
+      @media (prefers-color-scheme: dark)
+        filter grayscale(100%) brightness(20) !important
+    if hexo-config('style.darkmode') == 'always'
+      filter grayscale(100%) brightness(20) !important
   .current
     //  font-family: $ff-code
     background: var(--theme-highlight)
@@ -38,15 +51,6 @@
     &:hover
       color: var(--text-revert)
     //color: var(--text-p3)
-  .extend
-    color: var(--text-p3)
-    padding: 1rem
-    line-height: 0
-    filter: grayscale(100%)
-    img
-      height: 1rem
-    &.disable
-      pointer-events: none
   span.extend
     opacity: 0.25
   a.extend:hover
