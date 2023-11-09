@@ -116,6 +116,7 @@ const Sidebar = props => {
 
     const Footer = props => {
         const {page, theme, url_for} = props;
+        const parse = require('html-react-parser').default
         if (page.layout !== 'wiki' && theme.footer.social) {
             return (
                 <footer className="footer dis-select">
@@ -132,10 +133,10 @@ const Sidebar = props => {
                                        rel={itemIsUrl ?
                                            'external nofollow noopener noreferrer' :
                                            'noopener noreferrer'}
-                                       dangerouslySetInnerHTML={{__html: item.icon}}
                                        data-on-click={item.onclick || ''}
                                        key={id}
                                     >
+                                        {parse(item.icon)}
                                     </a>
                                 )
                             }

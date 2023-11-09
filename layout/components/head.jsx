@@ -161,8 +161,8 @@ const Preconnect = props => {
         let preconnects = []
         for (const preconnect of prefetch_and_preconnect) {
             preconnects.push(
-                <link rel="dns-prefetch" href={preconnect} />,
-                <link rel="preconnect" href={preconnect} crossOrigin="true" />
+                <link rel="dns-prefetch" href={preconnect} key={preconnect} />,
+                <link rel="preconnect" href={preconnect} crossOrigin="true" key={preconnect} />
             )
         }
         return (<>
@@ -172,6 +172,24 @@ const Preconnect = props => {
     } else {
         return <></>
     }
+}
+
+const InjectHead = props => {
+    let heads = []
+    if (theme.inject && theme.inject.head && theme.inject.head.length > 0) {
+        const {theme} = props
+        const parse = require('html-react-parser').default
+        let i = 0
+        for (const head of theme.inject.head) {
+            heads.push(
+                <Fragment key={String(i)}>{parse(head)}</Fragment>
+            )
+            i++
+        }
+    }
+    return <>
+        {heads}
+    </>
 }
 
 
@@ -201,6 +219,8 @@ module.exports = function Head(props) {
             <ImportCSS {...props}/>
             <ImportHighlightJSTheme {...props}/>
             <ImportKatex {...props}/>
+
+            <InjectHead {...props} />
         </head>
     )
 }

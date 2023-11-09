@@ -41,27 +41,22 @@ const Footer = props => {
     }
     const FooterContent = props => {
         const {theme, __, markdown} = props;
+        const parse = require('html-react-parser').default
         return (
             <div className="text">
                 {
                     theme.footer.license &&
-                    <div dangerouslySetInnerHTML={{__html: markdown(__('footer.license', theme.footer.license))}}/>
+                    parse(markdown(__('footer.license', theme.footer.license)))
                 }
                 {
                     source ?
-                        <div
-                            dangerouslySetInnerHTML={
-                                {__html: markdown(__('footer.info_open_source', author, using, source))}
-                            }/> :
-                        <div
-                            dangerouslySetInnerHTML={
-                                {__html: markdown(__('footer.info_not_open_source', author, using))}
-                            }/>
+                        parse(markdown(__('footer.info_open_source', author, using, source))) :
+                        parse(markdown(__('footer.info_not_open_source', author, using)))
                 }
-                <div>{__('footer.powered_by_1')}<a href="https://hexo.io">Hexo</a>{__('footer.powered_by_2')}<a href="https://reactjs.org">React</a>{__('footer.powered_by_3')}</div>
+                <div>{__('footer.powered_by_1')}<a href="https://hexo.io">Hexo</a>{__('footer.powered_by_2')}</div>
                 {
                     theme.footer.icp &&
-                    <div dangerouslySetInnerHTML={{__html: markdown(theme.footer.icp)}}/>
+                    parse(markdown(theme.footer.icp))
                 }
                 {
                     more && ((() => {

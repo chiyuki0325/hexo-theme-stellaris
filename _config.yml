@@ -466,3 +466,7 @@ inject:
   #   # 如果此脚本只需要加载一次（比如添加全局对象），那么为 true
   #   # 如果此脚本每页都需要重复加载（比如编辑页面元素或需要使用 window.onload），那么为 false
   #   data-no-instant: true
+  # head:
+  #  # 使用 HTML 语法
+  #  - '<meta name="key" content="value"></meta>'
+  #  - '<meta name="key2" content="value2"></meta>'
