@@ -1,3 +1,4 @@
+const {Fragment} = require('react')
 const CommentsScript = require('./plugins/comments/script.jsx');
 const MathJaxScripts = require('./plugins/mathjax/script.jsx');
 const generateStellarScript = props => {
@@ -168,13 +169,13 @@ const InjectScripts = props => {
     let scripts = []
     const {theme} = props
     if (theme.inject && theme.inject.script && theme.inject.script.length > 0) {
+        const parse = require('html-react-parser').default
+        let i = 0
         for (const script of theme.inject.script) {
-            scripts.push(<script src={script.src}
-                                 key={script.src}
-                                 async={script.async || false}
-                                 defer={script.defer || false}
-                                 data-no-instant={script["data-no-instant"] || true}
-                         />)
+            scripts.push(
+                <Fragment key={String(i)}>{parse(script)}</Fragment>
+            )
+            i++
         }
     }
     return <>
