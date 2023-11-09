@@ -25,7 +25,7 @@ hexo-theme-stellaris 分叉自 [hexo-theme-stellar](https://github.com/xaoxuu/he
 
 - 安装依赖
     ```bash
-    npm install hexo-renderer-jsx --save
+    npm install react react-dom hexo-renderer-jsx html-react-parser --save
     ```
     
     ```bash
