@@ -1,6 +1,6 @@
 {
   "name": "hexo-theme-stellaris",
-  "version": "1.4.8",
+  "version": "1.5.0",
   "description": "Powerful, elegant and modern Hexo theme, forked from hexo-theme-stellar.",
   "main": "package.json",
   "scripts": {},
@@ -25,7 +25,8 @@
     "hexo-renderer-stylus": "^3.0.0",
     "node-fetch": "^2.7.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "html-react-parser": "^5.0.6"
   },
   "homepage": "https://blog.yidaozhan.top/"
 }
