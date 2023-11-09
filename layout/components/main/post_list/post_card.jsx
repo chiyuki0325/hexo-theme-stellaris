@@ -1,14 +1,13 @@
 module.exports = function PostCard(props) {
-    const {post} = props;
-    const poster = post.poster;
+    const {post} = props
+    const poster = post.poster
     const postProperties = {
         image: post.cover
     }
     if (poster) {
-        postProperties.headline = poster.headline;
-        postProperties.topic = poster.topic;
-        postProperties.caption = poster.caption;
-        postProperties.color = poster.color;
+        for (const prop of ["headline", "topic", "caption", "color", "no_shadow"]) {
+            postProperties[prop] = poster[prop] || undefined
+        }
     }
     const Cover = (props) => {
         const {postProperties, post, theme} = props;
@@ -138,14 +137,16 @@ module.exports = function PostCard(props) {
                         <img src={postProperties.image} alt={postProperties.image} key={postProperties.image}/>
                     );
                     if (postProperties.headline || postProperties.topic || postProperties.caption) {
-                        const style = {
-                            position: postProperties.topic ? 'top' : 'bottom',
-                        }
+                        let style = {}
+                        let className = "cover-info"
                         if (postProperties.color) {
-                            style.color = postProperties.color;
+                            style.color = postProperties.color
+                        }
+                        if (postProperties.no_shadow) {
+                            className += " cover-no-shadow"
                         }
                         elements.push(
-                            <div className="cover" key="cover" style={style}>
+                            <div className={className} key="cover-info" style={style} position={postProperties.topic ? 'top' : 'bottom'} >
                                 {(() => {
                                     if (postProperties.topic) {
                                         return <div className="cap">{postProperties.topic}</div>
