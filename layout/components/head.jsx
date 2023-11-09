@@ -175,9 +175,9 @@ const Preconnect = props => {
 }
 
 const InjectHead = props => {
+    const {theme} = props
     let heads = []
     if (theme.inject && theme.inject.head && theme.inject.head.length > 0) {
-        const {theme} = props
         const parse = require('html-react-parser').default
         let i = 0
         for (const head of theme.inject.head) {

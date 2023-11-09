@@ -166,8 +166,8 @@ const ImportJS = props => {
 
 const InjectScripts = props => {
     let scripts = []
+    const {theme} = props
     if (theme.inject && theme.inject.script && theme.inject.script.length > 0) {
-      const {theme} = props
         for (const script of theme.inject.script) {
             scripts.push(<script src={script.src}
                                  key={script.src}
