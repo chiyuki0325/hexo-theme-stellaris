@@ -86,7 +86,7 @@ const ArticleFooter = props => {
                             </div>
                             <div className="social-wrap dis-select">
                                 {theme.article.share.map(item => {
-                                    if (['wechat', 'weibo', 'email', 'link'].includes(item)) {
+                                    if (['wechat', 'weibo', 'telegram', 'email', 'link'].includes(item)) {
                                         const shareTitle = page.seo_title || (page.title + ' - ' + config.title)
                                         const shareSummary = truncate(
                                             page.description || strip_html(page.excerpt || page.content),
@@ -119,6 +119,17 @@ const ArticleFooter = props => {
                                                        key={item}
                                                     >
                                                         <img src={url_for('/images/wechat.svg')} alt='wechat'/>
+                                                    </a>
+                                                )
+                                            case 'telegram':
+                                                return (
+                                                    <a className="social share-item telegram"
+                                                       target="_blank"
+                                                       rel="external nofollow noopener noreferrer"
+                                                       href={`https://t.me/share/url?url=${encodeURIComponent(page.permalink)}&text=${encodeURIComponent('**' + shareTitle + '**')}%0a${encodeURIComponent(shareSummary)}`}
+                                                       key={item}
+                                                    >
+                                                        <img src={url_for('/images/telegram.svg')} alt='telegram' />
                                                     </a>
                                                 )
                                             case 'email':
