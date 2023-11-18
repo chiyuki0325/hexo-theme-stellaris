@@ -6,7 +6,7 @@
   "scripts": {},
   "repository": {
     "type": "git",
-    "url": "https://github.com/YidaozhanYa/hexo-theme-stellaris.git"
+    "url": "https://github.com/chiyuki0325/hexo-theme-stellaris.git"
   },
   "keywords": [
     "hexo",
@@ -14,11 +14,11 @@
     "stellar",
     "stellaris"
   ],
-  "author": "[@YidaozhanYa](https://github.com/YidaozhanYa)",
-  "email": "ydz@yidaozhan.top",
+  "author": "[Kirukaze Chiyuki](https://github.com/chiyuki0325)",
+  "email": "me@chyk.ink",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/YidaozhanYa/hexo-theme-stellaris/issues/"
+    "url": "https://github.com/chiyuki0325/hexo-theme-stellaris/issues/"
   },
   "dependencies": {
     "hexo-renderer-jsx": "^1.0.1",
@@ -28,5 +28,5 @@
     "react-dom": "^18.2.0",
     "html-react-parser": "^5.0.6"
   },
-  "homepage": "https://blog.yidaozhan.top/"
+  "homepage": "https://blog.chyk.ink/"
 }

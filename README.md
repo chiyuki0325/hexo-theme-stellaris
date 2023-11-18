@@ -2,7 +2,7 @@
 
 hexo-theme-stellaris 分叉自 [hexo-theme-stellar](https://github.com/xaoxuu/hexo-theme-stellar)，基于[hexo-renderer-jsx](https://github.com/hexojs/hexo-renderer-jsx)，支持丰富的标签和动态数据组件。
 
-**本主题为[一刀斩の小窝](https://blog.yidaozhan.top)专门开发，原主题的有些功能我没有用到（比如 Utterances、时间线、issues API 等），不保证完全可用。**
+**本主题为[千雪的咖啡厅](https://blog.chyk.ink)专门开发，原主题的有些功能我没有用到（比如 Utterances、时间线、issues API 等），不保证完全可用。**
 
 ### 与原主题的区别
 
@@ -127,8 +127,6 @@ article:
   {% icon source [height:1.75em] %}
   ```
 
-  效果见[博客 about 页面](https://blog.yidaozhan.top/about#%E6%9F%A5%E6%88%90%E5%88%86)。
-  
 - 新增了 Bilibili 视频卡片插件 bilicard。
 
   ```jinja2
@@ -139,7 +137,7 @@ article:
 
 本主题编写了模板以适配 Telegram Instant View。
 
-你可以在此[获取模板](https://blog.yidaozhan.top/2023/07/15/stellaris-instant-view-template/)，并且查阅[官方文档](https://instantview.telegram.org/)以了解如何在你的博客中使用。
+你可以在此[获取模板](https://blog.chyk.ink/2023/07/15/stellaris-instant-view-template/)，并且查阅[官方文档](https://instantview.telegram.org/)以了解如何在你的博客中使用。
 
 #### 子目录部署
 
