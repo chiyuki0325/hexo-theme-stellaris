@@ -6,7 +6,7 @@
         "background: #eff4f9; padding: 5px; border-radius: 0 4px 4px 0;",
         ""
     )
-    console.log('By YidaozhanYa')
+    console.log('By Kirikaze Chiyuki')
 })()
 
 // utils
@@ -100,10 +100,30 @@ const stellaris = {
     themePlugins: {},
     registerThemePlugin: function(selector, plugin) {
         this.themePlugins[selector] = plugin
-        stellar.jQuery(() => $(() => {plugin.init()}))
+        stellaris.jQuery(() => $(() => {plugin.init()}))
     },
     pluginsConfig: {
         fancyBoxSelector: '',
+    },
+    jQuery(fn) {
+        const {status} = stellaris.jQueryState
+        if (typeof window.jQuery !== 'undefined' || status === 'loaded') {
+            console.log('jq called after loading')
+            fn()
+        } else if (status === 'loading') {
+        console.log('jq called when loading')
+            stellaris.jQueryState.promise.then(fn)
+        } else {
+            stellaris.jQueryState.status = 'loading'
+            stellaris.jQueryState.promise = stellar.loadScript(stellar.plugins.jQuery).then(() => {
+                stellaris.jQueryState.status = 'loaded'
+                console.log('jQuery loaded')
+            }).then(fn)
+        }
+    },
+    jQueryState: {
+        status: 'none',
+        promise: null
     },
     load: {
         swiper: () => {
@@ -180,7 +200,7 @@ const stellaris = {
     },
     init: {
         toc: () => {
-            stellar.jQuery(() => {
+            stellaris.jQuery(() => {
                 const scrollOffset = 32;
                 var segs = [];
                 $("article.md-text :header").each(function (idx, node) {
@@ -214,7 +234,7 @@ const stellaris = {
             })
         },
         sidebar: () => {
-            stellar.jQuery(() => {
+            stellaris.jQuery(() => {
                 $(".toc#toc a.toc-link").click(function (e) {
                     const l_body = document.querySelector('.l_body');
                     l_body.classList.remove("sidebar");
@@ -222,7 +242,7 @@ const stellaris = {
             })
         },
         clickEvents: () => {
-            stellar.jQuery(() => {
+            stellaris.jQuery(() => {
                 const elements = $('.on-click-event');
                 elements.each((e) => {
                     const el = $(elements[e]);
@@ -298,7 +318,7 @@ const stellaris = {
         },
         search: () => {
             if (stellar.search.service && (stellar.search.service == 'local_search')) {
-                stellar.jQuery(() => {
+                stellaris.jQuery(() => {
                     const $inputArea = $("input#search-input");
                     if ($inputArea.length == 0) {
                         return;
@@ -397,7 +417,7 @@ const stellaris = {
                 Object.keys(stellaris.themePlugins).forEach(selector => {
                     const els = document.querySelectorAll(selector)
                     if ((els != undefined) && els.length > 0) {
-                        stellar.jQuery(() => $(() => {stellaris.themePlugins[selector].init()}))
+                        stellaris.jQuery(() => $(() => {stellaris.themePlugins[selector].init()}))
                     }
                 })
             }

@@ -97,13 +97,7 @@ const generateStellarScript = props => {
         }),
     
         // https://github.com/jerryc127/hexo-theme-butterfly
-        jQuery: (fn) => {
-          if (typeof jQuery === 'undefined') {
-            stellar.loadScript(stellar.plugins.jQuery).then(fn)
-          } else {
-            fn()
-          }
-        }
+        jQuery: fn => stellaris.jQuery(fn)
       };
       stellar.github = 'https://github.com/YidaozhanYa/hexo-theme-stellaris';
       stellar.config = {
