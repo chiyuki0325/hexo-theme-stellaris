@@ -108,16 +108,13 @@ const stellaris = {
     jQuery(fn) {
         const {status} = stellaris.jQueryState
         if (typeof window.jQuery !== 'undefined' || status === 'loaded') {
-            console.log('jq called after loading')
             fn()
         } else if (status === 'loading') {
-        console.log('jq called when loading')
             stellaris.jQueryState.promise.then(fn)
         } else {
             stellaris.jQueryState.status = 'loading'
             stellaris.jQueryState.promise = stellar.loadScript(stellar.plugins.jQuery).then(() => {
                 stellaris.jQueryState.status = 'loaded'
-                console.log('jQuery loaded')
             }).then(fn)
         }
     },
