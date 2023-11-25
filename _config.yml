@@ -310,7 +310,10 @@ tag_plugins:
   # {% bilicard %}
   bilicard:
     enabled: true
-    image_proxy: "https://images.weserv.nl/?url="
+    # 此 API 可自行部署
+    # https://github.com/chiyuki0325/stellaris-api
+    # 部署后输入 https://你部署的 API/?url=
+    image_proxy: "https://stellaris-api.chyk.ink/bilibili/?url="
 
 
 ######## JS 插件 ########
