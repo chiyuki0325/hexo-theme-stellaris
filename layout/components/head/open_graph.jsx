@@ -103,10 +103,11 @@ const OpenGraphArguments = (props) => {
         });
     }
 
-
+    /*
     if (description) {
         result.push(<Meta name="description" content={description}/>);
     }
+    */
 
     result.push(<OG name="og:type" content={type}/>);
     result.push(<OG name="og:title" content={title}/>);
