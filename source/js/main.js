@@ -178,6 +178,11 @@ const stellaris = {
                 )
             }
         },
+        copyCode: () => {
+            if (stellar.plugins.copycode) {
+                stellar.loadScript(stellar.plugins.copycode.js, {defer: true})
+            }
+        },
         themePlugins: () => {
             // stellar js
             if (stellar.plugins.stellar) {
@@ -191,7 +196,7 @@ const stellaris = {
         }
     },
     loadAllPlugins: () => {
-        ['scrollReveal', 'lazyLoad', 'fancyBox','swiper', 'search', 'themePlugins'].forEach(
+        ['scrollReveal', 'lazyLoad', 'fancyBox','swiper', 'search', 'copyCode', 'themePlugins'].forEach(
             plugin => { stellaris.load[plugin]() }
         )
     },

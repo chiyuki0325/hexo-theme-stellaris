@@ -112,7 +112,7 @@ const Feed = (props) => {
 const ImportCSS = (props) => {
     const {theme, url_for} = props
     const {join} = require("path")
-    if (theme.stellar.cdn_css) {
+    if (theme.stellar && theme.stellar.cdn_css) {
         return <link rel="stylesheet" href={theme.stellar.cdn_css}/>
     } else {
         return <link rel="stylesheet" href={join(url_for(), "/css/main.css")}/>

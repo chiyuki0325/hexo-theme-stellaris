@@ -142,6 +142,9 @@ const generateStellarScript = props => {
         stellar.plugins.fancybox = Object.assign(${JSON.stringify(theme.plugins.fancybox)});
       }
       stellar.plugins.instant_click = Object.assign(${JSON.stringify(theme.plugins.instant_click)});
+      if ('${theme.plugins.copycode.enabled}' == 'true') {
+        stellar.plugins.copycode = Object.assign(${JSON.stringify(theme.plugins.copycode)});
+      }
       stellar.article = {
         outdate_month: ${outdateMonth}
       };
@@ -151,7 +154,7 @@ const generateStellarScript = props => {
 const ImportJS = props => {
     const {theme, url_for} = props
     let stellarJsUrl
-    if (theme.stellar.cdn_js) {
+    if (theme.stellar && theme.stellar.cdn_js) {
         stellarJsUrl = theme.stellar.cdn_js
     } else {
         stellarJsUrl = require("path").join(url_for(), '/js/main.js')
