@@ -370,16 +370,12 @@ plugins:
     # 使用 waline 评论可以写: #waline_container .vcontent img
     selector: .swiper-slide img # 多个选择器用英文逗号隔开
 
-
   # swiper
   # https://swiperjs.com/
   swiper:
     enabled: true
     css: https://unpkg.com/swiper@11/swiper-bundle.min.css
     js: https://unpkg.com/swiper@11/swiper-bundle.min.js
-
-
-  ### 数学公式插件（可二选一）
 
   # 使用 MathJax 提供数学公式支持
   # 需在 Markdown 文件开头加入 mathjax: true
@@ -405,7 +401,11 @@ plugins:
 style:
   darkmode: auto # auto / always / false
   smooth_scroll: true # true / false
-  font-size: 16px
+  font-size:
+    root: 16px
+    body: .9375rem  # 15px
+    code: 85%  # 14px
+    codeblock: 0.8125rem # 13px
   text-align: left
   color:
     common:
@@ -437,7 +437,11 @@ style:
   codeblock:
     scrollbar: 4px
     highlightjs_theme: https://fastly.jsdelivr.net/gh/highlightjs/cdn-release@11.5.0/build/styles/atom-one-dark.min.css
-  font_face: "HarmonyOS_Regular"
+  font-family:
+    logo: 'system-ui, "Microsoft Yahei", "Segoe UI", -apple-system, Roboto, Ubuntu, "Helvetica Neue", Arial, "WenQuanYi Micro Hei", sans-serif'
+    body: 'system-ui, "Microsoft Yahei", "Segoe UI", -apple-system, Roboto, Ubuntu, "Helvetica Neue", Arial, "WenQuanYi Micro Hei", sans-serif'
+    code: 'Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif'
+    codeblock: 'Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif'
   custom_font_css:
     # 自定义字体
     enabled: true
