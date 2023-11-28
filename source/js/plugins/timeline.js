@@ -116,11 +116,11 @@
             cell += '</div>';
             cell += '<div class="flex right">';
             if (item.reactions && item.reactions.total_count > 0) {
-              for (let key of Object.keys(this.reactions)) {
+              for (let key of Object.keys(StellarTimeline.reactions)) {
                 let num = item.reactions[key];
                 if (num > 0) {
                   cell += '<div class="item reaction ' + key + '">';
-                  cell += '<span>' + this.reactions[key] + ' ' + item.reactions[key] + '</span>';
+                  cell += '<span>' + StellarTimeline.reactions[key] + ' ' + item.reactions[key] + '</span>';
                   cell += '</div>';
                 }
               }

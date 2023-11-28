@@ -41,7 +41,7 @@
           }
           throw new Error('Network response was not ok.');
         }).then(function(data) {
-          this.renderer(el, data);
+          CardLink.renderer(el, data);
         }).catch(function(error) {
           console.log(error);
         });
