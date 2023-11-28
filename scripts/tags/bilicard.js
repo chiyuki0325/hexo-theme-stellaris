@@ -8,8 +8,7 @@
 const fetch = require('node-fetch')
 
 const cardTemplate = ({ v_id, v_cover, v_time, v_title, v_playview, v_danmaku, v_type, v_upname }, image_proxy) =>
-    `<link rel="stylesheet" href="/css/bilicard.css">
-    <div class="bvideo"><a href="//www.bilibili.com/video/${v_id}" target="_blank">
+    `<div class="bvideo"><a href="//www.bilibili.com/video/${v_id}" target="_blank">
         <div class="bvideo-box">
             <div class="bvideo-cover">
                 <div class="cover-default"></div>
