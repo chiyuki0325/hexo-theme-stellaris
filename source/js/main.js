@@ -122,12 +122,20 @@ const stellaris = {
         status: 'none',
         promise: null
     },
+    loadCSS: {
+        fancyBox: () => {
+            if (stellar.plugins.fancybox) stellar.loadCSS(stellar.plugins.fancybox.css)
+        },
+        swiper: () => {
+            if (stellar.plugins.swiper) stellar.loadCSS(stellar.plugins.swiper.css)
+        }
+    },
     load: {
         swiper: () => {
             if (stellar.plugins.swiper) {
                 const swiper_api = document.getElementById('swiper-api');
                 if (swiper_api != undefined) {
-                    stellar.loadCSS(stellar.plugins.swiper.css);
+                    stellar.loadCSS(stellar.plugins.swiper.css)
                     stellar.loadScript(stellar.plugins.swiper.js, {defer: true}).then(
                         stellaris.init.swiper
                     )
@@ -195,8 +203,16 @@ const stellaris = {
             }
         }
     },
+    loadNeededCSS: () => {
+        ['fancyBox', 'swiper'].forEach(css => { stellaris.loadCSS[css]() })
+    },
     loadAllPlugins: () => {
-        ['scrollReveal', 'lazyLoad', 'fancyBox','swiper', 'search', 'copyCode', 'themePlugins'].forEach(
+        ['scrollReveal', 'lazyLoad', 'fancyBox', 'swiper', 'search', 'copyCode', 'themePlugins'].forEach(
+            plugin => { stellaris.load[plugin]() }
+        )
+    },
+    loadNeededPlugins: () => {
+        ['lazyLoad', 'fancyBox', 'swiper'].forEach(
             plugin => { stellaris.load[plugin]() }
         )
     },
@@ -437,10 +453,13 @@ const stellaris = {
     },
     initOnFirstLoad: () => {
         console.log(`New page loaded: ${window.location.pathname}`)
+        stellaris.loadNeededPlugins()
         stellaris.initPageComponents()
     },
     initOnPageChange: () => {
         console.log(`Page loaded: ${window.location.pathname}`)
+        stellaris.loadNeededCSS()
+        stellaris.loadNeededPlugins()
         stellaris.initPageComponents()
         stellaris.initPlugins()
     }
