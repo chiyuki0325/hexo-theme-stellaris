@@ -68,7 +68,7 @@ const Sidebar = props => {
                             </a>
                             {(() => {
                                 let main = proj.name || proj.title || page.wiki || page.title;
-                                let url = proj.homepage.path;
+                                let url = proj.homepage.path || proj.homepage;
                                 let sub = proj.subtitle;
                                 return <HeaderTitle {...props} main={main} url={url} sub={sub}/>
                             })()}
