@@ -1,4 +1,4 @@
-/* bilicard.js v1 | https://github.com/YidaozhanYa/hexo-theme-stellaris
+/* bilicard.js v1 | https://github.com/chiyuki0325/hexo-theme-stellaris
  * https://github.com/MaxChang3/hexo-bilibili-card
  * {% bilicard v_id %}
  */

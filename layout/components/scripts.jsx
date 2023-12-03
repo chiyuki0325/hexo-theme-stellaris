@@ -99,7 +99,7 @@ const generateStellarScript = props => {
         // https://github.com/jerryc127/hexo-theme-butterfly
         jQuery: fn => stellaris.jQuery(fn)
       };
-      stellar.github = 'https://github.com/YidaozhanYa/hexo-theme-stellaris';
+      stellar.github = 'https://github.com/chiyuki0325/hexo-theme-stellaris';
       stellar.config = {
         date_suffix: {
           just: '${__('meta.date_suffix.just')}',

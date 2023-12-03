@@ -33,7 +33,7 @@ sidebar:
   widgets:
     # 各个页面对应的侧边栏挂件
     # 挂件可在 source/_data/widgets.yml 中配置
-    # 可参考 https://github.com/YidaozhanYa/hexo-theme-stellaris/blob/main/_data/widgets.yml
+    # 可参考 https://github.com/chiyuki0325/hexo-theme-stellaris/blob/main/_data/widgets.yml
 
     ### 博客自动生成的导航页面和系统页面
     # 主页
@@ -268,7 +268,7 @@ footer:
     #   - '[关于本站](/)'
     #   - '[GitHub](/)'
   license: '[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)'
-  # source: https://github.com/YidaozhanYa/blog  # 博客源码信息
+  # source: https://github.com/chiyuki0325/blog  # 博客源码信息
   # icp:  # ICP 备案信息
   # 主题用户越多，开发者维护和更新的积极性就越高，如果您喜欢本主题，请在适当的位置显示主题信息和仓库链接以表支持。
 

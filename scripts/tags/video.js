@@ -1,5 +1,5 @@
 /**
- * video.js v1 | https://github.com/YidaozhanYa/hexo-theme-stellaris
+ * video.js v1 | https://github.com/chiyuki0325/hexo-theme-stellaris
  * {% video src [ratio:aspect-ratio] %}
  */
 

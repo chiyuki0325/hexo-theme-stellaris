@@ -61,7 +61,7 @@ welcome:
   layout: markdown
   title: Stellaris 入门指南
   content: | # support markdown
-    欢迎使用 [Stellaris](https://github.com/YidaozhanYa/hexo-theme-stellaris/) 主题，下面是您的入门指南，祝您使用愉快！
+    欢迎使用 [Stellaris](https://github.com/chiyuki0325/hexo-theme-stellaris/) 主题，下面是您的入门指南，祝您使用愉快！
     <br>
     **第一步**
     创建 `blog/_config.stellaris.yml` 文件，在此文件中填写需要自定义的主题配置。
@@ -69,7 +69,7 @@ welcome:
     **第二步**
     创建 `blog/source/_data/widgets.yml` 文件，此文件中填写需要自定义的侧边栏组件，例如 `welcome` 组件。
     <br>
-    如果有任何疑问，请先查阅 [示例配置文件]https://github.com/YidaozhanYa/hexo-theme-stellaris/blob/main/_config.yml() 和 [原主题文档](https://xaoxuu.com/wiki/stellar/)，如果文档中没有提供，请提 [issue](https://github.com/YidaozhanYa/hexo-theme-stellaris/issues/) 向开发中询问。
+    如果有任何疑问，请先查阅 [示例配置文件]https://github.com/chiyuki0325/hexo-theme-stellaris/blob/main/_config.yml() 和 [原主题文档](https://xaoxuu.com/wiki/stellar/)，如果文档中没有提供，请提 [issue](https://github.com/chiyuki0325/hexo-theme-stellaris/issues/) 向开发中询问。
 
 
 
