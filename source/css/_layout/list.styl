@@ -19,22 +19,13 @@
   .wiki .post-title
     margin-top: 0.5rem
 
-@css {
-  .post-list .post-card {
-    box-shadow: 0 1px 2px hsl(240 3.8% 46.1% / 12%)
-  }
-
-  .post-list .post-card:hover {
-    box-shadow: 0 2px 8px hsl(240 3.8% 46.1% / 12%)
-  }
-}
-
 // card
 .post-list .post-card
   display: block
   margin: 1rem 0
   border-radius: $border-card
   border: 1px solid var(--card-border)
+  box-shadow: $boxshadow-card
   trans1 all
   overflow: hidden
   z-index: 0
@@ -63,6 +54,7 @@
         object-fit: contain
         height: 1.5em
   &:hover
+    box-shadow: $boxshadow-card-hover
     transform: translateY(-2px) !important
     img
       transform: scale(1.02)
