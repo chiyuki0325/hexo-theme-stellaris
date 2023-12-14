@@ -7,8 +7,8 @@ const Comments = props => {
         }
     }
     // 合并wiki评论
-    if (loadComment && page.layout === 'wiki' && page.wiki) {
-        let proj = theme.wiki.projects[page.wiki];
+    let proj = theme.wiki.tree[page.wiki]
+    if (loadComment && page.layout === 'wiki' && page.wiki && (proj != null)) {
         if (proj.comment_title !== undefined && page.comment_title === undefined) {
             if (['utterances', 'beaudar'].includes(theme.comments.service)) {
                 page.comment_title = proj.comment_title;

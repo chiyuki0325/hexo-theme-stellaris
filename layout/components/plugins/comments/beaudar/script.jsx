@@ -7,7 +7,7 @@ const BeaudarScript = props => {
           try {
             el.innerHTML = '';
           } catch (error) {
-            console.log(error);
+            console.error(error);
           }
           var script = document.createElement('script');
           script.src = 'https://beaudar.lipk.org/client.js';
