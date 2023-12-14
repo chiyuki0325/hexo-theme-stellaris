@@ -110,7 +110,11 @@ const Toc = props => {
                     // 单 section
                     return (
                         <Fragment>
-                            <LayoutTocHeader {...props}/>
+                            {if (proj.pages.length ==1) {
+                                return <LayoutTocHeader {...props}/>
+                            } else {
+                                return <></>
+                            }}
                             <div className="widget-body fs14">
                                 <LayoutDocTree {...props} pages={proj.pages}/>
                             </div>
