@@ -11,7 +11,7 @@ const HeaderTitle = props => {
                         return (
                             <Fragment>
                                 <div className='sub normal cap'>{arr.shift().trim()}</div>
-                                <div className='sub hover cap' style='opacity:0'>{arr.join('|')}</div>
+                                <div className='sub hover cap' style={{opacity:0}}>{arr.join('|')}</div>
                             </Fragment>
                         )
                     } else {
