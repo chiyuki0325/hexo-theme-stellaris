@@ -242,8 +242,22 @@ const stellaris = {
                     if (topSeg) {
                         $(".toc#toc a.toc-link").removeClass("active")
                         var link = "#" + topSeg.attr("id")
+
                         if (link != '#undefined') {
-                            $('.toc#toc a.toc-link[href="' + encodeURI(link) + '"]').addClass("active")
+                            const highlightSelector = '.toc#toc a.toc-link[href="' + encodeURI(link) + '"]'
+                            const highlightItem = $(highlightSelector)
+                            if (highlightItem.length > 0) {
+                                highlightItem.addClass("active")
+                                const e0 = document.querySelector('.widgets')
+                                const e1 = document.querySelector(highlightSelector)
+                                const offsetBottom = e1.getBoundingClientRect().bottom - e0.getBoundingClientRect().bottom + 200
+                                const offsetTop = e1.getBoundingClientRect().top - e0.getBoundingClientRect().top - 64
+                                if (offsetTop < 0) {
+                                    e0.scrollBy(0, offsetTop)
+                                } else if (offsetBottom > 0) {
+                                    e0.scrollBy(0, offsetBottom)
+                                }
+                            }
                         } else {
                             $('.toc#toc a.toc-link:first').addClass("active")
                         }
