@@ -61,7 +61,7 @@ const Breadcrumb = props => {
                     <div id="breadcrumb">
                         <a className="cap breadcrumb" href={config.root}>{home_title}</a>
                         <span className="sep"></span>
-                        <a className="cap breadcrumb" href={config.root}>{__("btn.blog")}</a>
+                        <a className="cap breadcrumb" href={config.index_generator.path}>{__("btn.blog")}</a>
                         <Category {...props}/>
                     </div>
                     <PostMeta {...props} />

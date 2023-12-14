@@ -5,7 +5,7 @@ module.exports = function NavBarListPost(props) {
         <div className="nav-wrap">
             <nav className="sub post cap">
 
-                <a className={is_home() ? "active" : ""} href={url_for("/")}>
+                <a className={is_home() ? "active" : ""} href={url_for(config.index_generator.path)}>
                     {__("btn.recent_publish")}
                 </a>
 

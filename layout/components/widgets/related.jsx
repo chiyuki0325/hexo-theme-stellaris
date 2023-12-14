@@ -10,7 +10,7 @@ const Related = props => {
     if (proj?.related?.length > 0) {
         proj.related.filter(pid => shelf.includes(pid)).forEach((pid, i) => {
             let p = tree[pid];
-            if (p && p.title !== proj?.title) {
+            if (p && p.title !== proj?.title && p.homepage) {
                 related.push(p);
             }
         });
