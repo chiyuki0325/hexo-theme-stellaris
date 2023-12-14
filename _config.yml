@@ -1,6 +1,6 @@
 ######## hexo-theme-stellaris ########
 stellar:
-  version: '1.8.0'
+  version: '1.8.1'
   homepage: 'https://blog.chyk.ink/wiki/stellaris/'
   repo: 'https://github.com/chiyuki0325/hexo-theme-stellaris'
   cdn_css:  # 如果你使用 CDN，可以上传 /css/main.css 并在此输入对应的链接
