@@ -61,6 +61,8 @@ npm update hexo-theme-stellaris
 
 ### 文档
 
+主题文档正在施工中，请[点此查看](https://blog.chyk.ink/wiki/stellaris/)。
+
 可以适当参考 [原主题文档](https://xaoxuu.com/wiki/stellar/)，或对照配置文件的注释。
 
 #### 相关文章推荐
@@ -138,7 +140,3 @@ article:
 本主题编写了模板以适配 Telegram Instant View。
 
 你可以在此[获取模板](https://blog.chyk.ink/2023/07/15/stellaris-instant-view-template/)，并且查阅[官方文档](https://instantview.telegram.org/)以了解如何在你的博客中使用。
-
-#### 子目录部署
-
-本主题支持子目录部署（实验性）。
