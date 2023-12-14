@@ -60,7 +60,11 @@ const ArticleFooter = props => {
             if (page.license) {
                 license = (page.license || theme.article.license)
             } else if (proj?.license) {
-                license = (proj.license || theme.article.license)
+                if (proj.license == true) {
+                    license = (theme.article.license)
+                } else {
+                    license = (proj.license)
+                }
             }
         }
         if (license.length > 0) {
