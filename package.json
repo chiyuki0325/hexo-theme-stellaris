@@ -1,6 +1,6 @@
 {
   "name": "hexo-theme-stellaris",
-  "version": "1.7.2",
+  "version": "1.8.0",
   "description": "Powerful, elegant and modern Hexo theme, forked from hexo-theme-stellar.",
   "main": "package.json",
   "scripts": {},
@@ -28,5 +28,5 @@
     "react-dom": "^18.2.0",
     "html-react-parser": "^5.0.6"
   },
-  "homepage": "https://blog.chyk.ink/"
+  "homepage": "https://blog.chyk.ink/wiki/stellaris/"
 }
