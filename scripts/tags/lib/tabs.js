@@ -51,7 +51,8 @@ module.exports = ctx => function(args, content = '') {
   if (args.align != undefined) {
     el += ' align="' + args.align + '"'
   }
-  el += 'id="' + tabName.toLowerCase().split(' ').join('-') + '">'
+  el += 'id="' + tabName.toLowerCase().split(' ').join('-') + '"'
+  el += '>'
   el += tabNav + tabContent
   el += '</div>'
   return el
