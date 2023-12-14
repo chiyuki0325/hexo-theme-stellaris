@@ -7,7 +7,7 @@
 'use strict';
 
 module.exports = ctx => ((args) => {
-    const args = ctx.args.map(args, ['ratio'], ['src'])
+    args = ctx.args.map(args, ['ratio'], ['src'])
     return `
 <script src="https://cdn.bootcdn.net/ajax/libs/artplayer/4.6.2/artplayer.min.js"></script>
 <style>
