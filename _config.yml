@@ -312,8 +312,8 @@ tag_plugins:
   mark:
     default_color: dark # light, dark, red, orange, yellow, green, cyan, blue, purple, warning, error
 
-  # {% tag %}
-  tag:
+  # {% hashtag %}
+  hashtag:
     default_color: yellow # red, orange, yellow, green, cyan, blue, purple
 
   # {% bilicard %}
