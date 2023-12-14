@@ -9,9 +9,10 @@ module.exports = function NavBarListWiki(props) {
                 </a>
                 {/*项目分类*/}
                 {(()=>{
-                    for (let id of Object.keys(theme.wiki.all_tags)) {
-                        let tag = theme.wiki.all_tags[id];
-                        let projects = tag.items.filter(item => item.index !== false)
+                    const { shelf, all_tags } = theme.wiki;
+                    for (let id of Object.keys(all_tags)) {
+                        let tag = all_tags[id];
+                        let projects = tag.items.filter(item => shelf.includes(item))
                         if (projects && projects.length > 0) {
                             const isActive = (tag.name && tag.name.length > 0 && page.tagName === tag.name);
                             return <a className={isActive ? "active" : ""} href={url_for(tag.path)}>

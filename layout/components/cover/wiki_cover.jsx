@@ -1,7 +1,7 @@
 const {Fragment} = require('react');
 const WikiCover = props => {
     const {theme, page, __, scroll_reveal} = props;
-    let proj = theme.wiki.projects[page.wiki];
+    let proj = theme.wiki.tree[page.wiki];
     if (proj === undefined) {
         return <></>;
     }

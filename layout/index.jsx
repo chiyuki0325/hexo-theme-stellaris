@@ -77,9 +77,12 @@ const LayoutPosts = props => {
 const LayoutWikis = (props) => {
     const {page, theme} = props;
     const elements = [];
-    const projects = theme.wiki.projects;
-    for (let proj_name of Object.keys(projects)) {
-        let proj = projects[proj_name];
+    const wiki_tree = theme.wiki.tree
+    for (let proj_name of Object.keys(wiki_tree)) {
+        let proj = wiki_tree[proj_name]
+        if (proj == null) {
+            continue
+        }
         if (proj.index === false || proj.pages === undefined || proj.pages.length === 0) {
             continue;
         }

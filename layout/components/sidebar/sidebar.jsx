@@ -5,7 +5,7 @@ const Sidebar = props => {
     const {page, theme, is_home, is_category, is_tag, is_archive} = props;
     let proj;
     if (page.layout === 'wiki' && page.wiki) {
-        proj = theme.wiki.projects[page.wiki];
+        proj = theme.wiki.tree[page.wiki];
     }
 
     // 默认组件
@@ -13,8 +13,8 @@ const Sidebar = props => {
         if (page.layout === 'post' && page.content) {
             page.sidebar = theme.sidebar.widgets.post;
         } else if (page.layout === 'wiki' && page.content && page.wiki) {
-            let proj = theme.wiki.projects[page.wiki];
-            if (proj.sidebar) {
+            let proj = theme.wiki.tree[page.wiki]
+            if (proj?.sidebar) {
                 page.sidebar = proj.sidebar;
             } else {
                 page.sidebar = theme.sidebar.widgets.wiki;

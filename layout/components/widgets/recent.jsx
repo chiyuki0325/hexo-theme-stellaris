@@ -4,8 +4,8 @@ const Recent = props => {
     if (page.menu_id === 'wiki') {
         recentPosts = theme.wiki.all_pages.filter(p => {
             if (p.wiki) {
-                let proj = theme.wiki.projects[p.wiki];
-                return proj.index !== false;
+                let proj = theme.wiki.tree[p.wiki];
+                return proj?.index !== false;
             }
             return false;
         })
@@ -42,7 +42,7 @@ const Recent = props => {
                                 {(()=>{
                                     const itemTitle = [];
                                     if (post.layout === 'wiki') {
-                                        const proj = theme.wiki.projects[post.wiki];
+                                        const proj = theme.wiki.tree[post.wiki];
                                         const name = proj?.name || post?.wiki;
                                         if (name) {
                                             itemTitle.push(

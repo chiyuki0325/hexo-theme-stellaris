@@ -72,7 +72,7 @@ const Breadcrumb = props => {
     } else if (page.layout === "wiki" && page.wiki && page.wiki.length > 0) {
 
         const nodes = ['/'];
-        const proj = theme.wiki.projects[page.wiki];
+        const proj = theme.wiki.tree[page.wiki];
 
         const Menu = props => {
             const {theme, page, url_for, __} = props;
@@ -90,14 +90,20 @@ const Breadcrumb = props => {
 
         const ProjectName = props => {
             const {theme, page, url_for, proj} = props;
-            const url_proj = url_for(proj.homepage.path);
-            if (nodes.includes(url_proj) === false) {
-                return (
-                    <Fragment>
-                        <span className="sep"></span>
-                        <a className="cap breadcrumb" id="proj" href={url_proj}>{(proj.name || proj.title)}</a>
-                    </Fragment>
-                )
+            if (proj) {
+                const url_proj = url_for(proj.homepage.path);
+                if (nodes.includes(url_proj) === false) {
+                    return (
+                        <Fragment>
+                            <span className="sep"></span>
+                            <a className="cap breadcrumb" id="proj" href={url_proj}>{(proj.name || proj.title)}</a>
+                        </Fragment>
+                    )
+                } else {
+                    return <></>
+                }
+            } else {
+                return <></>
             }
         }
 
@@ -159,6 +165,8 @@ const Breadcrumb = props => {
                 </div>
             </BreadNav>
         )
+    } else {
+        return <></>
     }
 }
 

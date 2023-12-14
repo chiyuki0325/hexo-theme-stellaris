@@ -4,12 +4,13 @@ const Related = props => {
         return <></>;
     }
 
-    const related = [];
-    let proj = theme.wiki.projects[page.wiki];
-    if (proj.related && proj.related.length > 0) {
-        proj.related.forEach((pid, i) => {
-            let p = theme.wiki.projects[pid];
-            if (p && p.title !== proj.title && p.index !== false) {
+    let related = [];
+    const { shelf, tree } = theme.wiki;
+    let proj = tree[page.wiki];
+    if (proj?.related?.length > 0) {
+        proj.related.filter(pid => shelf.includes(pid)).forEach((pid, i) => {
+            let p = tree[pid];
+            if (p && p.title !== proj?.title) {
                 related.push(p);
             }
         });
@@ -29,9 +30,13 @@ const Related = props => {
                 </div>
                 <div className="widget-body related-posts">
                     {related.map((p, i) => {
+                        if (p.homepage == null) {
+                            console.error("未找到首页：", p.title);
+                            return <></>
+                        }
                         // 同一个分组中的其它项目
                         return (
-                            <a className='item wiki' href={url_for(p.homepage.path)} key={i}>
+                            <a className='item wiki' href={url_for(p.homepage?.path)} key={i}>
                                 <span className="title">{p.title}</span>
                                 {(() => {
                                     if (p.description && p.description.length > 0) {

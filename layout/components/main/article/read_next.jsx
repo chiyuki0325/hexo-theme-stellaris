@@ -10,7 +10,7 @@ const ReadNext = props => {
         title_prev = __('meta.newer');
         title_next = __('meta.older');
     } else if (page.layout === 'wiki' && page.wiki && page.wiki.length > 0) {
-        let proj = theme.wiki.projects[page.wiki];
+        let proj = theme.wiki.tree[page.wiki];
         if (proj) {
             const current = page.order || 0;
             proj.pages.forEach((p, i) => {

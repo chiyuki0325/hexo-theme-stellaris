@@ -7,8 +7,8 @@ const GitHubIssues = props => {
     if (page.repo) {
         repo = page.repo;
     } else if (page.layout === 'wiki' && page.wiki) {
-        let proj = theme.wiki.projects[page.wiki];
-        if (proj && proj.repo) {
+        let proj = theme.wiki.tree[page.wiki];
+        if (proj?.repo) {
             repo = proj.repo;
             if (proj.branch !== undefined) {
                 branch = proj.branch;

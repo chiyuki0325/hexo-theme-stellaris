@@ -1,7 +1,7 @@
-const {Fragment} = require('react');
+    const {Fragment} = require('react');
 const Toc = props => {
     const {theme, page, toc} = props;
-    let proj = theme.wiki.projects[page.wiki];
+    let proj = theme.wiki.tree[page.wiki];
 
     const LayoutToc = props => {
         const {toc, page} = props;
@@ -33,15 +33,18 @@ const Toc = props => {
         const elements = [];
         const {pages, url_for} = props;
         const page = props.page || {};
-        pages.forEach((p, i) => {
+        for (let p of pages) {
+            if (p.title == null || p.title.length == 0) {
+            continue;
+            }
             let isActive = '';
             if (p.path === page.path) {
                 isActive += ' active';
             }
             elements.push(
-                <div className={"doc-tree" + isActive} key={i}>
+                <div className={"doc-tree" + isActive} key={p.title}>
                     {(() => {
-                        if (proj.pages.length > 1) {
+                        if (proj?.pages.length > 1) {
                             let href = url_for(p.path);
                             if (p.is_homepage) {
                                 href += '#start'
@@ -56,12 +59,12 @@ const Toc = props => {
                     {(p.path === page.path) ? <LayoutToc {...props}/> : <></>}
                 </div>
             )
-        });
+        }
         return elements;
     }
 
     let type = '';
-    if (proj && proj.pages) {
+    if (proj?.pages) {
         if (proj.pages.length > 1) {
             type = 'multi';
         } else {
@@ -90,14 +93,13 @@ const Toc = props => {
                 )
             } else if (proj) {
                 // wiki 布局
-                if (proj.sections && proj.sections.length > 0) {
+                if (proj.sections && proj.sections.length > 0 && proj.pages.length > 1) { // 多 pages
                     return (
                         <Fragment>
                             {proj.sections.map((sec, i) => {
-                                // 多 section
                                 return (
                                     <Fragment key={i}>
-                                        <LayoutTocHeader {...props} title={sec.title}/>
+                                        {(sec.title?.length > 0) ? (<LayoutTocHeader {...props} title={sec.title}/>) : (<></>)}
                                         <div className="widget-body fs14">
                                             <LayoutDocTree {...props} pages={sec.pages}/>
                                         </div>
@@ -107,10 +109,10 @@ const Toc = props => {
                         </Fragment>
                     )
                 } else {
-                    // 单 section
+                    // 单 page
                     return (
                         <Fragment>
-                            {(proj.pages.length ==1) ? (<LayoutTocHeader {...props} />) : (<></>)}
+                            {(proj?.pages.length ==1) ? (<LayoutTocHeader {...props} />) : (<></>)}
                             <div className="widget-body fs14">
                                 <LayoutDocTree {...props} pages={proj.pages}/>
                             </div>

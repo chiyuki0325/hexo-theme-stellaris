@@ -7,7 +7,7 @@ const Title = (props) => {
     }
     if (page.wiki) {
         let title;
-        let proj = theme.wiki.projects[page.wiki];
+        let proj = theme.wiki.tree[page.wiki];
         let wiki = (proj && proj.name) || page.wiki;
         if (page.title) {
             title = wiki + __('symbol.colon') + page.title + ' - ' + config.title;
@@ -36,7 +36,7 @@ const Description = (props) => {
         return <></>;
     }
     if (page.layout === 'wiki' && page.wiki) {
-        let proj = theme.wiki.projects[page.wiki];
+        let proj = theme.wiki.tree[page.wiki];
         if (proj && proj.description) {
             return <meta name="description" content={proj.description}/>;
         }
