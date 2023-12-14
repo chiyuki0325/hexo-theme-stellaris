@@ -107,6 +107,9 @@ comments:
   # 请提交 issue 反馈
   service: # beaudar, utterances, valine, twikoo, waline, artalk
 
+  # 在 404 页是否显示评论区？
+  enabled_in_404: false
+
   ### beaudar
   # https://beaudar.lipk.org/
   beaudar:

@@ -1,7 +1,6 @@
 const Comments = require('./components/plugins/comments/layout.jsx')
 const ErrorPage = (props) => {
-    const {config, url_for, __} = props
-    const {partial} = props
+    const {config, theme, url_for, __} = props
     let page = props.page
     page.menu_id = '404'
     page.layout = '404'
@@ -15,7 +14,7 @@ const ErrorPage = (props) => {
             <p className='why'>{__('page.error.why')}</p>
             <br/>
             <a className='button theme' id='back' href={config.root}>{__('page.error.action')}</a>
-            <Comments {...props}/>
+            {(theme.comments.enabled_in_404) ? <Comments {...props}/> : <></>}
         </article>
     )
 }
