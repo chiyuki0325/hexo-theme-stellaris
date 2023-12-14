@@ -67,7 +67,7 @@ const ArticleFooter = props => {
                 }
             }
         }
-        if (license.length > 0) {
+        if (license?.length > 0) {
             return (
                 <section id="license">
                     <div className="header">
