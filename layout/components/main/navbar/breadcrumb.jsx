@@ -59,9 +59,9 @@ const Breadcrumb = props => {
             <BreadNav>
                 <div className="left">
                     <div id="breadcrumb">
-                        <a className="cap breadcrumb" href={config.root}>{home_title}</a>
+                        <a className="cap breadcrumb" href={url_for(config.root)}>{home_title}</a>
                         <span className="sep"></span>
-                        <a className="cap breadcrumb" href={config.index_generator.path}>{__("btn.blog")}</a>
+                        <a className="cap breadcrumb" href={url_for(config.index_generator.path)}>{__("btn.blog")}</a>
                         <Category {...props}/>
                     </div>
                     <PostMeta {...props} />
@@ -142,7 +142,7 @@ const Breadcrumb = props => {
             <BreadNav>
                 <div className="left">
                     <div id="breadcrumb">
-                        <a className="cap breadcrumb" href={config.root}>{home_title}</a>
+                        <a className="cap breadcrumb" href={url_for(config.root)}>{home_title}</a>
                         <span className="sep"></span>
                         <Menu {...props}/>
                         <ProjectName {...props} proj={proj}/>
@@ -158,7 +158,7 @@ const Breadcrumb = props => {
             <BreadNav>
                 <div className="left">
                     <div id="breadcrumb">
-                        <a className="cap breadcrumb" href={config.root}>{home_title}</a>
+                        <a className="cap breadcrumb" href={url_for(config.root)}>{home_title}</a>
                         <span className="sep"></span>
                         <a className="cap breadcrumb" href={url_for(page.path)}>{(page.title || page.seo_title)}</a>
                     </div>
