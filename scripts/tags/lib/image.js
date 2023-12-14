@@ -7,8 +7,8 @@
 
 'use strict'
 
-hexo.extend.tag.register('image', function(args) {
-  args = hexo.args.map(args, ['width', 'height', 'bg', 'download', 'padding', 'fancybox'], ['src', 'alt'])
+module.exports = ctx => function(args) {
+  args = ctx.args.map(args, ['width', 'height', 'bg', 'download', 'padding', 'fancybox'], ['src', 'alt'])
   var style = ''
   if (args.width) {
     style += 'width:' + args.width + ';'
@@ -18,10 +18,10 @@ hexo.extend.tag.register('image', function(args) {
   }
   // fancybox
   var fancybox = false
-  if (hexo.theme.config.plugins.fancybox && hexo.theme.config.plugins.fancybox.enabled) {
+  if (ctx.theme.config.plugins.fancybox && ctx.theme.config.plugins.fancybox.enable) {
     // 主题配置
-    if (hexo.theme.config.tag_plugins.image && hexo.theme.config.tag_plugins.image.fancybox) {
-      fancybox = hexo.theme.config.tag_plugins.image.fancybox
+    if (ctx.theme.config.tag_plugins.image && ctx.theme.config.tag_plugins.image.fancybox) {
+      fancybox = ctx.theme.config.tag_plugins.image.fancybox
     }
     // 覆盖配置
     if (args.fancybox && args.fancybox.length > 0) {
@@ -75,7 +75,7 @@ hexo.extend.tag.register('image', function(args) {
     if (args.alt) {
       download = ' download="' + args.alt + '"'
     }
-    el += '<a class="image-download blur" style="opacity:0" target="_blank"' + download + ' href="' + href + '"><svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3734"><path d="M561.00682908 685.55838913a111.03077546 111.03077546 0 0 1-106.8895062 0L256.23182837 487.72885783a55.96309219 55.96309219 0 0 1 79.13181253-79.18777574L450.70357448 523.88101491V181.55477937a55.96309219 55.96309219 0 0 1 111.92618438 0v344.06109173l117.07478902-117.07478901a55.96309219 55.96309219 0 0 1 79.13181252 79.18777574zM282.81429711 797.1487951h447.70473912a55.96309219 55.96309219 0 0 1 0 111.92618438H282.81429711a55.96309219 55.96309219 0 0 1 0-111.92618438z" p-id="3735"></path></svg></a>';
+    el += '<a class="image-download blur" style="opacity:0" target="_blank"' + download + ' href="' + href + '"><svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3734"><path d="M561.00682908 685.55838913a111.03077546 111.03077546 0 0 1-106.8895062 0L256.23182837 487.72885783a55.96309219 55.96309219 0 0 1 79.13181253-79.18777574L450.70357448 523.88101491V181.55477937a55.96309219 55.96309219 0 0 1 111.92618438 0v344.06109173l117.07478902-117.07478901a55.96309219 55.96309219 0 0 1 79.13181252 79.18777574zM282.81429711 797.1487951h447.70473912a55.96309219 55.96309219 0 0 1 0 111.92618438H282.81429711a55.96309219 55.96309219 0 0 1 0-111.92618438z" p-id="3735"></path></svg></a>'
   }
   el += '</div>'
 
@@ -87,4 +87,4 @@ hexo.extend.tag.register('image', function(args) {
 
   el += '</div>'
   return el
-})
+}

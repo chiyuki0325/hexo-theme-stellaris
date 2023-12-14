@@ -1,5 +1,5 @@
 /**
- * emoji.js v1 | https://github.com/xaoxuu/hexo-theme-stellar/
+ * emoji.js v2 | https://github.com/chiyuki0325/hexo-theme-stellaris/
  * 格式与官方标签插件一致使用空格分隔，中括号内的是可选参数（中括号不需要写出来）
  *
  * {% emoji [source] name [height:1.75em] %}
@@ -8,9 +8,9 @@
 
 'use strict';
 
-hexo.extend.tag.register('emoji', function(args) {
-  const config = hexo.theme.config.tag_plugins.emoji;
-  args = hexo.args.map(args, ['height'], ['source', 'name']);
+module.exports = ctx => function(args) {
+  const config = ctx.theme.config.tag_plugins.emoji;
+  args = ctx.args.map(args, ['height'], ['source', 'name']);
   var el = '';
   if (args.source == undefined) {
     return el;
@@ -37,4 +37,4 @@ hexo.extend.tag.register('emoji', function(args) {
   }
   el += '</span>';
   return el;
-});
+}

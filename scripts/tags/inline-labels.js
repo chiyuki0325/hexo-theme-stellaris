@@ -1,5 +1,5 @@
 /**
- * 修饰文本标签 | https://github.com/xaoxuu/hexo-theme-stellar/
+ * 修饰文本标签 v2 | https://github.com/chiyuki0325/hexo-theme-stellaris
  *
  * example:
  * {% psw 这是密码 %}
@@ -29,7 +29,7 @@ hexo.extend.tag.register('psw', function(args) {
 hexo.extend.tag.register('sup', function(args) {
   args = hexo.args.map(args, ['color'], ['text']);
   var el = '';
-  el += '<sup class="tag-plugin sup"' + ' ' + hexo.args.joinTags(args, ['color']).join(' ') + '>';
+  el += '<sup class="tag-plugin colorful sup"' + ' ' + hexo.args.joinTags(args, ['color']).join(' ') + '>';
   el += args.text;
   el += '</sup>';
   return el;
@@ -37,7 +37,7 @@ hexo.extend.tag.register('sup', function(args) {
 hexo.extend.tag.register('sub', function(args) {
   args = hexo.args.map(args, ['color'], ['text']);
   var el = '';
-  el += '<sub class="tag-plugin sub"' + ' ' + hexo.args.joinTags(args, ['color']).join(' ') + '>';
+  el += '<sub class="tag-plugin colorful sub"' + ' ' + hexo.args.joinTags(args, ['color']).join(' ') + '>';
   el += args.text;
   el += '</sub>';
   return el;

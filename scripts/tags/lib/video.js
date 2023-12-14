@@ -1,13 +1,13 @@
 /**
- * video.js v1 | https://github.com/chiyuki0325/hexo-theme-stellaris
+ * video.js v2 | https://github.com/chiyuki0325/hexo-theme-stellaris
  * {% video src [ratio:aspect-ratio] %}
  */
 
 
 'use strict';
 
-hexo.extend.tag.register('video', (args) => {
-    args = hexo.args.map(args, ['ratio'], ['src'])
+module.exports = ctx => ((args) => {
+    const args = ctx.args.map(args, ['ratio'], ['src'])
     return `
 <script src="https://cdn.bootcdn.net/ajax/libs/artplayer/4.6.2/artplayer.min.js"></script>
 <style>

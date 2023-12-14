@@ -1,5 +1,5 @@
 /**
- * copy.js v1 | https://github.com/xaoxuu/hexo-theme-stellar/
+ * copy.js v2 | https://github.com/chiyuki0325/hexo-theme-stellaris/
  * 格式与官方标签插件一致使用空格分隔，中括号内的是可选参数（中括号不需要写出来）
  *
  * {% copy xxx %}
@@ -9,10 +9,10 @@
 
 'use strict';
 
-var copy_index = 0;
+let copy_index = 0;
 
-hexo.extend.tag.register('copy', function(args) {
-  args = hexo.args.map(args, ['width', 'git'], ['text']);
+module.exports = ctx => function(args) {
+  args = ctx.args.map(args, ['width', 'git'], ['text']);
   if (args == undefined || args.text == undefined) {
     return '';
   }
@@ -46,4 +46,4 @@ hexo.extend.tag.register('copy', function(args) {
 
   el += '</div>';
   return el;
-});
+}

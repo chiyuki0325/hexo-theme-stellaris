@@ -1,4 +1,4 @@
-/* bilicard.js v1 | https://github.com/chiyuki0325/hexo-theme-stellaris
+/* bilicard.js v2 | https://github.com/chiyuki0325/hexo-theme-stellaris
  * https://github.com/MaxChang3/hexo-bilibili-card
  * {% bilicard v_id %}
  */
@@ -64,6 +64,6 @@ const getVideoMessage = async (id) => {
     }
 }
 
-hexo.extend.tag.register("bilicard", async (args) => {
-    return await cardTemplate(await getVideoMessage(args[0]), hexo.theme.config.tag_plugins.bilicard.image_proxy);
-}, { async: true });
+module.exports = ctx => (async (args) => {
+    return await cardTemplate(await getVideoMessage(args[0]), ctx.theme.config.tag_plugins.bilicard.image_proxy);
+})

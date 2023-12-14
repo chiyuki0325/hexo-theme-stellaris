@@ -8,8 +8,8 @@
 
 'use strict';
 
-hexo.extend.tag.register('icon', function(args) {
-  args = hexo.args.map(args, ['height'], ['source']);
+module.exports = ctx => function(args) {
+  args = ctx.args.map(args, ['height'], ['source']);
   var el = '';
   if (args.source == undefined) {
     return el;
@@ -25,4 +25,4 @@ hexo.extend.tag.register('icon', function(args) {
   }
   el += '</span>';
   return el;
-});
+}
