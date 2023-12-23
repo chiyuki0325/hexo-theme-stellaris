@@ -1,6 +1,6 @@
 /**
  * video.js v3 | https://github.com/chiyuki0325/hexo-theme-stellaris
- * {% video src [ratio:aspect-ratio] [subtitle:subtitle-url] [subtitle_encoding:utf-8] [autoplay:false] [muted:false] [loop:false] [setting: true] [hotkey:true] [fullscreen_enabled:true] [mini_progress_bar:false] [mutex:true] [pip:false] %}
+ * {% video src [poster] [ratio] [subtitle:subtitle-url] [subtitle_encoding:utf-8] [autoplay:false] [muted:false] [loop:false] [setting: true] [hotkey:true] [fullscreen_enabled:true] [mini_progress_bar:false] [mutex:true] [pip:false] %}
  */
 
 
@@ -9,7 +9,7 @@
 const crypto = require('crypto')
 
 module.exports = ctx => ((args) => {
-    args = ctx.args.map(args, ['ratio', 'hotkey', 'subtitle', 'subtitle_encoding', 'fullscreen_enabled', 'mini_progress_bar', 'mutex', 'pip', 'setting', 'loop', 'autoplay', 'muted'], ['src'])
+    args = ctx.args.map(args, ['ratio', 'hotkey', 'subtitle', 'subtitle_encoding', 'fullscreen_enabled', 'mini_progress_bar', 'mutex', 'pip', 'setting', 'loop', 'autoplay', 'muted', 'poster'], ['src'])
 
     const videoTagHash = crypto.createHash('md5').update(args.src).digest('hex')
     const artPlayerConfig = {
@@ -26,7 +26,7 @@ module.exports = ctx => ((args) => {
         loop: args.loop || false,
         autoplay: args.autoplay || false,
         muted: args.muted || false,
-
+        poster: args.poster,
         lang: ctx.config.language.toLowerCase() || 'zh-cn',
         // 移动端相关
         autoOrientation: true,
