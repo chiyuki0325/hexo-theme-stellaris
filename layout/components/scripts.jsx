@@ -13,6 +13,31 @@ const generateStellarScript = props => {
         outdateMonth = theme.article?.outdated_check?.month || 0
       }
     }
+
+    const stellarPlugins = {
+      jQuery: url_for(theme.plugins.jquery || "https://fastly.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"),
+      stellar: theme.plugins.stellar,
+      marked: theme.plugins.marked,
+      instant_click: theme.plugins.instant_click
+    }
+
+    for (const plugin of ['lazyload', 'swiper', 'scrollreveal', 'fancybox', 'copycode']) {
+      if (theme.plugins[plugin].enabled) {
+        stellarPlugins[plugin] = theme.plugins[plugin]
+      }
+    }
+
+    let stellarSearch = {}
+    if (theme.search.service) {
+      stellarSearch = {
+        service: theme.search.service,
+      }
+      if (stellarSearch.service == 'local_search') {
+        stellarSearch.js = theme.search.local_search.js
+        stellarSearch.path = theme.search.local_search.path
+      }
+    }
+
     return `
       stellar = {
         root: '${url_for()}',
@@ -110,41 +135,9 @@ const generateStellarScript = props => {
         },
       };
     
-      // required plugins (only load if needs)
-      stellar.plugins = {
-        jQuery: '${url_for(theme.plugins.jquery || "https://fastly.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js")}'
-      };
-    
-      if ('${theme.search.service}') {
-        stellar.search = {};
-        stellar.search.service = '${theme.search.service}';
-        if (stellar.search.service == 'local_search') {
-          stellar.search.js = '${theme.search.local_search.js}';
-          stellar.search.path = '${theme.search.local_search.path}';
-        }
-      }
-    
-      // stellar js
-      stellar.plugins.stellar = Object.assign(${JSON.stringify(theme.plugins.stellar)});
-    
-      stellar.plugins.marked = Object.assign(${JSON.stringify(theme.plugins.marked)});
-      // optional plugins
-      if ('${theme.plugins.lazyload.enabled}' == 'true') {
-        stellar.plugins.lazyload = Object.assign(${JSON.stringify(theme.plugins.lazyload)});
-      }
-      if ('${theme.plugins.swiper.enabled}' == 'true') {
-        stellar.plugins.swiper = Object.assign(${JSON.stringify(theme.plugins.swiper)});
-      }
-      if ('${theme.plugins.scrollreveal.enabled}' == 'true') {
-        stellar.plugins.scrollreveal = Object.assign(${JSON.stringify(theme.plugins.scrollreveal)});
-      }
-      if ('${theme.plugins.fancybox.enabled}' == 'true') {
-        stellar.plugins.fancybox = Object.assign(${JSON.stringify(theme.plugins.fancybox)});
-      }
-      stellar.plugins.instant_click = Object.assign(${JSON.stringify(theme.plugins.instant_click)});
-      if ('${theme.plugins.copycode.enabled}' == 'true') {
-        stellar.plugins.copycode = Object.assign(${JSON.stringify(theme.plugins.copycode)});
-      }
+      stellar.plugins = Object.assign(${JSON.stringify(stellarPlugins)})
+      stellar.search = Object.assign(${JSON.stringify(stellarSearch)})
+
       stellar.article = {
         outdate_month: ${outdateMonth}
       };
