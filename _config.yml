@@ -348,6 +348,9 @@ tag_plugins:
       unfinished:
         color: red
         label: 未完成
+  # {% video %}
+  video:
+    js: https://fastly.jsdelivr.net/npm/artplayer@5.0.9/dist/artplayer.js
 
 
 ######## JS 插件 ########
