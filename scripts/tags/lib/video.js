@@ -43,13 +43,16 @@ module.exports = ctx => ((args) => {
     return `
 <script src="${ctx.theme.config.tag_plugins.video.js}"></script>
 <style>
-    .video-div-${videoTagHash} {
+    div#artplayer-app-${videoTagHash} {
         width: 100%;
         aspect-ratio: ${args.ratio || '16 / 9'};
         border-radius: 4px;
     }
+    div#artplayer-app-${videoTagHash} div {
+        --art-theme: var(--theme-highlight);
+    }
 </style>
-<div class="video-div-${videoTagHash}" id="artplayer-app-${videoTagHash}">
+<div id="artplayer-app-${videoTagHash}">
     加载中 ...
 </div>
 <script defer>
