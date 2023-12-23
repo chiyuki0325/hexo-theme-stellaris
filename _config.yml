@@ -319,13 +319,15 @@ tag_plugins:
   hashtag:
     default_color: yellow # red, orange, yellow, green, cyan, blue, purple
 
-  # {% bilicard %}
-  bilicard:
+  # {% bvideo %}
+  bvideo:
     enabled: true
     # 此 API 可自行部署
     # https://github.com/chiyuki0325/stellaris-api
-    # 部署后输入 https://你部署的 API/?url=
+    # 部署后输入 https://你部署的 API/bilibili/?url=
     image_proxy: "https://stellaris-api.chyk.ink/bilibili/?url="
+    # 部署后输入 https://你部署的 API/bvideo_info/
+    video_info: "https://stellaris-api.chyk.ink/bvideo_info/"
 
   # {% okr o1 percent:0.5 status:normal %}
   okr:
@@ -369,11 +371,10 @@ plugins:
     sites: /js/plugins/sites.js
     friends: /js/plugins/friends.js
     ghinfo: /js/plugins/ghinfo.js
-    # Stellaris 维护者并不使用 timeline 插件
-    # 如在使用过程中遇到问题，请提出 issue 汇报。
     timeline: /js/plugins/timeline.js
     linkcard: /js/plugins/linkcard.js
     fcircle: /js/plugins/fcircle.js
+    bvideo: /js/plugins/bvideo.js
 
   ### 可选插件
 

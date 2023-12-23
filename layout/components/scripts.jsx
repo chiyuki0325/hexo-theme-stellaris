@@ -27,6 +27,14 @@ const generateStellarScript = props => {
       }
     }
 
+    const stellarTagPlugins = {}
+
+    for (const tagPlugin of ['bvideo']) {
+      if (theme.tag_plugins[tagPlugin].enabled) {
+        stellarTagPlugins[tagPlugin] = theme.tag_plugins[tagPlugin]
+      }
+    }
+
     let stellarSearch = {}
     if (theme.search.service) {
       stellarSearch = {
@@ -136,6 +144,7 @@ const generateStellarScript = props => {
       };
     
       stellar.plugins = Object.assign(${JSON.stringify(stellarPlugins)})
+      stellar.tag_plugins = Object.assign(${JSON.stringify(stellarTagPlugins)})
       stellar.search = Object.assign(${JSON.stringify(stellarSearch)})
 
       stellar.article = {

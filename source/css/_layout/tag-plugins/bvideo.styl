@@ -1,9 +1,9 @@
 /* https://github.com/MaxChang3/hexo-bilibili-card */
 
-.bvideo a:link
+.tag_plugin.bvideo a:link
     text-decoration: none! important
 
-.bvideo-box
+.tag_plugin.bvideo .bvideo-box
     width: 80%
     height: 96px
     margin: 0 auto
@@ -19,7 +19,7 @@
     overflow: hidden
     box-shadow: $boxshadow-card
 
-.bvideo-cover
+.tag_plugin.bvideo .bvideo-cover
     display: inline-block
     width: 150px
     height: 94px
@@ -73,8 +73,13 @@
     @media (max-width: 768px)
         display: none
 
+@css {
+    .tag_plugin.bvideo .bvideo-info {
+        max-width: calc(100% - calc(1rem + 150px))
+    }
+}
 
-.bvideo-info
+.tag_plugin.bvideo .bvideo-info
     margin-left: 1rem
     padding-top: 10px
     min-height: 84px
@@ -90,7 +95,6 @@
         overflow: hidden
         text-overflow: ellipsis
         white-space: nowrap
-        max-width: 80%
         margin: 0
 
         @media (max-width: 768px)
@@ -123,6 +127,11 @@
         margin: 0
         bottom: 30px
 
+        svg
+          fill: currentColor
+          position: relative
+          top: 3px
+
     .play-num
         margin-right: 13px
 
@@ -139,7 +148,7 @@
             display: none
 
 
-.icon-video
+.tag_plugin.bvideo .icon-video
     background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA2CAMAAACsuQomAAAAclBMVEX///8AAAD///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+As+VLAAAAJnRSTlOzAK8+F4OppBAmnTKsllOOb2dhOS0JBJqAWk0aB19FHgJ8dUAgC8ZU4VsAAAGPSURBVEjHpdbrcqowGIXhtbIxnEGOCmKt2n3/t1hSO6Y2qYwf779M5plkCJkJ+Fih85i+4lwX/NUvHAHQLd3SDED0HHcagGoc2ygA4eRidwV15WNvytmRDzPWmBv5sxFzYcxFzI8QcwVtw5c9kcuYhwRz9X1cYS4J+Cfu4+bfvUJhbvs9umBOFXY6PT3gqNJ4pWSY7rhx6DL/+MZXhdfTRoOnDJJ2ncEbyBpIxBCmJ+IIaSlRivGRCOGpbMdkEV8IBU8t2R3VAt4T3gLOBefnePMMk2m+ArMvtByT0VaAbXEpwLa3cAXm/0rJMXnaCLCtSVZgRvkKzOOalXcCbM9LiuMSEGLzjwqxuR1SnO4AIT7sASHuagUpNscjw+7xuDiDp9Q9HrczkcBTfq01ltoSe0gbiVGMD0SUCe2GBGshbg2ecpGtaDCDncBe+htmdH6VquHdPuLabZ4pdZ/yZSfDcgjc52MDk36nrz6DKeVXLu6S25fwV90eUA62l1eFdU9/Ux2q/YEOtjlbfjoLrugTV6YSSQ5kbxYAAAAASUVORK5CYII=")
     position: absolute
     background-size: 100% 100%
@@ -151,7 +160,7 @@
     height: 26px
 
 
-.card-label
+.tag_plugin.bvideo .card-label
     display: inline-block
     font-weight:550
     width: 25px
