@@ -98,13 +98,14 @@
 
 
 .tag-plugin.timeline .body
-  background: var(--card)
+  background: var(--theme-bg)
   border-radius: 12px
   border-top-left-radius: 2px
   padding: 0.5rem 1rem
   margin-top: 4px
   box-shadow: $boxshadow-block
   trans2: transform box-shadow
+  color: var(--text-p1)
   &:hover
     transform: translateY(-1px)
     box-shadow: $boxshadow-card-float
@@ -118,6 +119,8 @@
     margin: .5rem 0
   .tag-plugin.copy
     width: 240px
+  a
+    color: var(--theme-link)
 
 .tag-plugin.timeline[api]
   &.stellar-fcircle-api .timenode:hover .header

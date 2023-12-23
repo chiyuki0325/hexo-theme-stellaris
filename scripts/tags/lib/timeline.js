@@ -1,12 +1,12 @@
 /**
- * timeline.js v2 | https://github.com/xaoxuu/hexo-theme-stellar/
+ * timeline.js v3 | https://github.com/chiyuki0325/hexo-theme-stellaris/
  *
  * {% timeline %}
  *
  * <!-- node header1 -->
  * what happened 1
  *
- * <!-- node header2 -->
+ * <!-- node header2 [color:color] -->
  * what happened 2
  *
  * {% endtimeline %}
@@ -24,9 +24,9 @@ function layoutNodeTitle(ctx, content) {
   return el
 }
 
-function layoutNodeContent(ctx, content) {
+function layoutNodeContent(ctx, content, color) {
   var el = ''
-  el += '<div class="body fs14">'
+  el += `<div class="${color ? 'body fs14 colorful' : 'body fs14'}"${color ? ('color="' + color + '"') : ' '}>`
   if (content && content.length > 0) {
     el += ctx.render.renderSync({text: content, engine: 'markdown'}).split('\n').join('')
   }
@@ -53,10 +53,19 @@ module.exports = ctx => function(args, content = '') {
     var nodes = []
     arr.forEach((item, i) => {
       if (i % 2 == 0) {
-        nodes.push({
-          header: item
-        })
+        // 日期
+        const match = item.match(/color:\s*([^ ]+)/)
+        let header, color
+        if (match) {
+          // colorful
+          header = item.replace(match[0], '').trim()
+          color = match[1].trim()
+        } else {
+          header = item
+        }
+        nodes.push({header, color})
       } else if (nodes.length > 0) {
+        // 内容
         var node = nodes[nodes.length-1]
         if (node.body == undefined) {
           node.body = item
@@ -68,7 +77,7 @@ module.exports = ctx => function(args, content = '') {
     nodes.forEach((node, i) => {
       el += '<div class="timenode" index="' + (i) + '">'
       el += layoutNodeTitle(ctx, node.header)
-      el += layoutNodeContent(ctx, node.body)
+      el += layoutNodeContent(ctx, node.body, node.color)
       el += '</div>'
     })  
   }
