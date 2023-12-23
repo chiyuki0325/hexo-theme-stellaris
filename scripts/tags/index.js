@@ -43,4 +43,4 @@ hexo.extend.tag.register('okr', require('./lib/okr')(hexo), {ends: true})
 // stelaris 新增组件
 hexo.extend.tag.register('bilicard', require('./lib/bilicard')(hexo), {async: true})
 hexo.extend.tag.register('icon', require('./lib/icon')(hexo))
-hexo.extend.tag.register('video', require('./lib/icon')(hexo))
+hexo.extend.tag.register('video', require('./lib/video')(hexo))
