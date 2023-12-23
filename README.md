@@ -2,15 +2,6 @@
 
 hexo-theme-stellaris 分叉自 [hexo-theme-stellar](https://github.com/xaoxuu/hexo-theme-stellar)，基于[hexo-renderer-jsx](https://github.com/hexojs/hexo-renderer-jsx)，支持丰富的标签和动态数据组件。
 
-**本主题为[千雪的咖啡厅](https://blog.chyk.ink)专门开发，原主题的有些功能我没有用到（比如 Utterances、时间线、issues API 等），不保证完全可用。**
-
-### 与原主题的区别
-
-- 样式: 使用 Fluent Design 设计风格重新设计样式。
-- 代码: 使用 JSX 重写所有模板。
-- 性能优化: 使用 InstantClick 进行页面加载优化。
-- 功能: 增加了文章过期提示、哔哩哔哩视频卡片等实用功能和组件。
-
 ### 安装
 
 - 环境需求
@@ -61,9 +52,9 @@ npm update hexo-theme-stellaris
 
 ### 文档
 
-主题文档正在施工中，请[点此查看](https://blog.chyk.ink/wiki/stellaris/)。
+[点此查看](https://blog.chyk.ink/wiki/stellaris/) Stellaris 主题文档。
 
-可以适当参考 [原主题文档](https://xaoxuu.com/wiki/stellar/)，或对照配置文件的注释。
+也可以适当参考 [原主题文档](https://xaoxuu.com/wiki/stellar/)，或对照配置文件的注释。
 
 #### 相关文章推荐
 
