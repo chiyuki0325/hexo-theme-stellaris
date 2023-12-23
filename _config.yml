@@ -406,7 +406,7 @@ plugins:
     # 使用 valine 评论可以写: .vcontent img:not(.vemoji)
     # 使用 twikoo 评论可以写: .tk-content img:not([class*="emo"])
     # 使用 waline 评论可以写: #waline_container .vcontent img
-    selector: .swiper-slide img # 多个选择器用英文逗号隔开
+    selector: .swiper-slide img, .vcontent img:not(.vemoji), .tag-plugin.image img # 多个选择器用英文逗号隔开
 
   # swiper
   # https://swiperjs.com/
