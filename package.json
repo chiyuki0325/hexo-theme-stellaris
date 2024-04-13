@@ -1,6 +1,6 @@
 {
   "name": "hexo-theme-stellaris",
-  "version": "2.0",
+  "version": "2.0.0",
   "description": "Powerful, elegant and modern Hexo theme, forked from hexo-theme-stellar.",
   "main": "package.json",
   "scripts": {},
