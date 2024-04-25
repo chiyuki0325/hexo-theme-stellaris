@@ -5,7 +5,7 @@ const GiscusLayout = props => {
     // 合并配置参数
     var config = Object.assign({}, theme.comments[cmt]);
     if (page.layout === 'wiki' && page.wiki) {
-        let proj = theme.wiki.projects[page.wiki];
+        let proj = theme.wiki.tree[page.wiki];
         if (proj[cmt] !== undefined) {
             Object.assign(config, proj[cmt]);
         }
@@ -18,7 +18,7 @@ const GiscusLayout = props => {
         if (page.comment_id !== undefined) {
             config['issue-term'] = page.comment_id;
         } else if (page.layout === 'wiki' && page.wiki) {
-            let proj = theme.wiki.projects[page.wiki];
+            let proj = theme.wiki.tree[page.wiki];
             if (proj.comment_id !== undefined) {
                 config['issue-term'] = proj.comment_id;
             }
