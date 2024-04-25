@@ -148,7 +148,7 @@ comments:
     data-theme: preferred_color_scheme
     data-lang: zh-CN
     data-loading: lazy
-    crossorigin: anonymous
+    crossOrigin: anonymous
 
   ### Valine
   # https://valine.js.org
