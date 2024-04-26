@@ -210,7 +210,9 @@ module.exports = function Head(props) {
             <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
             <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
             <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f8f8f8"/>
-            <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1b1b1e"/>
+            {/** Higher priority than `#1a1f35`. */}
+            <meta name="theme-color" media="(prefers-color-scheme: dark) and (max-width: 667px)" content="#000000"/>
+            <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1a1f35"/>
 
             <Title {...props}/>
             <OpenGraph {...props}/>
