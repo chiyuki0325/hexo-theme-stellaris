@@ -207,8 +207,10 @@ module.exports = function Head(props) {
             <meta httpEquiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
             <meta name="HandheldFriendly" content="true"/>
             <meta name="apple-mobile-web-app-capable" content="yes"/>
+            <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
             <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-            <meta name="theme-color" content="#f8f8f8"/>
+            <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f8f8f8"/>
+            <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1b1b1e"/>
 
             <Title {...props}/>
             <OpenGraph {...props}/>
