@@ -4,7 +4,7 @@ const ArticleFooter = require('./components/main/article/article_footer.jsx');
 const Comments = require('./components/plugins/comments/layout.jsx');
 const PageTitle = props => {
     const {page} = props;
-    const title = page.h1 || page.title;
+    const title = page.h1 ?? page.title;
     if (title && title.length > 0) {
         return <h1 className="article-title"><span>{title}</span></h1>;
     } else {
@@ -29,7 +29,7 @@ const Page = props => {
     }
     elements.push(
         <article className={`md-text content ${page.layout} ${page.indent ? 'indent' : ''} ${scroll_reveal()}`}>
-            {page.h1 || page.title ? <PageTitle {...props}/> : <></>}
+            {page.h1 ?? page.title ? <PageTitle {...props}/> : <></>}
             {page.content ? <div dangerouslySetInnerHTML={{__html: page.content}}/> : <></>}
             <ArticleFooter {...props}/>
         </article>
