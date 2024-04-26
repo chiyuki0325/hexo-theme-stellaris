@@ -6,7 +6,7 @@ const RelatedPosts = require('./components/main/article/related_posts.jsx');
 const Comments = require('./components/plugins/comments/layout.jsx');
 const PostTitle = props => {
     const {page} = props;
-    const title = page.h1 || page.title;
+    const title = page.h1 ?? page.title;
     if (title && title.length > 0) {
         return <h1 className="article-title"><span>{title}</span></h1>;
     } else {
