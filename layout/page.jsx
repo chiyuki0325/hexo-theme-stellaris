@@ -29,7 +29,7 @@ const Page = props => {
     }
     elements.push(
         <article className={`md-text content ${page.layout} ${page.indent ? 'indent' : ''} ${scroll_reveal()}`}>
-            {page.h1 || page.title ? <PageTitle {...props}/> : <></>}
+            {page.h1 ?? page.title ? <PageTitle {...props}/> : <></>}
             {page.content ? <div dangerouslySetInnerHTML={{__html: page.content}}/> : <></>}
             <ArticleFooter {...props}/>
         </article>
