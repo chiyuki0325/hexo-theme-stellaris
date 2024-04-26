@@ -53,7 +53,7 @@ const ArticleFooter = props => {
         let license
         if (page.layout === 'post') {
             if (theme.article.license?.length > 0) {
-                license = (page.license || theme.article.license)
+                license = (page.license ?? theme.article.license)
             }
         } else if (page.layout === 'wiki') {
             let proj = theme.wiki.tree[page.wiki]
