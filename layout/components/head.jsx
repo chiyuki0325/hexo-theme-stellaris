@@ -213,7 +213,7 @@ module.exports = function Head(props) {
             <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f8f8f8"/>
             {/** Higher priority than `#1a1f35`. */}
             <meta name="theme-color" media="(prefers-color-scheme: dark) and (max-width: 667px)" content="#000000"/>
-            <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1a1f35"/>
+            <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#202020"/>
 
             <Title {...props}/>
             <OpenGraph {...props}/>
