@@ -209,7 +209,7 @@ module.exports = function Head(props) {
             <meta name="apple-mobile-web-app-capable" content="yes"/>
             <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
             <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-            <meta name="theme-color" media="(prefers-color-scheme: light) and (max-width: 667px)" content="#f3f3f3"/>
+            <meta name="theme-color" media="(prefers-color-scheme: light) and (max-width: 667px)" content="#eff4f9"/>
             <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f8f8f8"/>
             {/** Higher priority than `#1a1f35`. */}
             <meta name="theme-color" media="(prefers-color-scheme: dark) and (max-width: 667px)" content="#000000"/>
