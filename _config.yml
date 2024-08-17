@@ -181,18 +181,24 @@ comments:
   # Waline
   # https://waline.js.org/
   waline:
-    js: https://unpkg.com/@waline/client@v2/dist/waline.js
-    css: https://unpkg.com/@waline/client@v2/dist/waline.css
+    js: https://unpkg.com/@waline/client@v3/dist/waline.umd.js
+    css: https://unpkg.com/@waline/client@v3/dist/waline.css
     # Waline 服务器地址
     serverURL:
 
-    ### 以下配置可能 **已经过时**。请参考 Waline 官方文档。
+    ### 以下配置可能 **已经过时**。请参考 Waline 官方文档。 
+    # https://waline.js.org/reference/client/props.html
 
     # If false, comment count will only be displayed in post page, not in home page
     commentCount: true
 
-    # Pageviews count, Note: You should not enable both `waline.pageview` and `leancloud_visitors`.
+    # Pageviews count
     pageview: false
+
+    # 表情互动功能，可以直接设置 true 以启用默认表情，或是设置为自定义图片
+    # reaction: true
+
+
 
     # Custom locales
     # locale:
@@ -200,12 +206,12 @@ comments:
 
     # Custom emoji
     # emoji:
-    #   - https://unpkg.com/@waline/emojis@1.0.1/weibo
-    #   - https://unpkg.com/@waline/emojis@1.0.1/alus
-    #   - https://unpkg.com/@waline/emojis@1.0.1/bilibili
-    #   - https://unpkg.com/@waline/emojis@1.0.1/qq
-    #   - https://unpkg.com/@waline/emojis@1.0.1/tieba
-    #   - https://unpkg.com/@waline/emojis@1.0.1/tw-emoji
+    #   - https://unpkg.com/@waline/emojis@1.2.0/weibo
+    #   - https://unpkg.com/@waline/emojis@1.2.0/alus
+    #   - https://unpkg.com/@waline/emojis@1.2.0/bilibili
+    #   - https://unpkg.com/@waline/emojis@1.2.0/qq
+    #   - https://unpkg.com/@waline/emojis@1.2.0/tieba
+    #   - https://unpkg.com/@waline/emojis@1.2.0/tw-emoji
 
     # Comment infomation, valid meta are nick, mail and link
     # meta:
