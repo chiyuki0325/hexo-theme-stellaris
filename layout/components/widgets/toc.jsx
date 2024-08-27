@@ -1,8 +1,8 @@
-    const {Fragment} = require('react');
+const {Fragment} = require('react');
 const Toc = props => {
     const {theme, page, toc} = props;
     let proj = theme.wiki.tree[page.wiki];
-
+    const parse = require('html-react-parser').default;
     const LayoutToc = props => {
         const {toc, page} = props;
         const generatedToc = toc(page.content, {
@@ -11,12 +11,8 @@ const Toc = props => {
             max_depth: props.max_depth
         })
         if (generatedToc.length > 0) {
-            const renderedToc = generatedToc.replace('<ol class="toc">', '').replace('</ol>', '');
             return (
-                <ol className="toc"
-                     dangerouslySetInnerHTML={{__html: renderedToc}}
-                >
-                </ol>
+                <ol className="toc">{parse(generatedToc).props.children}</ol>
             )
         }
         return <></>;
