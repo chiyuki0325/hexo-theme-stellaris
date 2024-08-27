@@ -2,6 +2,8 @@
 
 hexo-theme-stellaris 分叉自 [hexo-theme-stellar](https://github.com/xaoxuu/hexo-theme-stellar)，基于[hexo-renderer-jsx](https://github.com/hexojs/hexo-renderer-jsx)，支持丰富的标签和动态数据组件。
 
+本主题目前已不再活跃维护，并不再同步 Stellar 的新功能特性。如对追新有需求，请使用上游 Stellar 主题，或在 [issue](https://github.com/chiyuki0325/hexo-theme-stellaris/issues/6) 中提交需要使用的新功能。
+
 ### 安装
 
 - 环境需求
