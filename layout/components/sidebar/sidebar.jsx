@@ -115,7 +115,7 @@ const Sidebar = props => {
     }
 
     const Footer = props => {
-        const {page, theme, url_for} = props;
+        const {page, theme, url_for, __} = props;
         const parse = require('html-react-parser').default
         if (page.layout !== 'wiki' && theme.footer.social) {
             return (
@@ -126,30 +126,31 @@ const Sidebar = props => {
                             if (id == 'darkmode' && theme.style.darkmode == 'auto-switch'){
                                 return (
                                     <div className="darkmode-switch-container social on-click-event"
-                                        data-on-click="darkmode"
+                                        data-on-click="switchTheme()"
                                         key={id}
+                                        id="darkmode-switch-auto"
                                     >
-                                        <a className="darkmode-switch-hide"
+                                        <div className="darkmode-switch"
                                             id="darkmode-switch-auto"
-                                            title="跟随系统颜色模式"
-                                            href="#"
+                                            title={__('message.theme_switched.auto')}
+                                            data-on-click="switchTheme()"
                                         >
                                             {parse(item.auto)}
-                                        </a>
-                                        <a className="darkmode-switch-hide"
+                                        </div>
+                                        <div className="darkmode-switch"
                                             id="darkmode-switch-light"
-                                            title="切换为浅色模式"
-                                            href="#"
+                                            title={__('message.theme_switched.light')}
+                                            data-on-click="switchTheme()"
                                         >
                                             {parse(item.light)}
-                                        </a>
-                                        <a className="darkmode-switch-hide"
+                                        </div>
+                                        <div className="darkmode-switch"
                                             id="darkmode-switch-dark"
-                                            title="切换为深色模式"
-                                            href="#"
+                                            title={__('message.theme_switched.dark')}
+                                            data-on-click="switchTheme()"
                                         >
                                             {parse(item.dark)}
-                                        </a>
+                                        </div>
                                     </div>
                                 )
                             }

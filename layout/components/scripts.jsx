@@ -182,18 +182,38 @@ const InjectScripts = props => {
     </>
 }
 
-
-const DarkModeListener = `
-    document.getElementById('darkmode-switch-auto').addEventListener('click', switchTheme)
-    document.getElementById('darkmode-switch-light').addEventListener('click', switchTheme)
-    document.getElementById('darkmode-switch-dark').addEventListener('click', switchTheme)
-    currentTheme = window.localStorage.getItem('Stellaris.theme');
-    if(currentTheme == null){
-      currentTheme = 'auto';
+const ImportDarkModeListener = (props) => {
+  const {theme, __} = props
+  const DarkModeListener = `
+    const applyTheme = (theme) => {
+      document.documentElement.setAttribute('data-theme', theme);
+      window.localStorage.setItem('Stellaris.theme', theme);
+      const messages = {
+        light: '${__('message.theme_switched.light')}',
+        dark: '${__('message.theme_switched.dark')}',
+        auto: '${__('message.theme_switched.auto')}',
+      }
+      hud?.toast?.(messages[theme]);
     }
-    nextTheme = themeModeList[(themeModeList.indexOf(currentTheme) + 1) % themeModeList.length]
-    document.getElementById('darkmode-switch-'+nextTheme).className = 'darkmode-switch-show';
-`
+    const switchTheme = () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      let nextTheme = themeModeList[(themeModeList.indexOf(currentTheme) + 1) % themeModeList.length];
+      applyTheme(nextTheme);
+    }
+    var OSTheme = window.matchMedia('(prefers-color-scheme: dark)');
+    OSTheme.addEventListener('change', e => {
+      if (document.documentElement.getAttribute('data-theme') === 'auto') {
+        ThemeChange('auto');
+      }
+    })
+  `
+  if (theme.style.darkmode == 'auto-switch') {
+      return <script type="text/javascript" data-no-instant="true" dangerouslySetInnerHTML={{__html: DarkModeListener}}/>
+  } else {
+      return <></>;
+  }
+}
+
 
 const Scripts = props => {
     const {join} = require("path")
@@ -212,9 +232,7 @@ const Scripts = props => {
                  if (theme.plugins.mathjax.per_page === true || page.mathjax === true) return (<MathJaxScripts {...props}/>)
             })()}
 
-            {(() => {
-                 if (theme.style.darkmode == 'auto-switch') return (<script type="text/javascript" dangerouslySetInnerHTML={{__html: DarkModeListener}}/>)
-            })()}
+            <ImportDarkModeListener {...props}/>
             <InjectScripts {...props} />
         </div>
     )

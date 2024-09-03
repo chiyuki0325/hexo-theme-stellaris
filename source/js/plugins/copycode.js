@@ -14,7 +14,7 @@
           },3000)
         }
       } else {
-        codeCopyBtn.innerText = '当前浏览器不支持此api'
+        codeCopyBtn.innerText = '当前浏览器不支持此API'
         codeCopyBtn.classList.add('warning')
         setTimeout(() => {
           codeCopyBtn.innerText = stellar.plugins.copycode.default_text

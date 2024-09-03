@@ -110,10 +110,21 @@ const Feed = (props) => {
 }
 
 const ImportDarkMode = (props) => {
-    const {theme, url_for} = props
-    const {join} = require("path")
+    const {theme} = props
+    const DarkModePreset = `
+        const themeModeList = ['light', 'dark', 'auto'];
+        var ThemeChange = (theme) => {
+          if(theme == null){
+            theme = 'auto';
+          }
+          document.documentElement.setAttribute('data-theme', theme)
+          window.localStorage.setItem('Stellaris.theme', theme);
+        }
+        ThemeChange(window.localStorage.getItem('Stellaris.theme'));
+        let currentTheme, nextTheme;
+    `
     if (theme.style.darkmode == 'auto-switch') {
-        return <script src={join(url_for(), "/js/darkmode.js")} data-no-instant="true"></script>
+        return <script type="text/javascript" data-no-instant="true" dangerouslySetInnerHTML={{__html: DarkModePreset}}/>
     } else {
         return <></>;
     }
