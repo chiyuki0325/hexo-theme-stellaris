@@ -121,7 +121,6 @@ const ImportDarkMode = (props) => {
           window.localStorage.setItem('Stellaris.theme', theme);
         }
         ThemeChange(window.localStorage.getItem('Stellaris.theme'));
-        let currentTheme, nextTheme;
     `
     if (theme.style.darkmode == 'auto-switch') {
         return <script type="text/javascript" data-no-instant="true" dangerouslySetInnerHTML={{__html: DarkModePreset}}/>
