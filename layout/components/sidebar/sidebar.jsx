@@ -123,6 +123,36 @@ const Sidebar = props => {
                     <div className="social-wrap">
                         {Object.keys(theme.footer.social).map(id => {
                             const item = theme.footer.social[id];
+                            if (id == 'darkmode' && theme.style.darkmode == 'auto-switch'){
+                                return (
+                                    <div className="darkmode-switch-container social on-click-event"
+                                        data-on-click="darkmode"
+                                        key={id}
+                                    >
+                                        <a className="darkmode-switch-hide"
+                                            id="darkmode-switch-auto"
+                                            title="跟随系统颜色模式"
+                                            href="#"
+                                        >
+                                            {parse(item.auto)}
+                                        </a>
+                                        <a className="darkmode-switch-hide"
+                                            id="darkmode-switch-light"
+                                            title="切换为浅色模式"
+                                            href="#"
+                                        >
+                                            {parse(item.light)}
+                                        </a>
+                                        <a className="darkmode-switch-hide"
+                                            id="darkmode-switch-dark"
+                                            title="切换为深色模式"
+                                            href="#"
+                                        >
+                                            {parse(item.dark)}
+                                        </a>
+                                    </div>
+                                )
+                            }
                             if (item.icon && (item.url || item.onclick)) {
                                 const itemIsUrl = item.url.includes('://');
                                 return (

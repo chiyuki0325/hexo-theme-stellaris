@@ -182,6 +182,19 @@ const InjectScripts = props => {
     </>
 }
 
+
+const DarkModeListener = `
+    document.getElementById('darkmode-switch-auto').addEventListener('click', switchTheme)
+    document.getElementById('darkmode-switch-light').addEventListener('click', switchTheme)
+    document.getElementById('darkmode-switch-dark').addEventListener('click', switchTheme)
+    currentTheme = window.localStorage.getItem('Stellaris.theme');
+    if(currentTheme == null){
+      currentTheme = 'auto';
+    }
+    nextTheme = themeModeList[(themeModeList.indexOf(currentTheme) + 1) % themeModeList.length]
+    document.getElementById('darkmode-switch-'+nextTheme).className = 'darkmode-switch-show';
+`
+
 const Scripts = props => {
     const {join} = require("path")
     const {theme, page, url_for} = props
@@ -199,6 +212,9 @@ const Scripts = props => {
                  if (theme.plugins.mathjax.per_page === true || page.mathjax === true) return (<MathJaxScripts {...props}/>)
             })()}
 
+            {(() => {
+                 if (theme.style.darkmode == 'auto-switch') return (<script type="text/javascript" dangerouslySetInnerHTML={{__html: DarkModeListener}}/>)
+            })()}
             <InjectScripts {...props} />
         </div>
     )

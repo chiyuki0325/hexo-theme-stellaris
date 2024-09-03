@@ -33,30 +33,40 @@ set_text_dark()
   --theme-link: $light-color-theme
 
 set_darkmode()
-  :root
-    --site-bg: $dark-background
-    --color-scheme: $dark-color-scheme
-    --card: $dark-card
-    --card-border: $dark-border
-    --block: $dark-block
-    --block-border: lighten($dark-block, 6)
-    --block-hover: darken($dark-block, 4)
-    set_text_light()
-    --theme-highlight: $dark-color-theme
-    --theme-cap: $dark-color-theme
-    --theme-bg: $dark-card
-    @media screen and (max-width: $device-mobile-max)
-      --site-bg: $dark-background-mobile
-      --card: darken($dark-card, 6)
-      --block: darken($dark-block, 4)
-      --block-border: lighten($dark-block, 2)
-      --block-hover: darken($dark-block,8)
+  --site-bg: $dark-background
+  --color-scheme: $dark-color-scheme
+  --card: $dark-card
+  --card-border: $dark-border
+  --block: $dark-block
+  --block-border: lighten($dark-block, 6)
+  --block-hover: darken($dark-block, 4)
+  set_text_light()
+  --theme-highlight: $dark-color-theme
+  --theme-cap: $dark-color-theme
+  --theme-bg: $dark-card
+  @media screen and (max-width: $device-mobile-max)
+    --site-bg: $dark-background-mobile
+    --card: darken($dark-card, 6)
+    --block: darken($dark-block, 4)
+    --block-border: lighten($dark-block, 2)
+    --block-hover: darken($dark-block,8)
+  .social-wrap
+    filter: invert(100%)
 
 if hexo-config('style.darkmode') == 'auto'
   // 系统的dark模式
   @media (prefers-color-scheme: dark)
-    set_darkmode()
+    :root
+      set_darkmode()
 
 
 if hexo-config('style.darkmode') == 'always'
-  set_darkmode()
+  :root
+    set_darkmode()
+
+if hexo-config('style.darkmode') == 'auto-switch'
+  :root[data-theme="dark"]
+    set_darkmode()
+  :root[data-theme="auto"]
+    @media (prefers-color-scheme: dark)
+      set_darkmode()

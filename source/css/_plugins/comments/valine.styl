@@ -230,3 +230,36 @@ if hexo-config('style.darkmode') == 'auto'
     .cmt-body.valine
       --more-before: 0 0
       --more-after: #393c40
+
+if hexo-config('style.darkmode') == 'always'
+  .cmt-body.valine
+    --more-before: 0 0
+    --more-after: #393c40
+
+if hexo-config('style.darkmode') == 'auto-switch'
+  :root[data-theme="dark"]
+    .cmt-body.valine
+      --more-before: 0 0
+      --more-after: #393c40
+      #valine_container
+        .vwrap
+          .vemojis,.vpreview
+            i
+              &:hover
+                box-shadow: none
+              &:active
+                box-shadow: none
+  :root[data-theme="auto"]
+    @media (prefers-color-scheme: dark)
+      .cmt-body.valine
+        --more-before: 0 0
+        --more-after: #393c40
+        #valine_container
+          .vwrap
+            .vemojis,.vpreview
+              i
+                &:hover
+                  box-shadow: none
+                &:active
+                  box-shadow: none
+  

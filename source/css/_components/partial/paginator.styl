@@ -55,3 +55,16 @@
     opacity: 0.25
   a.extend:hover
     filter: unset
+
+
+if hexo-config('style.darkmode') == 'auto-switch'
+  :root[data-theme="dark"]
+    .paginator-wrap
+      .extend
+        filter: grayscale(100%) brightness(20) !important
+  :root[data-theme="auto"]
+    @media (prefers-color-scheme: dark)
+      .paginator-wrap
+        .extend
+          filter: grayscale(100%) brightness(20) !important
+    

@@ -250,17 +250,21 @@ footer:
   social:
     ### 社交平台链接按钮（使用 HTML 语法）
     # github:
-    #   icon: '<img src="https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.3/social/08a41b181ce68.svg"/>'
+    #   icon: '<img no-lazy width="24" height="24" src="https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.3/social/08a41b181ce68.svg"/>'
     #   url: /
     # music:
-    #   icon: '<img src="https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.3/social/3845874.svg"/>'
+    #   icon: '<img width="24" height="24" src="https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.3/social/3845874.svg"/>'
     #   url: /
     # unsplash:
-    #   icon: '<img src="https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.3/social/3616429.svg"/>'
+    #   icon: '<img width="24" height="24" src="https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.3/social/3616429.svg"/>'
     #   url: /
     # comments:
-    #   icon: '<img src="https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.3/social/942ebbf1a4b91.svg"/>'
+    #   icon: '<img width="24" height="24" src="https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.3/social/942ebbf1a4b91.svg"/>'
     #   url: /about/#comments
+    # darkmode: # 键值为 darkmode 时配置为黑暗模式切换按钮（darkmode 须设置为 auto-switch），且此处仅按如下格式配置三个模式的图标
+    #   auto: '<img no-lazy width="24" height="24" src="/images/sun-moon.svg"/>'
+    #   light: '<img no-lazy width="24" height="24" src="/images/sun-fill.svg"/>'
+    #   dark: '<img no-lazy width="24" height="24" src="/images/moon-fill.svg"/>'
   sitemap:
     ### 页脚网站地图按钮（使用 Markdown 语法）
     # '博客':
@@ -460,7 +464,7 @@ plugins:
 
 ######## 样式 ########
 style:
-  darkmode: auto # auto / always / false
+  darkmode: auto # auto / always / false / auto-switch
   smooth_scroll: true # true / false
   font-size:
     root: 16px

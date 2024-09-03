@@ -59,6 +59,7 @@
 
     if hexo-config('style.darkmode') == 'always'
       filter: brightness(0.7)
+
   .info
     margin-top: 0.5rem
     margin-left:0.3rem
@@ -90,3 +91,13 @@
       -webkit-box-orient: vertical
       overflow: hidden
       -webkit-line-clamp: 2
+
+if hexo-config('style.darkmode') == 'auto-switch'
+  :root[data-theme="dark"]
+    .sites-wrap .group-body .site-card .card-link img
+      filter: brightness(0.7)
+  :root[data-theme="auto"]
+    @media (prefers-color-scheme: dark)
+      .sites-wrap .group-body .site-card .card-link img
+        filter: brightness(0.7)
+

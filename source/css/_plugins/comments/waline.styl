@@ -37,13 +37,30 @@
     margin: unset !important;
     box-shadow: $boxshadow-card
   
+  if hexo-config('style.darkmode') == 'auto'
+    @media (prefers-color-scheme: dark)
+      --waline-white: #000;
+      --waline-light-grey: #666;
+      --waline-dark-grey: #999;
+      /* 布局颜色 */
 
-  @media (prefers-color-scheme: dark)
+      --waline-color: #fff;
+      --waline-bg-color: #2b2f33b2;
+      --waline-bg-color-light: #272727;
+      --waline-border-color: #333;
+      --waline-disable-bg-color: #444;
+      --waline-disable-color: #272727;
+      /* 特殊颜色 */
+      --waline-bq-color: #272727;
+      /* 其他颜色 */
+      --waline-info-bg-color: #272727;
+      --waline-info-color: #666;
+  
+  if hexo-config('style.darkmode') == 'always'
     --waline-white: #000;
     --waline-light-grey: #666;
     --waline-dark-grey: #999;
     /* 布局颜色 */
-
     --waline-color: #fff;
     --waline-bg-color: #2b2f33b2;
     --waline-bg-color-light: #272727;
@@ -56,9 +73,69 @@
     --waline-info-bg-color: #272727;
     --waline-info-color: #666;
 
+
+
 .wl-count
-  @media (prefers-color-scheme: dark)
+  if hexo-config('style.darkmode') == 'auto'
+    @media (prefers-color-scheme: dark)
+      padding: .375em;
+      font-weight: bold;
+      font-size: 1.25em;
+      color: #fff;
+  
+  if hexo-config('style.darkmode') == 'always'
     padding: .375em;
     font-weight: bold;
     font-size: 1.25em;
     color: #fff;
+  
+if hexo-config('style.darkmode') == 'auto-switch'
+  :root[data-theme="dark"] .wl-count
+    padding: .375em;
+    font-weight: bold;
+    font-size: 1.25em;
+    color: #fff;
+
+  :root[data-theme="dark"] .cmt-body.waline
+    --waline-white: #000;
+    --waline-light-grey: #666;
+    --waline-dark-grey: #999;
+    /* 布局颜色 */
+    --waline-color: #fff;
+    --waline-bg-color: #2b2f33b2;
+    --waline-bg-color-light: #272727;
+    --waline-border-color: #333;
+    --waline-disable-bg-color: #444;
+    --waline-disable-color: #272727;
+    /* 特殊颜色 */
+    --waline-bq-color: #272727;
+    /* 其他颜色 */
+    --waline-info-bg-color: #272727;
+    --waline-info-color: #666;
+  
+  :root[data-theme="auto"] .cmt-body.waline
+    @media (prefers-color-scheme: dark)
+      --waline-white: #000;
+      --waline-light-grey: #666;
+      --waline-dark-grey: #999;
+      /* 布局颜色 */
+      --waline-color: #fff;
+      --waline-bg-color: #2b2f33b2;
+      --waline-bg-color-light: #272727;
+      --waline-border-color: #333;
+      --waline-disable-bg-color: #444;
+      --waline-disable-color: #272727;
+      /* 特殊颜色 */
+      --waline-bq-color: #272727;
+      /* 其他颜色 */
+      --waline-info-bg-color: #272727;
+      --waline-info-color: #666;
+  
+  :root[data-theme="auto"] .wl-count
+    @media (prefers-color-scheme: dark)
+      padding: .375em;
+      font-weight: bold;
+      font-size: 1.25em;
+      color: #fff;
+
+

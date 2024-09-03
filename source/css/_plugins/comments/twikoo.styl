@@ -113,3 +113,25 @@ if hexo-config('style.darkmode') == 'auto'
       --twikoo-secondtext: #a1a2b8;
       --twikoo-emoji-background: darken($dark-block, 1);
       --twikoo-theme: #409eff;
+
+if hexo-config('style.darkmode') == 'always'
+  .cmt-body.twikoo
+    --twikoo-lighttext: #f2b94b;
+    --twikoo-secondtext: #a1a2b8;
+    --twikoo-emoji-background: darken($dark-block, 1);
+    --twikoo-theme: #409eff;
+
+if hexo-config('style.darkmode') == 'auto-switch'
+  :root[data-theme="dark"]
+    .cmt-body.twikoo
+      --twikoo-lighttext: #f2b94b;
+      --twikoo-secondtext: #a1a2b8;
+      --twikoo-emoji-background: darken($dark-block, 1);
+      --twikoo-theme: #409eff;
+  :root[data-theme="auto"]
+    @media (prefers-color-scheme: dark)
+      .cmt-body.twikoo
+        --twikoo-lighttext: #f2b94b;
+        --twikoo-secondtext: #a1a2b8;
+        --twikoo-emoji-background: darken($dark-block, 1);
+        --twikoo-theme: #409eff;

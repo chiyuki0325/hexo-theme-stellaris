@@ -105,10 +105,21 @@ set_darkmode_tags()
 
   .colorful[color='warning'],.colorful[color='light']
     set_text_black()
+  
 
 if hexo-config('style.darkmode') == 'auto'
-  @media (prefers-color-scheme: dark)
-    set_darkmode_tags()
+  :root
+    @media (prefers-color-scheme: dark)
+      set_darkmode_tags()
 
 if hexo-config('style.darkmode') == 'always'
-  set_darkmode_tags()
+  :root
+    set_darkmode_tags()
+
+if hexo-config('style.darkmode') == 'auto-switch'
+  :root[data-theme="dark"]
+    set_darkmode_tags()
+  :root[data-theme="auto"]
+    @media (prefers-color-scheme: dark)
+      set_darkmode_tags()
+    

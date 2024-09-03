@@ -109,6 +109,16 @@ const Feed = (props) => {
     }
 }
 
+const ImportDarkMode = (props) => {
+    const {theme, url_for} = props
+    const {join} = require("path")
+    if (theme.style.darkmode == 'auto-switch') {
+        return <script src={join(url_for(), "/js/darkmode.js")} data-no-instant="true"></script>
+    } else {
+        return <></>;
+    }
+}
+
 const ImportCSS = (props) => {
     const {theme, url_for} = props
     const {join} = require("path")
@@ -223,6 +233,7 @@ module.exports = function Head(props) {
             <Feed {...props}/>
             <FavIcon {...props}/>
 
+            <ImportDarkMode {...props}/>
             <ImportCSS {...props}/>
             <ImportHighlightJSTheme {...props}/>
             <ImportKatex {...props}/>

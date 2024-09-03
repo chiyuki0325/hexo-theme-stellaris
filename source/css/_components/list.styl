@@ -148,6 +148,22 @@
     margin: .25rem 0
     font-size: $fs-h4
 
+if hexo-config('style.darkmode') == 'auto-switch'
+  :root[data-theme="dark"]
+    .post-list .post-card.post.post-list
+      .cover
+        .cover-info
+          color: var(--text-p0)
+          &:not(.cover-no-shadow)
+            text-shadow: 1px 1px 2px var(--theme-bg)
+  :root[data-theme="auto"]
+    @media (prefers-color-scheme: dark)
+      .post-list .post-card.post.post-list
+        .cover
+          .cover-info
+            color: var(--text-p0)
+            &:not(.cover-no-shadow)
+              text-shadow: 1px 1px 2px var(--theme-bg)
 
 // wiki
 .post-list .post-card.wiki article

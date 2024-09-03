@@ -5,7 +5,7 @@
   display: grid
   grid-gap: 0.25rem 0.25rem
   grid-template-columns: repeat(auto-fill, 32px)
-  a.social
+  a.social, .darkmode-switch-container
     line-height: 0
     display: inline-block
     padding: 6px
@@ -15,6 +15,8 @@
     background: transparent
     border: 0px solid var(--block-border);
     trans3: background transform border
+    a.darkmode-switch-hide
+      display: none
     &:hover
       color: $color-hover
       z-index: 1
@@ -28,6 +30,8 @@
           //box-shadow: none
       //if hexo-config('style.darkmode') == 'always'
         //box-shadow: none
+    
+    
 
 .proj-wrap
   display: grid
