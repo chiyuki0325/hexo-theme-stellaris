@@ -215,6 +215,8 @@ module.exports = function Head(props) {
             <meta name="theme-color" media="(prefers-color-scheme: dark) and (max-width: 667px)" content="#000000"/>
             <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#202020"/>
 
+            <meta name="darkreader-lock"/>
+            
             <Title {...props}/>
             <OpenGraph {...props}/>
             <Description {...props}/>
