@@ -40,6 +40,11 @@ hexo.extend.tag.register('quot', require('./lib/quot')(hexo))
 hexo.extend.tag.register('hashtag', require('./lib/hashtag')(hexo))
 hexo.extend.tag.register('tag', require('./lib/hashtag')(hexo))  // 兼容语法
 hexo.extend.tag.register('okr', require('./lib/okr')(hexo), {ends: true})
+
+// read 阅读类
+hexo.extend.tag.register('reel', require('./lib/read/reel')(hexo), true)
+hexo.extend.tag.register('paper', require('./lib/read/paper')(hexo), true)
+
 // stelaris 新增组件
 hexo.extend.tag.register('bvideo', require('./lib/bvideo')(hexo))
 hexo.extend.tag.register('bilicard', require('./lib/bvideo')(hexo))  // 兼容语法

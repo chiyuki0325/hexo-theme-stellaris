@@ -466,7 +466,7 @@ style:
   text-align: left
   color:
     common:
-      accent: '#ff5722' # 强调色
+      accent: '#0078d4' # 强调色
       button: '#0078d4' # 按钮颜色
       hover: '#0078d4' # 按钮高亮颜色
     light:
