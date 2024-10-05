@@ -362,6 +362,10 @@ tag_plugins:
   video:
     js: https://fastly.jsdelivr.net/npm/artplayer@5.0.9/dist/artplayer.js
 
+  # {% link %}
+  link:
+    siteinfo_api: https://stellaris-site-info.chyk.ink/api/v1/?url=${href}
+
 
 ######## JS 插件 ########
 plugins:
