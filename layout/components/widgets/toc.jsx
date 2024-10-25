@@ -23,8 +23,13 @@ const Toc = props => {
                 const liElements = elements.filter(el => el.type === 'li');
                 
                 if (olElement) {
-                    // 如果存在 ol 元素，将所有 li 元素添加到其中
-                    const newChildren = [...(olElement.props.children || []), ...liElements];
+                    // 安全地获取 olElement 的子元素
+                    const olChildren = Array.isArray(olElement.props.children) 
+                        ? olElement.props.children 
+                        : (olElement.props.children ? [olElement.props.children] : []);
+                    
+                    // 合并现有的子元素和新的 li 元素
+                    const newChildren = [...olChildren, ...liElements];
                     return React.cloneElement(olElement, {}, newChildren);
                 } else if (liElements.length > 0) {
                     // 如果只有 li 元素，创建一个新的 ol 包裹它们
