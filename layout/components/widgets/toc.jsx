@@ -9,19 +9,22 @@ const Toc = props => {
             list_number: props.list_number,
             min_depth: props.min_depth,
             max_depth: props.max_depth
-        })
-        if (generatedToc.length > 0) {
+        });
+        
+        if (generatedToc && generatedToc.length > 0) {
             const parsedToc = parse(generatedToc);
-            // 检查 parsedToc 是否有 props 和 children
-            if (parsedToc && parsedToc.props && parsedToc.props.children) {
-                return (
-                    <ol className="toc">{parsedToc.props.children}</ol>
-                )
-            }else{
-                console.warn('Parsed toc is not valid:', parsedToc);
-                return <></>;
+            
+            if (Array.isArray(parsedToc)) {
+                // 如果解析后的 TOC 是一个数组，直接返回它
+                return <>{parsedToc}</>;
+            } else if (parsedToc && parsedToc.props && parsedToc.props.children) {
+                // 如果是单个对象，保持原来的处理方式
+                return <ol className="toc">{parsedToc.props.children}</ol>;
+            } else {
+                console.warn('解析后的 TOC 结构不符合预期:', parsedToc);
             }
         }
+        
         return <></>;
     }
     const LayoutTocHeader = props => {
