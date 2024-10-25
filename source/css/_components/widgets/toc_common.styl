@@ -1,5 +1,14 @@
-.widget-wrapper.toc .widget-header
-  margin-top: 1rem
+.widget-wrapper.toc {
+  position: relative;
+  overflow: hidden;
+}
+
+.widget-wrapper.toc .widget-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  margin: 0;
+}
 
 .widget-wrapper.toc.single .widget-header
   font-weight: 500
