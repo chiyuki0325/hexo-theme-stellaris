@@ -17,6 +17,9 @@ const Toc = props => {
                 return (
                     <ol className="toc">{parsedToc.props.children}</ol>
                 )
+            }else{
+                console.warn('Parsed toc is not valid:', parsedToc);
+                return <></>;
             }
         }
         return <></>;
