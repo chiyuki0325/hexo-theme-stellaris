@@ -11,9 +11,13 @@ const Toc = props => {
             max_depth: props.max_depth
         })
         if (generatedToc.length > 0) {
-            return (
-                <ol className="toc">{parse(generatedToc).props.children}</ol>
-            )
+            const parsedToc = parse(generatedToc);
+            // 检查 parsedToc 是否有 props 和 children
+            if (parsedToc && parsedToc.props && parsedToc.props.children) {
+                return (
+                    <ol className="toc">{parsedToc.props.children}</ol>
+                )
+            }
         }
         return <></>;
     }
