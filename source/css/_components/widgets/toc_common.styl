@@ -1,6 +1,9 @@
 .widget-wrapper.toc {
   position: relative;
   overflow: hidden;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-content);
 }
 
 .widget-wrapper.toc .widget-header {
@@ -8,6 +11,11 @@
   top: 0;
   z-index: 10;
   margin: 0;
+  padding: 12px 16px;
+  font-weight: 500;
+  font-size: $fs-14;
+  color: var(--text-p1);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .widget-wrapper.toc.single .widget-header
@@ -16,8 +24,12 @@
   >span
     margin: 0.5rem 0
 
+.widget-wrapper.toc .widget-body {
+  margin-top: 0;
+  padding: 8px 0;
+}
+
 .widget-wrapper.toc .widget-body
-  margin-top: 0
   ul ul, ul ol
     padding-left: 0
   ol ul, ol ol
@@ -56,26 +68,59 @@
     border-left-color: @color
   .toc-child .toc-item
     padding: 0
-.widget-wrapper.toc a.toc-link
-  color: inherit
-  display: block
-  line-height: 1.2
-  border-radius: 4px
-  position: relative
-  transition
-  &:before
-    content: ''
-    position: absolute
-    left: -6px
-    top: 'calc(50% - %s)' % 6px
-    bottom: 'calc(50% - %s)' % 6px
-    width: 2px
-    border-radius: 2px
-    background: $color-theme
-    visibility: hidden
-  &:hover
-    background: var(--block-hover)
-  &.active
-    color: var(--theme-highlight) !important
-    &:before
-      visibility: visible
+
+.widget-wrapper.toc a.toc-link {
+  color: var(--text-p2);
+  display: block;
+  line-height: 1.4;
+  position: relative;
+  transition: color 0.2s ease, background 0.2s ease;
+  padding: 6px 16px;
+  margin: 1px 0;
+  font-size: $fs-13;
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--theme-highlight);
+    opacity: 0;
+    transition: opacity 0.2s ease, width 0.2s ease;
+  }
+
+  &:hover {
+    background: var(--block-hover);
+  }
+
+  &.active {
+    color: var(--theme-highlight);
+    font-weight: 500;
+    &:before {
+      opacity: 1;
+      width: 3px;
+    }
+  }
+}
+
+// 优化滚动条样式
+.widget-wrapper.toc .widget-body::-webkit-scrollbar {
+  width: 3px;
+}
+
+.widget-wrapper.toc .widget-body::-webkit-scrollbar-thumb {
+  background-color: var(--text-p3);
+  border-radius: 1.5px;
+}
+
+.widget-wrapper.toc .widget-body::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+// 调整子项缩进
+.widget-wrapper.toc .toc-child {
+  padding-left: 12px;
+}
+
