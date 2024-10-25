@@ -1,3 +1,4 @@
+const React = require('react');
 const {Fragment} = require('react');
 const Toc = props => {
     const {theme, page, toc} = props;
@@ -33,17 +34,17 @@ const Toc = props => {
                     return React.cloneElement(olElement, {}, newChildren);
                 } else if (liElements.length > 0) {
                     // 如果只有 li 元素，创建一个新的 ol 包裹它们
-                    return <ol className="toc">{liElements}</ol>;
+                    return React.createElement('ol', {className: "toc"}, liElements);
                 } else {
                     // 如果既没有 ol 也没有 li，返回原始内容
-                    return <>{elements}</>;
+                    return React.createElement(Fragment, null, elements);
                 }
             };
             
             return normalizeToc(parsedToc);
         }
         
-        return <></>;
+        return React.createElement(Fragment);
     }
     const LayoutTocHeader = props => {
         const {page, __} = props;
