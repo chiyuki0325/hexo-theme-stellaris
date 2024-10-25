@@ -14,38 +14,28 @@ const Toc = props => {
         if (generatedToc && generatedToc.length > 0) {
             const parsedToc = parse(generatedToc);
             
-            const restructureToc = (items) => {
-                if (!Array.isArray(items)) return items;
+            const normalizeToc = (elements) => {
+                if (!Array.isArray(elements)) {
+                    elements = [elements];
+                }
                 
-                const result = [];
-                let currentList = null;
+                const olElement = elements.find(el => el.type === 'ol');
+                const liElements = elements.filter(el => el.type === 'li');
                 
-                items.forEach(item => {
-                    if (item.type === 'ol' && item.props.className === 'toc') {
-                        currentList = item;
-                        result.push(currentList);
-                    } else if (item.type === 'li' && currentList) {
-                        if (!currentList.props.children) {
-                            currentList.props.children = [];
-                        }
-                        currentList.props.children.push(item);
-                    } else {
-                        result.push(item);
-                    }
-                });
-                
-                return result;
+                if (olElement) {
+                    // 如果存在 ol 元素，将所有 li 元素添加到其中
+                    const newChildren = [...(olElement.props.children || []), ...liElements];
+                    return React.cloneElement(olElement, {}, newChildren);
+                } else if (liElements.length > 0) {
+                    // 如果只有 li 元素，创建一个新的 ol 包裹它们
+                    return <ol className="toc">{liElements}</ol>;
+                } else {
+                    // 如果既没有 ol 也没有 li，返回原始内容
+                    return <>{elements}</>;
+                }
             };
             
-            const restructuredToc = restructureToc(parsedToc);
-            
-            return (
-                <div className="toc-content">
-                    {restructuredToc.map((item, index) => (
-                        <React.Fragment key={index}>{item}</React.Fragment>
-                    ))}
-                </div>
-            );
+            return normalizeToc(parsedToc);
         }
         
         return <></>;
