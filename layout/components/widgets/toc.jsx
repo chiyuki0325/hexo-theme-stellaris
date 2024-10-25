@@ -14,15 +14,38 @@ const Toc = props => {
         if (generatedToc && generatedToc.length > 0) {
             const parsedToc = parse(generatedToc);
             
-            if (Array.isArray(parsedToc)) {
-                // 如果解析后的 TOC 是一个数组，直接返回它
-                return <>{parsedToc}</>;
-            } else if (parsedToc && parsedToc.props && parsedToc.props.children) {
-                // 如果是单个对象，保持原来的处理方式
-                return <ol className="toc">{parsedToc.props.children}</ol>;
-            } else {
-                console.warn('解析后的 TOC 结构不符合预期:', parsedToc);
-            }
+            const restructureToc = (items) => {
+                if (!Array.isArray(items)) return items;
+                
+                const result = [];
+                let currentList = null;
+                
+                items.forEach(item => {
+                    if (item.type === 'ol' && item.props.className === 'toc') {
+                        currentList = item;
+                        result.push(currentList);
+                    } else if (item.type === 'li' && currentList) {
+                        if (!currentList.props.children) {
+                            currentList.props.children = [];
+                        }
+                        currentList.props.children.push(item);
+                    } else {
+                        result.push(item);
+                    }
+                });
+                
+                return result;
+            };
+            
+            const restructuredToc = restructureToc(parsedToc);
+            
+            return (
+                <div className="toc-content">
+                    {restructuredToc.map((item, index) => (
+                        <React.Fragment key={index}>{item}</React.Fragment>
+                    ))}
+                </div>
+            );
         }
         
         return <></>;
