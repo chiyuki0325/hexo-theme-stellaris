@@ -1,3 +1,4 @@
+const React = require('react');
 const {Fragment} = require('react');
 const Toc = props => {
     const {theme, page, toc} = props;
@@ -9,13 +10,41 @@ const Toc = props => {
             list_number: props.list_number,
             min_depth: props.min_depth,
             max_depth: props.max_depth
-        })
-        if (generatedToc.length > 0) {
-            return (
-                <ol className="toc">{parse(generatedToc).props.children}</ol>
-            )
+        });
+        
+        if (generatedToc && generatedToc.length > 0) {
+            const parsedToc = parse(generatedToc);
+            
+            const normalizeToc = (elements) => {
+                if (!Array.isArray(elements)) {
+                    elements = [elements];
+                }
+                
+                const olElement = elements.find(el => el.type === 'ol');
+                const liElements = elements.filter(el => el.type === 'li');
+                
+                if (olElement) {
+                    // 安全地获取 olElement 的子元素
+                    const olChildren = Array.isArray(olElement.props.children) 
+                        ? olElement.props.children 
+                        : (olElement.props.children ? [olElement.props.children] : []);
+                    
+                    // 合并现有的子元素和新的 li 元素
+                    const newChildren = [...olChildren, ...liElements];
+                    return React.cloneElement(olElement, {}, newChildren);
+                } else if (liElements.length > 0) {
+                    // 如果只有 li 元素，创建一个新的 ol 包裹它们
+                    return React.createElement('ol', {className: "toc"}, liElements);
+                } else {
+                    // 如果既没有 ol 也没有 li，返回原始内容
+                    return React.createElement(Fragment, null, elements);
+                }
+            };
+            
+            return normalizeToc(parsedToc);
         }
-        return <></>;
+        
+        return React.createElement(Fragment);
     }
     const LayoutTocHeader = props => {
         const {page, __} = props;
