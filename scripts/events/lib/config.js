@@ -60,4 +60,8 @@ module.exports = hexo => {
     hexo.theme.config.sidebar.menu = [];
   }
 
+  hexo.on('server', () => { // detect server-side render
+    hexo.log.info('Server-side render detected');
+    hexo.theme.config.server_render.status = true;
+  });
 };

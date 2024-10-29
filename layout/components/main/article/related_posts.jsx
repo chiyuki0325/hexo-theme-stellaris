@@ -72,7 +72,7 @@ const RelatedPostsHelper = props => {
 }
 const RelatedPosts = props => {
     const {theme, page, __, popular_posts_json} = props;
-    if (theme.article.related_posts.enabled) {
+    if (theme.article.related_posts.enabled && !(theme.article.related_posts.disable_at_server_render && theme.server_render.status)) {
         return (
             <div className="related-wrap reveal"
                  id="related-posts">

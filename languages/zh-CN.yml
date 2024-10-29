@@ -42,6 +42,7 @@ footer:
   info_open_source: '本站由 %s 创建，使用 %s 作为主题，您可以在 %s 找到本站源码。'
   powered_by_1: '由 '
   powered_by_2: ' 强力驱动'
+  server_render: '当前为服务端渲染模式，部分功能可能已被自动禁用。'
 
 page:
   error:

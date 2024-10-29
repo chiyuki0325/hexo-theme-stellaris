@@ -7,6 +7,10 @@ stellar:
   cdn_js:  # 如果你使用 CDN，可以上传 /js/main.js 并在此输入对应的链接
 
 
+server_render: 
+  status: false # 该值在使用 `hexo s` 通过服务端渲染时会设置为 true
+  footer: false # 是否在网页底部显示服务器端渲染提示
+
 ######## 网页头部信息 ########
 head:
   open_graph:
@@ -81,6 +85,7 @@ article:
     # pnpm i hexo-related-popular-posts
     enabled: false
     max_count: 5
+    disable_at_server_render: true # 在使用内置服务端渲染时禁用此功能，建议启用，否则在源文件修改触发重新渲染时会出现错误
   outdated_check:
     # 文章过期检查，在文章发布后多少个月提示文章可能过期
     enabled: true
