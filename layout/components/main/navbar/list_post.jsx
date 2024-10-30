@@ -12,13 +12,14 @@ module.exports = function NavBarListPost(props) {
                 {(() => {
                     if (site.categories && site.categories.length > 0) {
                         if (page.category) {
-                            return <a className="active" href={url_for(config.category_dir)}>
+                            return <a className="active" href={url_for(config.category_dir)} key={page.category}>
                                 {__("btn.category") + __("symbol.colon") + page.category}
                             </a>
                         } else {
                             return (
                                 <a className={(page.layout === "categories") ? "active" : ""}
-                                   href={url_for(config.category_dir)}>
+                                   href={url_for(config.category_dir)}
+                                    key="categories">
                                     {__("btn.categories")}
                                 </a>
                             )
@@ -29,13 +30,14 @@ module.exports = function NavBarListPost(props) {
                 {(() => {
                     if (site.tags && site.tags.length > 0) {
                         if (page.tag) {
-                            return <a className="active" href={url_for(config.tag_dir)}>
+                            return <a className="active" href={url_for(config.tag_dir)} key={page.tag}>
                                 {__("btn.tag") + __("symbol.colon") + page.tag}
                             </a>
                         } else {
                             return (
                                 <a className={(page.layout === "tags") ? "active" : ""}
-                                   href={url_for(config.tag_dir)}>
+                                   href={url_for(config.tag_dir)}
+                                    key="tags">
                                     {__("btn.tags")}
                                 </a>
                             )

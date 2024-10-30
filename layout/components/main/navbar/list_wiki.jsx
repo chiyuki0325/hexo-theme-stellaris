@@ -25,6 +25,7 @@ module.exports = function NavBarListWiki(props) {
                 <a
                   className={isActive ? "active" : ""}
                   href={url_for(tag.path)}
+                  key={tag.name}
                 >
                   {tag.name}
                 </a>,
