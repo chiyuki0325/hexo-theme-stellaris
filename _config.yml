@@ -510,8 +510,8 @@ style:
   font-family:
     logo: 'HarmonyOS_Regular, system-ui, -apple-system, sans-serif'
     body: 'HarmonyOS_Regular, system-ui, -apple-system, sans-serif'
-    code: 'Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif'
-    codeblock: 'Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif'
+    code: 'Menlo, Monaco, Consolas, "Courier New", monospace, sans-serif'
+    codeblock: 'Menlo, Monaco, Consolas, "Courier New", monospace, sans-serif'
   custom_font_css:
     # 自定义字体
     enabled: true
