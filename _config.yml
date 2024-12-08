@@ -413,11 +413,13 @@ plugins:
   mathjax:
     enabled: false
     per_page: false # 启用后无需在文章开头加 mathjax: true 即可启用
-    cdn: https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+    js: https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML
 
-  # 使用 hexo-renderer-markdown-it-plus 提供数学公式支持
-  # npm uninstall hexo-renderer-marked --save npm install hexo-renderer-markdown-it-plus --save
-
+  # 使用 Katex 提供数学公式支持
+  # 使用 hexo-renderer-markdown-it-plus 在服务端进行渲染 Katex 公式
+  # 需要先卸载原本的渲染器，安装 hexo-renderer-markdown-it-plus 作为新的渲染器
+  # npm uninstall hexo-renderer-marked --save
+  # npm install hexo-renderer-markdown-it-plus --save
   katex:
     enabled: true
     css: https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css

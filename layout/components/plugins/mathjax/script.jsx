@@ -2,13 +2,13 @@ const MathJaxScripts = (props) => {
   const { theme } = props
   const { plugins } = theme
   const { mathjax } = plugins
-  const { enabled, cdn } = mathjax
+  const { enabled, js } = mathjax
 
   if (enabled) {
     const loadMathScript = `
         function loadMathJax() {
         console.log('MathJax enabled')
-            stellar.loadScript('${cdn}', {defer:true}).then(() => {
+            stellar.loadScript('${js}', {defer:true}).then(() => {
                 MathJax.Hub.Config({
                 tex2jax: {
                     inlineMath: [ ['$','$'], ["\\(","\\)"] ],

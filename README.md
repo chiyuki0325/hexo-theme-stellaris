@@ -102,7 +102,7 @@ article:
     mathjax:
       enable: false
       per_page: false # 启用后无需在文章开头加 mathjax: true 即可启用
-      cdn: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js # 请使用 3.x 以上版本的 mathjax
+      js: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js # 请使用 3.x 以上版本的 mathjax
   ```
 
 - 本主题没有移植原主题的一些功能（因为我没有用到，比如时间线，友链朋友圈和赫蹏），如有需要请在 issue 中提出，我会进行移植。
