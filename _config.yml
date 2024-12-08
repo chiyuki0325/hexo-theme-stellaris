@@ -424,6 +424,24 @@ plugins:
     enabled: true
     css: https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css
 
+  # Mermaid - markdwon to flow chart, seq chart, class chart ...
+  # 需要安装 npm install --save hexo-filter-mermaid-diagrams
+  # 使用时 需要在Markdown文件开头加入 mermaid: true
+  # 使用示例：
+  # ```mermaid
+  # graph LR
+  #   A(Section A) -->|option 1| B(Section A)
+  #   B -->|option 2| C(Section C)
+  # ```
+  mermaid:
+    enabled: true
+    per_page: false # 启用后无需在文章开头加 mermaid: true 即可启用
+    # js: https://unpkg.com/mermaid@9.0.0/dist/mermaid.min.js
+    js: https://cdn.jsdelivr.net/npm/mermaid@v9/dist/mermaid.min.js
+    # Available themes: default | dark | forest | neutral
+    # 如果不填写将遵循博客颜色主题
+    theme: neutral
+
   # 代码块复制按钮
   copycode:
     enabled: true

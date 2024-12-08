@@ -1,6 +1,8 @@
 const { Fragment } = require('react')
 const CommentsScript = require('./plugins/comments/script.jsx')
 const MathJaxScripts = require('./plugins/mathjax/script.jsx')
+const MermaidScripts = require('./plugins/mermaid/script.jsx')
+
 const generateStellarScript = (props) => {
   const { theme, __, url_for, page, post } = props
   let outdateMonth = 0
@@ -255,6 +257,10 @@ const Scripts = (props) => {
       {(() => {
         if (theme.plugins.mathjax.per_page === true || page.mathjax === true)
           return <MathJaxScripts {...props} />
+      })()}
+      {(() => {
+        if (theme.plugins.mermaid.per_page === true || page.mermaid === true)
+          return <MermaidScripts {...props} />
       })()}
 
       <ImportDarkModeListener {...props} />
