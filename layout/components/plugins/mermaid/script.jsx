@@ -8,7 +8,7 @@ const MermaidScripts = (props) => {
         console.log('Mermaid enabled')
         stellar.loadScript('${js}', {defer:true}).then(() => {
           mermaid.initialize({
-            startOnLoad: true,
+            startOnLoad: false,
             theme: "${blogTheme.style.darkmode}".startsWith("auto") ? (
               window.matchMedia('(prefers-color-scheme: dark)').matches ? "dark" : "${theme}"
             ) : "${theme}",
@@ -25,6 +25,9 @@ const MermaidScripts = (props) => {
               actorMargin: 50
             }
           })
+        })
+        document.querySelectorAll("pre.mermaid").forEach(e=>{
+          mermaid.render("preparedScheme", e.innerText, svg => e.innerHTML = svg)
         })
       }
       loadMermaid()
