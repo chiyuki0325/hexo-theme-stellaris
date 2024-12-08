@@ -159,22 +159,6 @@ const ImportHighlightJSTheme = (props) => {
     }
 }
 
-const ImportKatex = props => {
-    const {theme} = props
-    const parse = require('html-react-parser').default
-    if (theme.plugins.katex && theme.plugins.katex.enabled) {
-        return (
-            <>
-                {parse(theme.plugins.katex.min_css)}
-                {parse(theme.plugins.katex.min_js)}
-                {parse(theme.plugins.katex.auto_render_min_js)}
-            </>
-        )
-    } else {
-        return <></>;
-    }
-}
-
 const Preconnect = props => {
     const {prefetch_and_preconnect} = props.theme.plugins
     if (prefetch_and_preconnect && prefetch_and_preconnect.length > 0 ) {
@@ -246,8 +230,7 @@ module.exports = function Head(props) {
             <ImportDarkMode {...props}/>
             <ImportCSS {...props}/>
             <ImportHighlightJSTheme {...props}/>
-            <ImportKatex {...props}/>
-
+            
             <InjectHead {...props} />
         </head>
     )
