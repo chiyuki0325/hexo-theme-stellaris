@@ -105,12 +105,12 @@ search:
 
 ######## 评论 ########
 comments:
-  # 支持 beaudar, utterances, giscus, valine (不推荐), waline, twikoo 和 artalk
-  # Stellaris 的维护者只使用过 Valine 和 Waline
+  # 支持 beaudar, utterances, giscus, waline, twikoo 和 artalk
+  # Stellaris 的维护者只使用过 Waline
   # 故未对其它评论系统进行较好的适配
   # 如果你在使用其它评论系统时遇到功能或样式 bug，而该评论系统在原 Stellar 主题中正常工作
   # 请提交 issue 反馈
-  service: # beaudar, utterances, giscus, valine, twikoo, waline, artalk
+  service: # beaudar, utterances, giscus, twikoo, waline, artalk
 
   # 在 404 页是否显示评论区？
   enabled_in_404: false
@@ -154,28 +154,6 @@ comments:
     data-lang: zh-CN
     data-loading: lazy
     crossorigin: anonymous
-
-  ### Valine
-  # https://valine.js.org
-  ### Valine 因存在 **安全问题**，不推荐使用。
-  valine:
-    js: https://fastly.jsdelivr.net/gh/XuxuGood/simple-blog-cdn@main/js/Valine.min.js
-    appId: # your appId
-    appKey: # your appKey
-    placeholder:
-    requiredFields: [ nick, mail ]
-    enableQQ: true # Unstable avatar link
-    recordIP: false # Record commenter IP
-    avatar: robohash # gravatar style https://valine.js.org/avatar
-    pageSize: 10 # comment list page size
-    lang: zh-cn
-    highlight: true
-    mathJax: false
-    tagMeta: [ 博主, 小伙伴, 访客 ] # 标签要显示的文字,默认'博主,小伙伴,访客'
-    metaPlaceholder:
-      nick: "昵称/QQ号(必填)"
-      mail: "邮箱（必填，完全保密）"
-      link: "网址(https://)"
 
   # Twikoo
   # https://twikoo.js.org/
@@ -428,7 +406,6 @@ plugins:
     js: https://fastly.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js
     css: https://fastly.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css
     # 可以处理评论区的图片（不支持 iframe 类评论系统）例如：
-    # 使用 valine 评论可以写: .vcontent img:not(.vemoji)
     # 使用 twikoo 评论可以写: .tk-content img:not([class*="emo"])
     # 使用 waline 评论可以写: #waline_container .vcontent img
     selector: .swiper-slide img, .vcontent img:not(.vemoji), .tag-plugin.image img # 多个选择器用英文逗号隔开
