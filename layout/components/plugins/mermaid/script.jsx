@@ -25,9 +25,23 @@ const MermaidScripts = (props) => {
               actorMargin: 50
             }
           })
-        })
-        document.querySelectorAll("pre.mermaid").forEach(e=>{
-          mermaid.render("preparedScheme", e.innerText, svg => e.innerHTML = svg)
+        });
+        
+        (document.querySelectorAll('pre.mermaid:not([data-processed="true"])') ?? []).forEach(e => {
+          (new Promise(resolve => {
+            const interval = setInterval(() => {
+              if (e.innerText !== "") {
+                clearInterval(interval)
+                resolve(e)
+              }
+            }, 20)
+          })).then(e => {
+            const uniqueId = "mermaidGraph_" + Math.random().toString(36).substr(2, 9)
+            e.setAttribute("data-processed", "true")
+            mermaid.render(uniqueId, e.innerText, svg => {
+              e.innerHTML = svg
+            })
+          })
         })
       }
       loadMermaid()
