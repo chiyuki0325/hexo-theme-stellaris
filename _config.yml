@@ -428,6 +428,10 @@ plugins:
   # 使用 hexo-renderer-markdown-it-plus 提供数学公式支持
   # npm uninstall hexo-renderer-marked --save npm install hexo-renderer-markdown-it-plus --save
 
+  katex:
+    enabled: true
+    css: https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css
+
   # 代码块复制按钮
   copycode:
     enabled: true
