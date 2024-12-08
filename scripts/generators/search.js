@@ -3,7 +3,9 @@
  */
 
 hexo.extend.generator.register('search_json_generator', function (locals) {
-  if (this.theme.config.search.service != 'local_search') { return {} }
+  if (this.theme.config.search.service != 'local_search') {
+    return {}
+  }
   const { root } = this.config
   const { local_search: cfg } = this.theme.config.search
   cfg.sort = '-date'
@@ -11,12 +13,12 @@ hexo.extend.generator.register('search_json_generator', function (locals) {
 
   var posts, pages
   if (cfg.field == 'post') {
-    posts = locals.posts?.filter(p => p.content?.length > 0).sort(cfg.sort)
+    posts = locals.posts?.filter((p) => p.content?.length > 0).sort(cfg.sort)
   } else if (cfg.field == 'page') {
-    pages = locals.pages?.filter(p => p.content?.length > 0)
+    pages = locals.pages?.filter((p) => p.content?.length > 0)
   } else {
-    posts = locals.posts?.filter(p => p.content?.length > 0).sort(cfg.sort)
-    pages = locals.pages?.filter(p => p.content?.length > 0)
+    posts = locals.posts?.filter((p) => p.content?.length > 0).sort(cfg.sort)
+    pages = locals.pages?.filter((p) => p.content?.length > 0)
   }
 
   var res = new Array()
@@ -89,14 +91,14 @@ hexo.extend.generator.register('search_json_generator', function (locals) {
   }
 
   if (posts) {
-    posts.each(function(post) {
+    posts.each(function (post) {
       if (post.indexing == false) return
       let temp_post = generateJson(post)
       res.push(temp_post)
-    }) 
-  } 
+    })
+  }
   if (pages) {
-    pages.each(function(page) {
+    pages.each(function (page) {
       if (page.indexing == false) return
       let temp_post = generateJson(page)
       res.push(temp_post)
@@ -104,6 +106,6 @@ hexo.extend.generator.register('search_json_generator', function (locals) {
   }
   return {
     path: cfg.path,
-    data: JSON.stringify(res)
+    data: JSON.stringify(res),
   }
 })

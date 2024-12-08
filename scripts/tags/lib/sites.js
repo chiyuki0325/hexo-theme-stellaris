@@ -7,51 +7,69 @@
 
 'use strict'
 
-module.exports = ctx => function(args) {
-  args = ctx.args.map(args, ['repo', 'api'], ['group'])
-  var links = ctx.locals.get('data').links
-  if (links == undefined) {
-    links = {}
-  }
-  var api
-  if (args.api) {
-    api = args.api
-  } else if (args.repo) {
-    api = 'https://api.vlts.cc/output_data/v2/' + args.repo
-  }
-  
-  var el = '<div class="tag-plugin sites-wrap">'
-  if (api) {
-    el += '<div class="stellar-sites-api"'
-    el += ' api="' + api + '"'
-    el += '>'
-    el += '<div class="group-body"></div>'
-    el += '</div>'
-  } else if (args.group) {
-    function cell(item) {
-      if (item.url && item.title) {
-        var cell = '<div class="site-card">'
-        cell += '<a class="card-link" target="_blank" rel="external nofollow noopener noreferrer" href="' + item.url + '">'
-        cell += '<img src="' + (item.screenshot || ('https://api.vlts.cc/screenshot?url=' + item.url + '&width=1280&height=720')) + '" onerror="javascript:this.removeAttribute(&quot;data-src&quot;);this.src=&quot;' + ctx.theme.config.default.cover + '&quot;;"/>'
-        cell += '<div class="info">'
-        cell += '<img src="' + (item.avatar || ctx.theme.config.default.link) + '" onerror="javascript:this.removeAttribute(&quot;data-src&quot;);this.src=&quot;' + ctx.theme.config.default.link + '&quot;;"/>'
-        cell += '<span class="title">' + item.title + '</span>'
-        cell += '<span class="desc">' + (item.description || item.url) + '</span>'
-        cell += '</div>'
-        cell += '</a></div>'
-        return cell
-      } else {
-        return ''
-      }
+module.exports = (ctx) =>
+  function (args) {
+    args = ctx.args.map(args, ['repo', 'api'], ['group'])
+    var links = ctx.locals.get('data').links
+    if (links == undefined) {
+      links = {}
     }
-    el += '<div class="group-body">'
-    const items = links[args.group] || []
-    items.forEach((item, i) => {
-      el += cell(item)
-    })
-    el += '</div>'
-  }
+    var api
+    if (args.api) {
+      api = args.api
+    } else if (args.repo) {
+      api = 'https://api.vlts.cc/output_data/v2/' + args.repo
+    }
 
-  el += '</div>'
-  return el
-}
+    var el = '<div class="tag-plugin sites-wrap">'
+    if (api) {
+      el += '<div class="stellar-sites-api"'
+      el += ' api="' + api + '"'
+      el += '>'
+      el += '<div class="group-body"></div>'
+      el += '</div>'
+    } else if (args.group) {
+      function cell(item) {
+        if (item.url && item.title) {
+          var cell = '<div class="site-card">'
+          cell +=
+            '<a class="card-link" target="_blank" rel="external nofollow noopener noreferrer" href="' +
+            item.url +
+            '">'
+          cell +=
+            '<img src="' +
+            (item.screenshot ||
+              'https://api.vlts.cc/screenshot?url=' +
+                item.url +
+                '&width=1280&height=720') +
+            '" onerror="javascript:this.removeAttribute(&quot;data-src&quot;);this.src=&quot;' +
+            ctx.theme.config.default.cover +
+            '&quot;;"/>'
+          cell += '<div class="info">'
+          cell +=
+            '<img src="' +
+            (item.avatar || ctx.theme.config.default.link) +
+            '" onerror="javascript:this.removeAttribute(&quot;data-src&quot;);this.src=&quot;' +
+            ctx.theme.config.default.link +
+            '&quot;;"/>'
+          cell += '<span class="title">' + item.title + '</span>'
+          cell +=
+            '<span class="desc">' + (item.description || item.url) + '</span>'
+          cell += '</div>'
+          cell += '</a></div>'
+          return cell
+        } else {
+          return ''
+        }
+      }
+      el += '<div class="group-body">'
+      const items = links[args.group] || []
+      items.forEach((item, i) => {
+        el += cell(item)
+      })
+      el += '</div>'
+    }
+
+    el += '</div>'
+    return el
+  }

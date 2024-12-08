@@ -7,24 +7,25 @@
  * {% radio [checked:false] [color:cyan] text %}
  */
 
-'use strict';
+'use strict'
 
-module.exports = (ctx,type) => (function(args) {
-  args = ctx.args.map(args, ['color', 'checked', 'symbol'], ['text']);
-  var el = '';
-  // div
-  el += '<div class="tag-plugin colorful checkbox"';
-  el += ' ' + ctx.args.joinTags(args, ['color', 'symbol']).join(' ');
-  el += '>';
-  // input
-  el += '<input type="' + (type || 'checkbox') + '"';
-  if (args.checked == 'true') {
-    el += ' checked="true"';
+module.exports = (ctx, type) =>
+  function (args) {
+    args = ctx.args.map(args, ['color', 'checked', 'symbol'], ['text'])
+    var el = ''
+    // div
+    el += '<div class="tag-plugin colorful checkbox"'
+    el += ' ' + ctx.args.joinTags(args, ['color', 'symbol']).join(' ')
+    el += '>'
+    // input
+    el += '<input type="' + (type || 'checkbox') + '"'
+    if (args.checked == 'true') {
+      el += ' checked="true"'
+    }
+    el += '/>'
+    // text
+    el += '<span>' + args.text + '</span>'
+    // div
+    el += '</div>'
+    return el
   }
-  el += '/>';
-  // text
-  el += '<span>' + args.text + '</span>';
-  // div
-  el += '</div>';
-  return el;
-})

@@ -7,9 +7,9 @@ hexo.extend.generator.register('categories', function (locals) {
     return {
       path: hexo.config.category_dir + '/index.html',
       data: locals.posts,
-      layout: ['categories']
+      layout: ['categories'],
     }
   } else {
-    return {};
+    return {}
   }
-});
+})

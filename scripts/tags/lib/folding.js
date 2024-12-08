@@ -9,22 +9,26 @@
 
 'use strict'
 
-module.exports = ctx => function(args, content) {
-  args = ctx.args.map(args, ['color', 'child', 'open'], ['title'])
-  var el = ''
-  // header
-  el += '<details class="tag-plugin colorful folding"'
-  el += ' ' + ctx.args.joinTags(args, ['color', 'child']).join(' ')
-  if (args.open && args.open == 'true') {
-    el += ' open'
-  }
-  el += '>'
-  // summary
-  el += '<summary><span>' + (args.title || '') + '</span></summary>'
-  // content
-  el += '<div class="body">'
-  el += ctx.render.renderSync({text: content, engine: 'markdown'}).split('\n').join('')
-  el += '</div></details>'
+module.exports = (ctx) =>
+  function (args, content) {
+    args = ctx.args.map(args, ['color', 'child', 'open'], ['title'])
+    var el = ''
+    // header
+    el += '<details class="tag-plugin colorful folding"'
+    el += ' ' + ctx.args.joinTags(args, ['color', 'child']).join(' ')
+    if (args.open && args.open == 'true') {
+      el += ' open'
+    }
+    el += '>'
+    // summary
+    el += '<summary><span>' + (args.title || '') + '</span></summary>'
+    // content
+    el += '<div class="body">'
+    el += ctx.render
+      .renderSync({ text: content, engine: 'markdown' })
+      .split('\n')
+      .join('')
+    el += '</div></details>'
 
-  return el
-}
+    return el
+  }

@@ -1,6 +1,6 @@
-module.exports = function(prop) {
-    const {config, theme, page} = props
-    const generatedScript = `
+module.exports = function (prop) {
+  const { config, theme, page } = props
+  const generatedScript = `
   function load_artalk() {
     if (!document.querySelectorAll("#artalk_container")[0]) return
     stellar.loadCSS('${theme.comments.artalk.css}')
@@ -27,5 +27,10 @@ module.exports = function(prop) {
   window.addEventListener(
     "load", load_artalk, false
   )`
-    return <script data-no-instant="true" dangerouslySetInnerHTML={{__html: generatedScript}}/>
+  return (
+    <script
+      data-no-instant='true'
+      dangerouslySetInnerHTML={{ __html: generatedScript }}
+    />
+  )
 }

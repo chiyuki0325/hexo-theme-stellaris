@@ -6,35 +6,36 @@
  *
  */
 
-'use strict';
+'use strict'
 
-module.exports = ctx => function(args) {
-  const config = ctx.theme.config.tag_plugins.emoji;
-  args = ctx.args.map(args, ['height'], ['source', 'name']);
-  var el = '';
-  if (args.source == undefined) {
-    return el;
-  }
-  el += '<span class="tag-plugin emoji">';
-  if (args.name == undefined) {
-    // 省略了 source
-    for (let id in config) {
-      if (config[id]) {
-        args.name = args.source;
-        args.source = id;
-        break;
+module.exports = (ctx) =>
+  function (args) {
+    const config = ctx.theme.config.tag_plugins.emoji
+    args = ctx.args.map(args, ['height'], ['source', 'name'])
+    var el = ''
+    if (args.source == undefined) {
+      return el
+    }
+    el += '<span class="tag-plugin emoji">'
+    if (args.name == undefined) {
+      // 省略了 source
+      for (let id in config) {
+        if (config[id]) {
+          args.name = args.source
+          args.source = id
+          break
+        }
       }
     }
-  }
-  if (config[args.source] && args.name) {
-    let url = config[args.source].replace('%s', args.name);
-    el += '<img no-lazy="" class="inline"';
-    el += ' src="' + url + '"';
-    if (args.height) {
-      el += ' style="height:' + args.height + '"';
+    if (config[args.source] && args.name) {
+      let url = config[args.source].replace('%s', args.name)
+      el += '<img no-lazy="" class="inline"'
+      el += ' src="' + url + '"'
+      if (args.height) {
+        el += ' style="height:' + args.height + '"'
+      }
+      el += '/>'
     }
-    el += '/>';
+    el += '</span>'
+    return el
   }
-  el += '</span>';
-  return el;
-}

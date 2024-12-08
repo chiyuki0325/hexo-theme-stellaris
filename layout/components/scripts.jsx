@@ -1,52 +1,61 @@
-const {Fragment} = require('react')
-const CommentsScript = require('./plugins/comments/script.jsx');
-const MathJaxScripts = require('./plugins/mathjax/script.jsx');
-const generateStellarScript = props => {
-    const {theme, __, url_for, page, post} = props
-    let outdateMonth = 0
-    if (theme.article?.outdated_check.enabled == true) {
-      if (post && ('outdate_month' in post)) {
-        outdateMonth = post.outdate_month
-      } else if (page && ('outdate_month' in page)) {
-        outdateMonth = page.outdate_month
-      } else {
-        outdateMonth = theme.article?.outdated_check?.month || 0
-      }
+const { Fragment } = require('react')
+const CommentsScript = require('./plugins/comments/script.jsx')
+const MathJaxScripts = require('./plugins/mathjax/script.jsx')
+const generateStellarScript = (props) => {
+  const { theme, __, url_for, page, post } = props
+  let outdateMonth = 0
+  if (theme.article?.outdated_check.enabled == true) {
+    if (post && 'outdate_month' in post) {
+      outdateMonth = post.outdate_month
+    } else if (page && 'outdate_month' in page) {
+      outdateMonth = page.outdate_month
+    } else {
+      outdateMonth = theme.article?.outdated_check?.month || 0
     }
+  }
 
-    const stellarPlugins = {
-      jQuery: url_for(theme.plugins.jquery || "https://fastly.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"),
-      stellar: theme.plugins.stellar,
-      marked: theme.plugins.marked,
-      instant_click: theme.plugins.instant_click
+  const stellarPlugins = {
+    jQuery: url_for(
+      theme.plugins.jquery ||
+        'https://fastly.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js'
+    ),
+    stellar: theme.plugins.stellar,
+    marked: theme.plugins.marked,
+    instant_click: theme.plugins.instant_click,
+  }
+
+  for (const plugin of [
+    'lazyload',
+    'swiper',
+    'scrollreveal',
+    'fancybox',
+    'copycode',
+  ]) {
+    if (theme.plugins[plugin].enabled) {
+      stellarPlugins[plugin] = theme.plugins[plugin]
     }
+  }
 
-    for (const plugin of ['lazyload', 'swiper', 'scrollreveal', 'fancybox', 'copycode']) {
-      if (theme.plugins[plugin].enabled) {
-        stellarPlugins[plugin] = theme.plugins[plugin]
-      }
+  const stellarTagPlugins = {}
+
+  for (const tagPlugin of ['bvideo']) {
+    if (theme.tag_plugins[tagPlugin].enabled) {
+      stellarTagPlugins[tagPlugin] = theme.tag_plugins[tagPlugin]
     }
+  }
 
-    const stellarTagPlugins = {}
-
-    for (const tagPlugin of ['bvideo']) {
-      if (theme.tag_plugins[tagPlugin].enabled) {
-        stellarTagPlugins[tagPlugin] = theme.tag_plugins[tagPlugin]
-      }
+  let stellarSearch = {}
+  if (theme.search.service) {
+    stellarSearch = {
+      service: theme.search.service,
     }
-
-    let stellarSearch = {}
-    if (theme.search.service) {
-      stellarSearch = {
-        service: theme.search.service,
-      }
-      if (stellarSearch.service == 'local_search') {
-        stellarSearch.js = theme.search.local_search.js
-        stellarSearch.path = theme.search.local_search.path
-      }
+    if (stellarSearch.service == 'local_search') {
+      stellarSearch.js = theme.search.local_search.js
+      stellarSearch.path = theme.search.local_search.path
     }
+  }
 
-    return `
+  return `
       stellar = {
         root: '${url_for()}',
         // 懒加载 css https://github.com/filamentgroup/loadCSS
@@ -150,40 +159,43 @@ const generateStellarScript = props => {
       stellar.article = {
         outdate_month: ${outdateMonth}
       };
-    `;
+    `
 }
 
-const ImportJS = props => {
-    const {theme, url_for} = props
-    let stellarJsUrl
-    if (theme.stellar && theme.stellar.cdn_js) {
-        stellarJsUrl = theme.stellar.cdn_js
-    } else {
-        stellarJsUrl = require("path").join(url_for(), '/js/main.js')
-    }
-    return <script src={stellarJsUrl} type="text/javascript" async={true} data-no-instant="true"/>
+const ImportJS = (props) => {
+  const { theme, url_for } = props
+  let stellarJsUrl
+  if (theme.stellar && theme.stellar.cdn_js) {
+    stellarJsUrl = theme.stellar.cdn_js
+  } else {
+    stellarJsUrl = require('path').join(url_for(), '/js/main.js')
+  }
+  return (
+    <script
+      src={stellarJsUrl}
+      type='text/javascript'
+      async={true}
+      data-no-instant='true'
+    />
+  )
 }
 
-const InjectScripts = props => {
-    let scripts = []
-    const {theme} = props
-    if (theme.inject && theme.inject.script && theme.inject.script.length > 0) {
-        const parse = require('html-react-parser').default
-        let i = 0
-        for (const script of theme.inject.script) {
-            scripts.push(
-                <Fragment key={String(i)}>{parse(script)}</Fragment>
-            )
-            i++
-        }
+const InjectScripts = (props) => {
+  let scripts = []
+  const { theme } = props
+  if (theme.inject && theme.inject.script && theme.inject.script.length > 0) {
+    const parse = require('html-react-parser').default
+    let i = 0
+    for (const script of theme.inject.script) {
+      scripts.push(<Fragment key={String(i)}>{parse(script)}</Fragment>)
+      i++
     }
-    return <>
-        {scripts}
-    </>
+  }
+  return <>{scripts}</>
 }
 
 const ImportDarkModeListener = (props) => {
-  const {theme, __} = props
+  const { theme, __ } = props
   const DarkModeListener = `
     const applyTheme = (theme) => {
       document.documentElement.setAttribute('data-theme', theme);
@@ -208,34 +220,47 @@ const ImportDarkModeListener = (props) => {
     })
   `
   if (theme.style.darkmode == 'auto-switch') {
-      return <script type="text/javascript" data-no-instant="true" dangerouslySetInnerHTML={{__html: DarkModeListener}}/>
+    return (
+      <script
+        type='text/javascript'
+        data-no-instant='true'
+        dangerouslySetInnerHTML={{ __html: DarkModeListener }}
+      />
+    )
   } else {
-      return <></>;
+    return <></>
   }
 }
 
+const Scripts = (props) => {
+  const { join } = require('path')
+  const { theme, page, url_for } = props
+  return (
+    <div className='scripts'>
+      <script src={theme.plugins.instant_click.js} data-no-instant='true' />
+      <script data-no-instant='true' type='text/javascript'>
+        {'InstantClick.init();'}
+      </script>
+      <script
+        type='text/javascript'
+        dangerouslySetInnerHTML={{ __html: generateStellarScript(props) }}
+      />
+      <ImportJS {...props} />
+      <script
+        type='text/javascript'
+        src={join(url_for(), '/js/check_outdated_browser.js')}
+        data-no-instant='true'
+      />
+      <CommentsScript {...props} />
+      {(() => {
+        if (theme.plugins.mathjax.per_page === true || page.mathjax === true)
+          return <MathJaxScripts {...props} />
+      })()}
 
-const Scripts = props => {
-    const {join} = require("path")
-    const {theme, page, url_for} = props
-    return (
-        <div className="scripts">
-            <script src={theme.plugins.instant_click.js} data-no-instant="true"/>
-            <script data-no-instant="true" type="text/javascript">
-                {"InstantClick.init();"}
-            </script>
-            <script type="text/javascript" dangerouslySetInnerHTML={{__html: generateStellarScript(props)}}/>
-            <ImportJS {...props}/>
-            <script type="text/javascript" src={join(url_for(), "/js/check_outdated_browser.js")} data-no-instant="true"/>
-            <CommentsScript {...props}/>
-            {(() => {
-                 if (theme.plugins.mathjax.per_page === true || page.mathjax === true) return (<MathJaxScripts {...props}/>)
-            })()}
-
-            <ImportDarkModeListener {...props}/>
-            <InjectScripts {...props} />
-        </div>
-    )
+      <ImportDarkModeListener {...props} />
+      <InjectScripts {...props} />
+    </div>
+  )
 }
 
 module.exports = Scripts

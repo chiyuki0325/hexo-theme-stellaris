@@ -12,42 +12,48 @@
 
 'use strict'
 
-module.exports = ctx => function(args, content) {
-  args = ctx.args.map(args, ['color'])
-  var el = ''
-  el += '<div class="tag-plugin colorful folders"'
-  el += ' ' + ctx.args.joinTags(args, ['color']).join(' ')
-  el += '>'
-  
-  var arr = content.split(/<!--\s*folder (.*?)\s*-->/g).filter(item => item.trim().length > 0)
-  if (arr.length > 0) {
-    var nodes = []
-    arr.forEach((item, i) => {
-      if (i % 2 == 0) {
-        nodes.push({
-          header: item
-        })
-      } else if (nodes.length > 0) {
-        var node = nodes[nodes.length-1]
-        if (node.body == undefined) {
-          node.body = item
-        } else {
-          node.body += '\n' + item
-        }
-      }
-    })
-    nodes.forEach((node, i) => {
-      el += '<details class="folder" index="' + (i) + '">'
-      // summary
-      el += '<summary><span>' + (node.header || '') + '</span></summary>'
-      // content
-      el += '<div class="body">'
-      el += ctx.render.renderSync({text: (node.body || ''), engine: 'markdown'}).split('\n').join('')
-      el += '</div></details>'
-    })  
-  }
+module.exports = (ctx) =>
+  function (args, content) {
+    args = ctx.args.map(args, ['color'])
+    var el = ''
+    el += '<div class="tag-plugin colorful folders"'
+    el += ' ' + ctx.args.joinTags(args, ['color']).join(' ')
+    el += '>'
 
-  el += '</div>'
-  
-  return el
-}
+    var arr = content
+      .split(/<!--\s*folder (.*?)\s*-->/g)
+      .filter((item) => item.trim().length > 0)
+    if (arr.length > 0) {
+      var nodes = []
+      arr.forEach((item, i) => {
+        if (i % 2 == 0) {
+          nodes.push({
+            header: item,
+          })
+        } else if (nodes.length > 0) {
+          var node = nodes[nodes.length - 1]
+          if (node.body == undefined) {
+            node.body = item
+          } else {
+            node.body += '\n' + item
+          }
+        }
+      })
+      nodes.forEach((node, i) => {
+        el += '<details class="folder" index="' + i + '">'
+        // summary
+        el += '<summary><span>' + (node.header || '') + '</span></summary>'
+        // content
+        el += '<div class="body">'
+        el += ctx.render
+          .renderSync({ text: node.body || '', engine: 'markdown' })
+          .split('\n')
+          .join('')
+        el += '</div></details>'
+      })
+    }
+
+    el += '</div>'
+
+    return el
+  }

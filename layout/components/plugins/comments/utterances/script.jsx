@@ -1,5 +1,5 @@
-const UtterancesScript = props => {
-    const generatedScript = `
+const UtterancesScript = (props) => {
+  const generatedScript = `
       function loadUtterances() {
         const els = document.querySelectorAll("#comments #utterances");
         if (els.length === 0) return;
@@ -28,7 +28,12 @@ const UtterancesScript = props => {
           "load", loadUtterances, false
       );
     `
-    return <script data-no-instant="true" dangerouslySetInnerHTML={{__html: generatedScript}}/>
+  return (
+    <script
+      data-no-instant='true'
+      dangerouslySetInnerHTML={{ __html: generatedScript }}
+    />
+  )
 }
 
-module.exports = UtterancesScript;
+module.exports = UtterancesScript

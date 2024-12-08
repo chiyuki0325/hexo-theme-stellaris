@@ -1,6 +1,6 @@
-const WalineScript = props => {
-    const {theme} = props;
-    const generatedScript = `
+const WalineScript = (props) => {
+  const { theme } = props
+  const generatedScript = `
       function load_comment(){
         if(!document.getElementById("waline_container"))return;
         stellar.loadCSS('${theme.comments.waline.css}');
@@ -26,8 +26,12 @@ const WalineScript = props => {
           "load", load_comment, false
       );
     `
-    return <script data-no-instant="true" dangerouslySetInnerHTML={{__html: generatedScript}}/>
+  return (
+    <script
+      data-no-instant='true'
+      dangerouslySetInnerHTML={{ __html: generatedScript }}
+    />
+  )
 }
 
-module.exports = WalineScript;
-
+module.exports = WalineScript

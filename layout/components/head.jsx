@@ -1,5 +1,5 @@
-const { Fragment } = require("react")
-const OpenGraphArguments = require("./head/open_graph.jsx")
+const { Fragment } = require('react')
+const OpenGraphArguments = require('./head/open_graph.jsx')
 const Title = (props) => {
   const { page, theme, config, __ } = props
   if (page.seo_title) {
@@ -10,25 +10,25 @@ const Title = (props) => {
     let proj = theme.wiki.tree[page.wiki]
     let wiki = (proj && proj.name) || page.wiki
     if (page.title) {
-      title = wiki + __("symbol.colon") + page.title + " - " + config.title
+      title = wiki + __('symbol.colon') + page.title + ' - ' + config.title
     } else {
-      title = wiki + " - " + config.title
+      title = wiki + ' - ' + config.title
     }
     return <title>{title}</title>
   } else {
     let title
     if (page.title) {
-      title = page.title + " - " + config.title
+      title = page.title + ' - ' + config.title
     } else if (page.category) {
       title =
-        __("btn.category") +
-        __("symbol.colon") +
+        __('btn.category') +
+        __('symbol.colon') +
         page.category +
-        " - " +
+        ' - ' +
         config.title
     } else if (page.tag) {
       title =
-        __("btn.tag") + __("symbol.colon") + page.tag + " - " + config.title
+        __('btn.tag') + __('symbol.colon') + page.tag + ' - ' + config.title
     } else {
       title = config.title
     }
@@ -41,16 +41,16 @@ const Description = (props) => {
   if (theme.open_graph && theme.open_graph.enabled) {
     return <></>
   }
-  if (page.layout === "wiki" && page.wiki) {
+  if (page.layout === 'wiki' && page.wiki) {
     let proj = theme.wiki.tree[page.wiki]
     if (proj && proj.description) {
-      return <meta name="description" content={proj.description} />
+      return <meta name='description' content={proj.description} />
     }
   }
   if (page.description || page.excerpt || page.content) {
     return (
       <meta
-        name="description"
+        name='description'
         content={truncate(
           strip_html(page.description || page.excerpt || page.content),
           { length: 150 }
@@ -58,7 +58,7 @@ const Description = (props) => {
       />
     )
   }
-  return <meta name="description" content={config.description} />
+  return <meta name='description' content={config.description} />
 }
 
 const Robots = (props) => {
@@ -67,7 +67,7 @@ const Robots = (props) => {
     return <></>
   }
   if (page.robots) {
-    return <meta name="robots" content={page.robots} />
+    return <meta name='robots' content={page.robots} />
   }
   return <></>
 }
@@ -79,8 +79,8 @@ const OpenGraph = (props) => {
     if (theme.head.open_graph.twitter_id) {
       args.twitter_id = theme.open_graph.twitter_id
     }
-    if (page.layout === "post" && page.cover) {
-      args.twitter_card = "summary_large_image"
+    if (page.layout === 'post' && page.cover) {
+      args.twitter_card = 'summary_large_image'
     }
     return args
   }
@@ -100,10 +100,10 @@ const Feed = (props) => {
   const { config, url_for } = props
   if (config.feed && config.feed.path) {
     // feed_tag.js to jsx
-    if (typeof config.feed.type === "string") {
+    if (typeof config.feed.type === 'string') {
       return (
         <link
-          rel="alternate"
+          rel='alternate'
           href={url_for(config.feed.path)}
           type={`application/${config.feed.type}+xml`}
           title={config.title}
@@ -114,7 +114,7 @@ const Feed = (props) => {
       for (const i in config.feed.type) {
         results.push(
           <link
-            rel="alternate"
+            rel='alternate'
             href={url_for(config.feed.path[i])}
             type={`application/${config.feed.type[i]}+xml`}
             key={i}
@@ -142,11 +142,11 @@ const ImportDarkMode = (props) => {
         }
         ThemeChange(window.localStorage.getItem('Stellaris.theme'));
     `
-  if (theme.style.darkmode == "auto-switch") {
+  if (theme.style.darkmode == 'auto-switch') {
     return (
       <script
-        type="text/javascript"
-        data-no-instant="true"
+        type='text/javascript'
+        data-no-instant='true'
         dangerouslySetInnerHTML={{ __html: DarkModePreset }}
       />
     )
@@ -157,18 +157,18 @@ const ImportDarkMode = (props) => {
 
 const ImportCSS = (props) => {
   const { theme, url_for } = props
-  const { join } = require("path")
+  const { join } = require('path')
   if (theme.stellar && theme.stellar.cdn_css) {
-    return <link rel="stylesheet" href={theme.stellar.cdn_css} />
+    return <link rel='stylesheet' href={theme.stellar.cdn_css} />
   } else {
-    return <link rel="stylesheet" href={join(url_for(), "/css/main.css")} />
+    return <link rel='stylesheet' href={join(url_for(), '/css/main.css')} />
   }
 }
 
 const FavIcon = (props) => {
   const { config, url_for } = props
   if (config.favicon) {
-    return <link rel="shortcut icon" href={url_for(config.favicon)} />
+    return <link rel='shortcut icon' href={url_for(config.favicon)} />
   } else {
     return <></>
   }
@@ -182,7 +182,7 @@ const ImportHighlightJSTheme = (props) => {
     config.highlight.hljs === true
   ) {
     return (
-      <link rel="stylesheet" href={theme.style.codeblock.highlightjs_theme} />
+      <link rel='stylesheet' href={theme.style.codeblock.highlightjs_theme} />
     )
   } else {
     return <></>
@@ -195,18 +195,18 @@ const Preconnect = (props) => {
     let preconnects = []
     for (const preconnect of prefetch_and_preconnect) {
       preconnects.push(
-        <link rel="dns-prefetch" href={preconnect} key={preconnect} />,
+        <link rel='dns-prefetch' href={preconnect} key={preconnect} />,
         <link
-          rel="preconnect"
+          rel='preconnect'
           href={preconnect}
-          crossOrigin="true"
+          crossOrigin='true'
           key={preconnect}
         />
       )
     }
     return (
       <>
-        <meta httpEquiv="X-DNS-Prefetch-Control" content="on" />
+        <meta httpEquiv='X-DNS-Prefetch-Control' content='on' />
         {preconnects}
       </>
     )
@@ -219,7 +219,7 @@ const InjectHead = (props) => {
   const { theme } = props
   let heads = []
   if (theme.inject && theme.inject.head && theme.inject.head.length > 0) {
-    const parse = require("html-react-parser").default
+    const parse = require('html-react-parser').default
     let i = 0
     for (const head of theme.inject.head) {
       heads.push(<Fragment key={String(i)}>{parse(head)}</Fragment>)
@@ -235,7 +235,7 @@ const ImportKatexCSS = (props) => {
     const pageIncludesKatex =
       props.page.content && props.page.content.includes('class="katex"')
     if (pageIncludesKatex)
-      return <link rel="stylesheet" href={theme.plugins.katex.css} />
+      return <link rel='stylesheet' href={theme.plugins.katex.css} />
     else return <></>
   } else {
     return <></>
@@ -246,47 +246,47 @@ module.exports = function Head(props) {
   const { stellar_info, env } = props
   return (
     <head>
-      <meta name="generator" content={`Hexo ${env.version}`} />
-      <meta name="hexo-theme" content={stellar_info("tree")} />
-      <meta charSet="utf-8" />
+      <meta name='generator' content={`Hexo ${env.version}`} />
+      <meta name='hexo-theme' content={stellar_info('tree')} />
+      <meta charSet='utf-8' />
       <Robots {...props} />
       <Preconnect {...props} />
-      <meta name="renderer" content="webkit" />
-      <meta name="force-rendering" content="webkit" />
-      <meta httpEquiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-      <meta name="HandheldFriendly" content="true" />
-      <meta name="apple-mobile-web-app-capable" content="yes" />
+      <meta name='renderer' content='webkit' />
+      <meta name='force-rendering' content='webkit' />
+      <meta httpEquiv='X-UA-Compatible' content='IE=edge,chrome=1' />
+      <meta name='HandheldFriendly' content='true' />
+      <meta name='apple-mobile-web-app-capable' content='yes' />
       <meta
-        name="apple-mobile-web-app-status-bar-style"
-        content="black-translucent"
+        name='apple-mobile-web-app-status-bar-style'
+        content='black-translucent'
       />
       <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1, maximum-scale=1"
+        name='viewport'
+        content='width=device-width, initial-scale=1, maximum-scale=1'
       />
       <meta
-        name="theme-color"
-        media="(prefers-color-scheme: light) and (max-width: 667px)"
-        content="#eff4f9"
+        name='theme-color'
+        media='(prefers-color-scheme: light) and (max-width: 667px)'
+        content='#eff4f9'
       />
       <meta
-        name="theme-color"
-        media="(prefers-color-scheme: light)"
-        content="#f8f8f8"
+        name='theme-color'
+        media='(prefers-color-scheme: light)'
+        content='#f8f8f8'
       />
       {/** Higher priority than `#1a1f35`. */}
       <meta
-        name="theme-color"
-        media="(prefers-color-scheme: dark) and (max-width: 667px)"
-        content="#000000"
+        name='theme-color'
+        media='(prefers-color-scheme: dark) and (max-width: 667px)'
+        content='#000000'
       />
       <meta
-        name="theme-color"
-        media="(prefers-color-scheme: dark)"
-        content="#202020"
+        name='theme-color'
+        media='(prefers-color-scheme: dark)'
+        content='#202020'
       />
 
-      <meta name="darkreader-lock" />
+      <meta name='darkreader-lock' />
 
       <Title {...props} />
       <OpenGraph {...props} />

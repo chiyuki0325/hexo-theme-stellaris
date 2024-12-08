@@ -6,23 +6,24 @@
  *
  */
 
-'use strict';
+'use strict'
 
-module.exports = ctx => function(args) {
-  args = ctx.args.map(args, ['height'], ['source']);
-  var el = '';
-  if (args.source == undefined) {
-    return el;
-  }
-  el += '<span class="tag-plugin emoji">';
-  if (args.source) {
-    el += '<img no-lazy="" class="inline"';
-    el += ' src="' + args.source + '"';
-    if (args.height) {
-      el += ' style="height:' + args.height + '"';
+module.exports = (ctx) =>
+  function (args) {
+    args = ctx.args.map(args, ['height'], ['source'])
+    var el = ''
+    if (args.source == undefined) {
+      return el
     }
-    el += '/>';
+    el += '<span class="tag-plugin emoji">'
+    if (args.source) {
+      el += '<img no-lazy="" class="inline"'
+      el += ' src="' + args.source + '"'
+      if (args.height) {
+        el += ' style="height:' + args.height + '"'
+      }
+      el += '/>'
+    }
+    el += '</span>'
+    return el
   }
-  el += '</span>';
-  return el;
-}

@@ -22,52 +22,53 @@ function layoutDocTree(ctx, pages) {
   return el
 }
 
-module.exports = ctx => function(args) {
-  args = ctx.args.map(args, ['wiki', 'open', 'display'], ['title'])
+module.exports = (ctx) =>
+  function (args) {
+    args = ctx.args.map(args, ['wiki', 'open', 'display'], ['title'])
 
-  var el = ''
-  el += '<div class="tag-plugin toc"'
-  el += ' ' + ctx.args.joinTags(args, ['display']).join(' ')
-  if (args.display === 'mobile') {
-    el += ' style="display:none"'
-  }
-  el += '>'
-
-  el += '<details class="toc"'
-  if (args.open != 'false') {
-    el += ' open'
-  }
-  el += '>'
-  el += '<summary>'
-  el += args.title || 'TOC'
-  el += '</summary>'
-
-  if (args.wiki) {
-    const proj = ctx.theme.config.wiki.tree[args.wiki]
-    if (proj == undefined) {
-      return ''
+    var el = ''
+    el += '<div class="tag-plugin toc"'
+    el += ' ' + ctx.args.joinTags(args, ['display']).join(' ')
+    if (args.display === 'mobile') {
+      el += ' style="display:none"'
     }
-    if (proj.sections && proj.sections.length > 1) {
-      el += '<div class="body fs14 multi">'
-      proj.sections.forEach((sec, i) => {
-        el += '<section>'
-        el += '<div class="header">'
-        el += sec.title
+    el += '>'
+
+    el += '<details class="toc"'
+    if (args.open != 'false') {
+      el += ' open'
+    }
+    el += '>'
+    el += '<summary>'
+    el += args.title || 'TOC'
+    el += '</summary>'
+
+    if (args.wiki) {
+      const proj = ctx.theme.config.wiki.tree[args.wiki]
+      if (proj == undefined) {
+        return ''
+      }
+      if (proj.sections && proj.sections.length > 1) {
+        el += '<div class="body fs14 multi">'
+        proj.sections.forEach((sec, i) => {
+          el += '<section>'
+          el += '<div class="header">'
+          el += sec.title
+          el += '</div>'
+          el += layoutDocTree(ctx, sec.pages)
+          el += '</section>'
+        })
         el += '</div>'
-        el += layoutDocTree(ctx, sec.pages)
-        el += '</section>'
-      })
-      el += '</div>'
-    } else {
-      el += '<div class="body fs14">'
-      el += '<div class="body">'
-      el += layoutDocTree(ctx, proj.pages)
-      el += '</div>'
-      el += '</div>'
+      } else {
+        el += '<div class="body fs14">'
+        el += '<div class="body">'
+        el += layoutDocTree(ctx, proj.pages)
+        el += '</div>'
+        el += '</div>'
+      }
     }
+    el += '</details>'
+    // end
+    el += '</div>'
+    return el
   }
-  el += '</details>'
-  // end
-  el += '</div>'
-  return el
-}

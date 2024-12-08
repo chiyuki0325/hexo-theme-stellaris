@@ -7,30 +7,28 @@ hexo-theme-stellaris 分叉自 [hexo-theme-stellar](https://github.com/xaoxuu/he
 ### 安装
 
 - 环境需求
-    ```
-    Hexo: 5.4.0 ~ 6.3.0
-    hexo-cli: 4.3.0 ~ latest
-    node.js: 14.17.3 ~ 18.12.0
-    npm: 6.14.13 ~ 8.19.2
-    ```
+  ```
+  Hexo: 5.4.0 ~ 6.3.0
+  hexo-cli: 4.3.0 ~ latest
+  node.js: 14.17.3 ~ 18.12.0
+  npm: 6.14.13 ~ 8.19.2
+  ```
 
 #### 使用 Git 安装
 
 - 安装依赖
-    ```bash
-    npm install react react-dom hexo-renderer-jsx html-react-parser --save
-    ```
-    
-    ```bash
-    npm install node-fetch@2 --save
-    // bilicard 插件所需
-    ```
-    
+  ```bash
+  npm install react react-dom hexo-renderer-jsx html-react-parser --save
+  ```
+  ```bash
+  npm install node-fetch@2 --save
+  // bilicard 插件所需
+  ```
 - 将主题安装为子模块
-  
-    ```bash
-    git submodule add https://github.com/chiyuki0325/hexo-theme-stellaris.git themes/stellaris
-    ```
+
+  ```bash
+  git submodule add https://github.com/chiyuki0325/hexo-theme-stellaris.git themes/stellaris
+  ```
 
 #### 使用 npm 安装
 
@@ -38,16 +36,18 @@ hexo-theme-stellaris 分叉自 [hexo-theme-stellar](https://github.com/xaoxuu/he
 npm install hexo-theme-stellaris --save
 ```
 
-
 安装好后，在 `config.yml` 中添加 `theme: stellaris`。
 
 ### 更新
 
 #### 使用 Git
+
 ```bash
 git submodule update --remote --merge
 ```
+
 #### 使用 npm
+
 ```bash
 npm update hexo-theme-stellaris
 ```
@@ -93,6 +93,7 @@ article:
   > 发布于 3 个月前，更新于 3 个月前，文章内容可能已经过时
 
 - MathJax 增加了 `per_page` 选项，开启后无需在每个页面的 front-matter 处添加 `mathjax: true` 即可开启 MathJax。
+
   ```yaml
   plugins:
     # MathJax

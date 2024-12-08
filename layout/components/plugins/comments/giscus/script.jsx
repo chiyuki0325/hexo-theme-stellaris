@@ -1,5 +1,5 @@
-const GiscusScript = props => {
-    const generatedScript = `
+const GiscusScript = (props) => {
+  const generatedScript = `
       function loadGiscus() {
         const els = document.querySelectorAll("#comments #giscus");
         if (els.length === 0) return;
@@ -28,7 +28,12 @@ const GiscusScript = props => {
           "load", loadGiscus, false
       );
     `
-    return <script data-no-instant="true" dangerouslySetInnerHTML={{__html: generatedScript}}/>
+  return (
+    <script
+      data-no-instant='true'
+      dangerouslySetInnerHTML={{ __html: generatedScript }}
+    />
+  )
 }
 
-module.exports = GiscusScript;
+module.exports = GiscusScript

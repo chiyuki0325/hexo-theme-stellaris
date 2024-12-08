@@ -1,5 +1,5 @@
-const BeaudarScript = props => {
-    const generatedScript = `
+const BeaudarScript = (props) => {
+  const generatedScript = `
       function loadBeaudar() {
         const els = document.querySelectorAll("#comments #beaudar");
         if (els.length === 0) return;
@@ -28,7 +28,12 @@ const BeaudarScript = props => {
           "load", loadBeaudar, false
       );
     `
-    return <script data-no-instant="true" dangerouslySetInnerHTML={{__html: generatedScript}}/>
+  return (
+    <script
+      data-no-instant='true'
+      dangerouslySetInnerHTML={{ __html: generatedScript }}
+    />
+  )
 }
 
-module.exports = BeaudarScript;
+module.exports = BeaudarScript

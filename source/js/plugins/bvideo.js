@@ -1,35 +1,35 @@
-(() => {
+;(() => {
   const BiliCard = {
-    convertNum: (num) => (num >= 1E4) ? (num / 1E4).toFixed(1) + "万" : (num),
-    toHHMMSS: (second) => [
-        Math.floor(second / 3600),
-        Math.floor(second / 60) % 60,
-        second % 60
-    ].map(n => n.toString().padStart(2, 0)).join(':'),
-    getVideoMessage: async function(id) {
+    convertNum: (num) => (num >= 1e4 ? (num / 1e4).toFixed(1) + '万' : num),
+    toHHMMSS: (second) =>
+      [Math.floor(second / 3600), Math.floor(second / 60) % 60, second % 60]
+        .map((n) => n.toString().padStart(2, 0))
+        .join(':'),
+    getVideoMessage: async function (id) {
       const type = id.slice(0, 2).toLowerCase()
-      const vtype = { 'av': 'aid', 'bv': 'bvid' }[type]
+      const vtype = { av: 'aid', bv: 'bvid' }[type]
       const url = `${stellar.tag_plugins.bvideo.video_info}?vtype=${vtype}&type=${type}&id=${id}`
-      const data = (await (await fetch(url)).json())['data'];
-      return data ? {
-          v_id: id,
-          v_title: data['title'],
-          v_time: this.toHHMMSS(data['duration']),
-          v_playview:  (data['stat']['view']),
-          v_danmaku: this.convertNum(data['stat']['danmaku']),
-          v_type: "视频",
-          v_upname: data['owner']['name'],
-          v_cover: data['pic']
-      } : {
-          v_id: id,
-          v_title: "出错了！",
-      }
+      const data = (await (await fetch(url)).json())['data']
+      return data
+        ? {
+            v_id: id,
+            v_title: data['title'],
+            v_time: this.toHHMMSS(data['duration']),
+            v_playview: data['stat']['view'],
+            v_danmaku: this.convertNum(data['stat']['danmaku']),
+            v_type: '视频',
+            v_upname: data['owner']['name'],
+            v_cover: data['pic'],
+          }
+        : {
+            v_id: id,
+            v_title: '出错了！',
+          }
     },
-    layout: function(el) {
+    layout: function (el) {
       const v_id = el.getAttribute('v_id')
-      this.getVideoMessage(v_id).then(data => {
-        el.children[0].innerHTML = (
-            `<div class="bvideo-box">
+      this.getVideoMessage(v_id).then((data) => {
+        el.children[0].innerHTML = `<div class="bvideo-box">
               <div class="bvideo-cover">
                   <div class="cover-default"></div>
                   <div class="bvideo-cover-layer" style="background-image:url(${stellar.tag_plugins.bvideo.image_proxy}${data.v_cover}@320w_200h_1c_!web-space-index-myvideo.webp)">
@@ -54,16 +54,15 @@
                   <div class="actions hide"></div>
               </div>
           </div>`
-        )
       })
     },
-    init: function() {
-      const els = document.getElementsByClassName('bvideo');
+    init: function () {
+      const els = document.getElementsByClassName('bvideo')
       for (let i = 0; i < els.length; i++) {
         const el = els[i]
         this.layout(el)
       }
-    }
+    },
   }
   stellaris.registerThemePlugin('.bvideo', BiliCard)
 })()

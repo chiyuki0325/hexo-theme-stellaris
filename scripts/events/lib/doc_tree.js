@@ -2,10 +2,10 @@
  * doc_tree.js v2 | https://github.com/xaoxuu/hexo-theme-stellar/
  */
 
-'use strict';
+'use strict'
 
 class WikiPage {
-  constructor(page) { 
+  constructor(page) {
     this.id = page._id
     this.wiki = page.wiki
     this.title = page.title
@@ -18,17 +18,17 @@ class WikiPage {
 }
 
 function getWikiObject(ctx) {
-  var wiki = { tree:{} }
+  var wiki = { tree: {} }
   const data = ctx.locals.get('data')
   var list = []
   for (let key of Object.keys(data)) {
     if (key.includes('wiki/') && key.length > 5) {
       let newKey = key.replace('wiki/', '')
       let obj = data[key]
-      if ((typeof obj.tags == 'string') && obj.tags.constructor == String) {
+      if (typeof obj.tags == 'string' && obj.tags.constructor == String) {
         obj.tags = [obj.tags]
       }
-      if ((typeof obj.toc == 'object') && obj.toc.constructor == Array) {
+      if (typeof obj.toc == 'object' && obj.toc.constructor == Array) {
         obj.toc = { '': obj.toc }
       }
       obj.id = newKey
@@ -51,12 +51,14 @@ function getWikiObject(ctx) {
   return wiki
 }
 
-module.exports = ctx => {
+module.exports = (ctx) => {
   // wiki 配置
   var wiki = getWikiObject(ctx)
   const pages = ctx.locals.get('pages')
   // wiki 所有页面
-  const wiki_pages = pages.filter(p => (p.layout === 'wiki')).map(p => new WikiPage(p))
+  const wiki_pages = pages
+    .filter((p) => p.layout === 'wiki')
+    .map((p) => new WikiPage(p))
   const wiki_list = Object.keys(wiki.tree)
 
   // 数据整合：项目标签
@@ -85,12 +87,12 @@ module.exports = ctx => {
       item.name = id
     }
   }
-  
+
   // 数据整合：每个项目的子页面
   for (let i = 0; i < wiki_list.length; i++) {
-    let id = wiki_list[i];
+    let id = wiki_list[i]
     let item = wiki.tree[id]
-    let sub_pages = wiki_pages.filter(p => p.wiki === id)
+    let sub_pages = wiki_pages.filter((p) => p.wiki === id)
     if (!sub_pages || sub_pages.length == 0) {
       wiki_list.splice(i, 1)
       delete wiki.tree[id]
@@ -103,7 +105,7 @@ module.exports = ctx => {
       for (let id of Object.keys(item.toc)) {
         const sec = item.toc[id]
         for (let key of sec) {
-          let hs = sub_pages.filter(p => p.path_key == item.path + key)
+          let hs = sub_pages.filter((p) => p.path_key == item.path + key)
           if (hs.length > 0) {
             item.homepage = hs[0]
             break
@@ -124,26 +126,31 @@ module.exports = ctx => {
     if (item.toc) {
       // 根据配置设置顺序
       for (let title of Object.keys(item.toc)) {
-        var sec = { title: title, pages: []}
+        var sec = { title: title, pages: [] }
         for (let key of item.toc[title]) {
-          sec.pages = sec.pages.concat(sub_pages.filter(p => p.path_key == item.path + key))
-          others = others.filter(p => p.path_key != item.path + key)
+          sec.pages = sec.pages.concat(
+            sub_pages.filter((p) => p.path_key == item.path + key)
+          )
+          others = others.filter((p) => p.path_key != item.path + key)
         }
         sections.push(sec)
       }
-      if (others.length > 0 && others.filter(p => p.title?.length > 0).length > 0) {
+      if (
+        others.length > 0 &&
+        others.filter((p) => p.title?.length > 0).length > 0
+      ) {
         sections.push({
           title: '...',
-          pages: others.sort((p1, p2) => p1.path - p2.path)
+          pages: others.sort((p1, p2) => p1.path - p2.path),
         })
       }
     } else {
       // 自动设置顺序
       sections.push({
-        pages: sub_pages.sort((p1, p2) => p1.path - p2.path)
+        pages: sub_pages.sort((p1, p2) => p1.path - p2.path),
       })
     }
-    
+
     // page number
     var page_number = 0
     for (let sec of sections) {
@@ -154,21 +161,26 @@ module.exports = ctx => {
     item.sections = sections
     item.pages = sub_pages
   }
-  
+
   // 全站所有的项目标签
   var all_tags = {}
   all_tag_name.forEach((tag_name, i) => {
     var subs = []
     for (let id of wiki_list) {
       let item = wiki.tree[id]
-      if (item.tags && item.tags.includes(tag_name) === true && subs.includes(tag_name) === false) {
+      if (
+        item.tags &&
+        item.tags.includes(tag_name) === true &&
+        subs.includes(tag_name) === false
+      ) {
         subs.push(item.id)
       }
     }
     all_tags[tag_name] = {
       name: tag_name,
-      path: (ctx.config.wiki_dir || 'wiki') + '/tags/' + tag_name + '/index.html',
-      items: subs
+      path:
+        (ctx.config.wiki_dir || 'wiki') + '/tags/' + tag_name + '/index.html',
+      items: subs,
     }
   })
 
@@ -190,5 +202,4 @@ module.exports = ctx => {
   wiki.all_pages = wiki_pages
   wiki.shelf = ctx.locals.get('data').wiki
   ctx.theme.config.wiki = wiki
-
 }

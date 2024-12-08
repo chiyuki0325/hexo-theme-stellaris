@@ -11,37 +11,41 @@
 
 'use strict'
 
-module.exports = ctx => function(args, content) {
-  var el = ''
-  args = ctx.args.map(args, ['author', 'date', 'footer'], ['title'])
+module.exports = (ctx) =>
+  function (args, content) {
+    var el = ''
+    args = ctx.args.map(args, ['author', 'date', 'footer'], ['title'])
 
-  el += '<div class="tag-plugin poetry"'
-  el += '>'
-  el += '<div class="content">'
-  if (args.title) {
-    el += '<div class="title">'
-    el += args.title
-    el += '</div>'
-  }
-  if (args.author || args.date) {
-    el += '<div class="meta">'
-    if (args.author) {
-      el += '<span>' + args.author + '</span>'
+    el += '<div class="tag-plugin poetry"'
+    el += '>'
+    el += '<div class="content">'
+    if (args.title) {
+      el += '<div class="title">'
+      el += args.title
+      el += '</div>'
     }
-    if (args.date) {
-      el += '<span>' + args.date + '</span>'
+    if (args.author || args.date) {
+      el += '<div class="meta">'
+      if (args.author) {
+        el += '<span>' + args.author + '</span>'
+      }
+      if (args.date) {
+        el += '<span>' + args.date + '</span>'
+      }
+      el += '</div>'
+    }
+    el += '<div class="body">'
+    el += ctx.render
+      .renderSync({ text: content, engine: 'markdown' })
+      .split('\n')
+      .join('')
+    el += '</div>'
+    if (args.footer) {
+      el += '<div class="footer">'
+      el += args.footer
+      el += '</div>'
     }
     el += '</div>'
-  }
-  el += '<div class="body">'
-  el += ctx.render.renderSync({text: content, engine: 'markdown'}).split('\n').join('')
-  el += '</div>'
-  if (args.footer) {
-    el += '<div class="footer">'
-    el += args.footer
     el += '</div>'
+    return el
   }
-  el += '</div>'
-  el += '</div>'
-  return el
-}

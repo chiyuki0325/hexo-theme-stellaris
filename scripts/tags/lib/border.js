@@ -7,27 +7,31 @@
  * {% endborder %}
  */
 
-'use strict';
+'use strict'
 
-module.exports = ctx => function(args, content) {
-  args = ctx.args.map(args, ['color', 'child'], ['title']);
-  const { title } = args;
-  if (args.color == null) {
-    args.color = ctx.theme.config.tag_plugins.note.default_color
-  }
-  var el = '';
-  // header
-  el += '<div class="tag-plugin colorful note"';
-  el += ' ' + ctx.args.joinTags(args, ['color', 'child']).join(' ');
-  el += '>';
-  // title
-  if (title && title.length > 0) {
-    el += '<div class="title"><strong>' + title + '</strong></div>';
-  }
-  // content
-  el += '<div class="body">';
-  el += ctx.render.renderSync({text: content, engine: 'markdown'}).split('\n').join('');
-  el += '</div></div>';
+module.exports = (ctx) =>
+  function (args, content) {
+    args = ctx.args.map(args, ['color', 'child'], ['title'])
+    const { title } = args
+    if (args.color == null) {
+      args.color = ctx.theme.config.tag_plugins.note.default_color
+    }
+    var el = ''
+    // header
+    el += '<div class="tag-plugin colorful note"'
+    el += ' ' + ctx.args.joinTags(args, ['color', 'child']).join(' ')
+    el += '>'
+    // title
+    if (title && title.length > 0) {
+      el += '<div class="title"><strong>' + title + '</strong></div>'
+    }
+    // content
+    el += '<div class="body">'
+    el += ctx.render
+      .renderSync({ text: content, engine: 'markdown' })
+      .split('\n')
+      .join('')
+    el += '</div></div>'
 
-  return el;
-}
+    return el
+  }

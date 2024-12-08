@@ -1,18 +1,18 @@
 /* global hexo */
 
-'use strict';
+'use strict'
 
 hexo.on('generateBefore', () => {
   // Merge config.
-  require('./lib/config')(hexo);
-  require('./lib/doc_tree')(hexo);
-  require('./lib/utils')(hexo);
-});
+  require('./lib/config')(hexo)
+  require('./lib/doc_tree')(hexo)
+  require('./lib/utils')(hexo)
+})
 
 hexo.on('ready', () => {
-  const { version, homepage, repository } = require('../../package.json');
+  const { version, homepage, repository } = require('../../package.json')
   hexo.log.info(`Welcome to Stellaris ${version}
 DOCS  ${homepage}
 REPO  ${repository.url}
-  `);
-});
+  `)
+})

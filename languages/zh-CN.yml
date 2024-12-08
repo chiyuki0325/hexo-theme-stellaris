@@ -63,8 +63,8 @@ message:
     auto: 切换到跟随系统配色
 
 symbol:
-  comma: "，"
-  period: "。"
-  colon: "："
-  brackets_l: "（"
-  brackets_r: "）"
+  comma: '，'
+  period: '。'
+  colon: '：'
+  brackets_l: '（'
+  brackets_r: '）'

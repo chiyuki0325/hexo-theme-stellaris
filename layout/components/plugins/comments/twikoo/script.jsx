@@ -1,6 +1,6 @@
-const TwikooScript = props => {
-    const {theme} = props;
-    const generatedScript = `
+const TwikooScript = (props) => {
+  const { theme } = props
+  const generatedScript = `
         function load_twikoo() {
             if (!document.querySelectorAll("#twikoo_container")[0]) return;
             stellar.loadScript('${theme.comments.twikoo.js}', {defer: true}).then(function () {
@@ -22,8 +22,12 @@ const TwikooScript = props => {
           "load", load_twikoo, false
       );
     `
-    return <script data-no-instant="true" dangerouslySetInnerHTML={{__html: generatedScript}}/>
+  return (
+    <script
+      data-no-instant='true'
+      dangerouslySetInnerHTML={{ __html: generatedScript }}
+    />
+  )
 }
 
-module.exports = TwikooScript;
-
+module.exports = TwikooScript

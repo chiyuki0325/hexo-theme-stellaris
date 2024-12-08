@@ -7,29 +7,33 @@
 
 'use strict'
 
-module.exports = ctx => function(args) {
-  args = ctx.args.map(args, ['color'], ['title', 'content'])
-  if (args.content == undefined || args.content.length <= 0) {
-    args.content = args.title
-    args.title = ''
-  }
-  const { title } = args
-  if (args.color == null) {
-    args.color = ctx.theme.config.tag_plugins.note.default_color
-  }
-  var el = ''
-  // header
-  el += '<div class="tag-plugin colorful note"'
-  el += ' ' + ctx.args.joinTags(args, ['color', 'child']).join(' ')
-  el += '>'
-  // title
-  if (title && title.length > 0) {
-    el += '<div class="title">' + title + '</div>'
-  }
-  // content
-  el += '<div class="body">'
-  el += ctx.render.renderSync({text: args.content, engine: 'markdown'}).split('\n').join('')
-  el += '</div></div>'
+module.exports = (ctx) =>
+  function (args) {
+    args = ctx.args.map(args, ['color'], ['title', 'content'])
+    if (args.content == undefined || args.content.length <= 0) {
+      args.content = args.title
+      args.title = ''
+    }
+    const { title } = args
+    if (args.color == null) {
+      args.color = ctx.theme.config.tag_plugins.note.default_color
+    }
+    var el = ''
+    // header
+    el += '<div class="tag-plugin colorful note"'
+    el += ' ' + ctx.args.joinTags(args, ['color', 'child']).join(' ')
+    el += '>'
+    // title
+    if (title && title.length > 0) {
+      el += '<div class="title">' + title + '</div>'
+    }
+    // content
+    el += '<div class="body">'
+    el += ctx.render
+      .renderSync({ text: args.content, engine: 'markdown' })
+      .split('\n')
+      .join('')
+    el += '</div></div>'
 
-  return el
-}
+    return el
+  }

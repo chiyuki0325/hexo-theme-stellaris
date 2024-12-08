@@ -3,34 +3,34 @@
  */
 
 hexo.extend.generator.register('wiki', function (locals) {
-  var hasWiki = false;
+  var hasWiki = false
   locals.pages.forEach((page, i) => {
     if (page.layout == 'wiki') {
-      hasWiki = true;
+      hasWiki = true
     }
-  });
+  })
   if (hasWiki) {
-    var ret = [];
+    var ret = []
     ret.push({
       path: (hexo.config.wiki_dir || 'wiki') + '/index.html',
-      data: {'filter': false},
-      layout: ['wiki']
-    });
+      data: { filter: false },
+      layout: ['wiki'],
+    })
     if (hexo.theme.config.wiki && hexo.theme.config.wiki.all_tags) {
       for (let id of Object.keys(hexo.theme.config.wiki.all_tags)) {
-        let tag = hexo.theme.config.wiki.all_tags[id];
+        let tag = hexo.theme.config.wiki.all_tags[id]
         ret.push({
           path: tag.path,
           data: {
-            'filter': true,
-            'tagName': tag.name
+            filter: true,
+            tagName: tag.name,
           },
-          layout: ['wiki']
-        });
+          layout: ['wiki'],
+        })
       }
     }
-    return ret;
+    return ret
   } else {
-    return {};
+    return {}
   }
-});
+})

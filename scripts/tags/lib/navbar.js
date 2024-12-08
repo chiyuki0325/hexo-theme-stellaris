@@ -10,48 +10,49 @@
 
 'use strict'
 
-module.exports = ctx => function(args) {
-  if (args.length == 0) {
-    return
-  }
-  args = ctx.args.map(args, ['active'], ['links'])
-  if (args.links) {
-    args.links = args.links.split(' ')
-  }
-  var el = '<div class="tag-plugin navbar"><nav class="cap">'
-  function layoutItem(a, i) {
-    var text = ''
-    var href = ''
-    var el = '<a'
-    if ((i+1).toString() === args.active) {
-      el += ' class="active"'
+module.exports = (ctx) =>
+  function (args) {
+    if (args.length == 0) {
+      return
     }
-    if (a.includes('](')) {
-      // markdown
-      let tmp = a.split('](')
-      if (tmp.length > 1) {
-        text = tmp[0]
-        if (text.length > 1) {
-          text = text.substring(1, text.length)
-        }
-        href = tmp[1]
-        if (href.length > 1) {
-          href = href.substring(0, href.length-1)
-        }
-        el += ' href="' + href + '"'
+    args = ctx.args.map(args, ['active'], ['links'])
+    if (args.links) {
+      args.links = args.links.split(' ')
+    }
+    var el = '<div class="tag-plugin navbar"><nav class="cap">'
+    function layoutItem(a, i) {
+      var text = ''
+      var href = ''
+      var el = '<a'
+      if ((i + 1).toString() === args.active) {
+        el += ' class="active"'
       }
-    } else {
-      el += ' href="#' + a + '"'
-      text = a
+      if (a.includes('](')) {
+        // markdown
+        let tmp = a.split('](')
+        if (tmp.length > 1) {
+          text = tmp[0]
+          if (text.length > 1) {
+            text = text.substring(1, text.length)
+          }
+          href = tmp[1]
+          if (href.length > 1) {
+            href = href.substring(0, href.length - 1)
+          }
+          el += ' href="' + href + '"'
+        }
+      } else {
+        el += ' href="#' + a + '"'
+        text = a
+      }
+      el += '>'
+      el += text
+      el += '</a>'
+      return el
     }
-    el += '>'
-    el += text
-    el += '</a>'
+    ;(args.links || []).forEach((item, i) => {
+      el += layoutItem(item, i)
+    })
+    el += '</nav></div>'
     return el
   }
-  (args.links || []).forEach((item, i) => {
-    el += layoutItem(item, i)
-  })
-  el += '</nav></div>'
-  return el
-}

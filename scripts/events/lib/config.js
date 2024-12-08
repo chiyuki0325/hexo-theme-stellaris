@@ -5,63 +5,68 @@
  * https://github.com/volantis-x/hexo-theme-volantis/blob/master/scripts/events/lib/cdn.js
  */
 
-'use strict';
+'use strict'
 
-const path = require('path');
+const path = require('path')
 
-module.exports = hexo => {
-
-  const { cache, language_switcher } = hexo.theme.config;
-  const warning = function(...args) {
-    hexo.log.warn(`Since ${args[0]} is turned on, the ${args[1]} is disabled to avoid potential hazards.`);
-  };
+module.exports = (hexo) => {
+  const { cache, language_switcher } = hexo.theme.config
+  const warning = function (...args) {
+    hexo.log.warn(
+      `Since ${args[0]} is turned on, the ${args[1]} is disabled to avoid potential hazards.`
+    )
+  }
 
   if (cache && (cache.enable || cache.enabled) && language_switcher) {
-    warning('language_switcher', 'caching');
-    cache.enabled = false;
+    warning('language_switcher', 'caching')
+    cache.enabled = false
   }
 
   if (cache && (cache.enable || cache.enabled) && hexo.config.relative_link) {
-    warning('caching', '`relative_link` option in Hexo `_config.yml`');
-    hexo.config.relative_link = false;
+    warning('caching', '`relative_link` option in Hexo `_config.yml`')
+    hexo.config.relative_link = false
   }
-  hexo.config.meta_generator = false;
+  hexo.config.meta_generator = false
 
   // merge data
-  const data = hexo.locals.get('data');
+  const data = hexo.locals.get('data')
   // merge widgets
-  var widgets = hexo.render.renderSync({ path: path.join(hexo.theme_dir, '_data/widgets.yml'), engine: 'yaml' });
+  var widgets = hexo.render.renderSync({
+    path: path.join(hexo.theme_dir, '_data/widgets.yml'),
+    engine: 'yaml',
+  })
   if (data.widgets) {
     for (let i of Object.keys(data.widgets)) {
-      let widget = data.widgets[i];
+      let widget = data.widgets[i]
       if (widget == null || widget.length == 0) {
         // delete
-        delete widgets[i];
+        delete widgets[i]
       } else {
         // create
         if (widgets[i] == null) {
-          widgets[i] = widget;
+          widgets[i] = widget
         } else {
           // merge
           for (let j of Object.keys(widget)) {
-            widgets[i][j] = widget[j];
+            widgets[i][j] = widget[j]
           }
         }
       }
     }
   }
   if (hexo.theme.config.data == undefined) {
-    hexo.theme.config.data = {};
+    hexo.theme.config.data = {}
   }
-  hexo.theme.config.data['widgets'] = widgets;
+  hexo.theme.config.data['widgets'] = widgets
 
   // default menu
   if (hexo.theme.config.sidebar.menu == undefined) {
-    hexo.theme.config.sidebar.menu = [];
+    hexo.theme.config.sidebar.menu = []
   }
 
-  hexo.on('server', () => { // detect server-side render
-    hexo.log.info('Server-side render detected');
-    hexo.theme.config.server_render.status = true;
-  });
-};
+  hexo.on('server', () => {
+    // detect server-side render
+    hexo.log.info('Server-side render detected')
+    hexo.theme.config.server_render.status = true
+  })
+}

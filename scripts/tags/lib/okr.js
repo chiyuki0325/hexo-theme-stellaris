@@ -1,6 +1,6 @@
 /**
  * okr.js v1 | https://github.com/xaoxuu/hexo-theme-stellar/
- * 
+ *
  * {% okr o1 percent:0.5 status:delay %}
  * title (only one line)
  * note
@@ -8,30 +8,33 @@
  * title (only one line)
  * note
  * {% endokr %}
- * 
+ *
  */
 
 'use strict'
 
 function splitContentAndNote(input) {
-  var arr = input.trim().split('\n').filter(item => item.trim().length > 0)
+  var arr = input
+    .trim()
+    .split('\n')
+    .filter((item) => item.trim().length > 0)
   if (arr.length == 0) {
-    return {title:'', note:''}
+    return { title: '', note: '' }
   }
   const title = arr.shift()
   const note = arr.join('\n')
-  return {title:title, note:note}
+  return { title: title, note: note }
 }
 
 function generateKRList(ctx, contentArray) {
   if (contentArray.length < 3) {
-    console.error('invalid okr tag:', contentArray);
+    console.error('invalid okr tag:', contentArray)
     return []
   }
   var result = []
   var krTagIndexes = []
   for (let index = 0; index < contentArray.length; index++) {
-    const element = contentArray[index];
+    const element = contentArray[index]
     if (element.startsWith('kr')) {
       krTagIndexes.push(index)
     }
@@ -41,13 +44,17 @@ function generateKRList(ctx, contentArray) {
       break
     }
     const tagStr = contentArray[index]
-    const contentStr = contentArray[index+1]
+    const contentStr = contentArray[index + 1]
     if (contentStr.startsWith('kr')) {
       continue
     }
     result.push({
-      krMeta: ctx.args.map(tagStr.split(/\s+/), ['percent', 'status'], 'krIndex'),
-      krBody: splitContentAndNote(contentStr)
+      krMeta: ctx.args.map(
+        tagStr.split(/\s+/),
+        ['percent', 'status'],
+        'krIndex'
+      ),
+      krBody: splitContentAndNote(contentStr),
     })
   }
   return result
@@ -62,7 +69,7 @@ function layoutItem(ctx, type, index, title, note, color, label, percent) {
     </div>
     <div class="okr-center">
       <span class="title">${title}</span>
-      <div class="note">${ctx.render.renderSync({text: note, engine: 'markdown'}).split('\n').join('')}</div>
+      <div class="note">${ctx.render.renderSync({ text: note, engine: 'markdown' }).split('\n').join('')}</div>
     </div>
     <div class="okr-right colorful" color="${color}">
       <div class="labels">
@@ -77,64 +84,86 @@ function layoutItem(ctx, type, index, title, note, color, label, percent) {
   `
 }
 
-module.exports = ctx => function(args, content = '') {
-  args = ctx.args.map(args, ['percent', 'status', 'color'], 'oIndex')
-  var contentArray = content.split(/<!--\s*okr (.*?)\s*-->/g).filter(item => item.trim().length > 0)
-  if (contentArray.length < 3) {
-    console.error('invalid okr tag:', contentArray);
-    return ''
-  }
-  const statusList = ctx.theme.config.tag_plugins.okr?.status
-  const oMeta = args
-  const oBody = splitContentAndNote(contentArray.shift())
-  const krList = generateKRList(ctx, contentArray)
-  
-  var el_krs = ''
-  var krPercentList = []
-  for (let kr of krList) {
-    const { krMeta, krBody } = kr
-    const krPercent = Number(krMeta.percent) || 0
-    if (krMeta == null || krBody == null) {
-      continue
+module.exports = (ctx) =>
+  function (args, content = '') {
+    args = ctx.args.map(args, ['percent', 'status', 'color'], 'oIndex')
+    var contentArray = content
+      .split(/<!--\s*okr (.*?)\s*-->/g)
+      .filter((item) => item.trim().length > 0)
+    if (contentArray.length < 3) {
+      console.error('invalid okr tag:', contentArray)
+      return ''
     }
+    const statusList = ctx.theme.config.tag_plugins.okr?.status
+    const oMeta = args
+    const oBody = splitContentAndNote(contentArray.shift())
+    const krList = generateKRList(ctx, contentArray)
+
+    var el_krs = ''
+    var krPercentList = []
+    for (let kr of krList) {
+      const { krMeta, krBody } = kr
+      const krPercent = Number(krMeta.percent) || 0
+      if (krMeta == null || krBody == null) {
+        continue
+      }
+      var status = null
+      if (krMeta?.status && statusList[krMeta.status]) {
+        status = statusList[krMeta.status]
+      }
+      if (status == null) {
+        if (krPercent >= 1) {
+          status = statusList['finished']
+        } else {
+          status = statusList['in_track']
+        }
+      }
+      krPercentList.push(krPercent)
+      el_krs += layoutItem(
+        ctx,
+        'kr',
+        krMeta.krIndex,
+        krBody.title,
+        krBody.note,
+        status.color,
+        status.label,
+        krPercent
+      )
+    }
+    const krPercentSum = krPercentList.reduce(
+      (accumulator, currentValue) => accumulator + currentValue,
+      0
+    )
+
+    const oPercent =
+      Number(oMeta.percent) || (krPercentSum / krPercentList.length).toFixed(2)
     var status = null
-    if (krMeta?.status && statusList[krMeta.status]) {
-      status = statusList[krMeta.status] 
+    if (args?.status && statusList[args.status]) {
+      status = statusList[args.status]
     }
     if (status == null) {
-      if (krPercent >= 1) {
+      if (oPercent >= 1) {
         status = statusList['finished']
       } else {
         status = statusList['in_track']
       }
     }
-    krPercentList.push(krPercent)
-    el_krs += layoutItem(ctx, 'kr', krMeta.krIndex, krBody.title, krBody.note, status.color, status.label, krPercent)
+
+    var el = ''
+    el += '<div class="tag-plugin colorful okr"'
+    el += ' ' + ctx.args.joinTags(args, ['color']).join(' ')
+    el += '>'
+    el += layoutItem(
+      ctx,
+      'o',
+      oMeta.oIndex,
+      oBody.title,
+      oBody.note,
+      status.color,
+      status.label,
+      oPercent
+    )
+    el += el_krs
+    el += '</div>'
+    return el
   }
-  const krPercentSum = krPercentList.reduce(
-    (accumulator, currentValue) => accumulator + currentValue,
-    0,
-  );
-  
-  const oPercent = Number(oMeta.percent) || (krPercentSum / krPercentList.length).toFixed(2)
-  var status = null
-  if (args?.status && statusList[args.status]) {
-    status = statusList[args.status] 
-  }
-  if (status == null) {
-    if (oPercent >= 1) {
-      status = statusList['finished']
-    } else {
-      status = statusList['in_track']
-    }
-  } 
-  
-  var el = ''
-  el += '<div class="tag-plugin colorful okr"'
-  el += ' ' + ctx.args.joinTags(args, ['color']).join(' ')
-  el += '>'
-  el += layoutItem(ctx, 'o', oMeta.oIndex, oBody.title, oBody.note, status.color, status.label, oPercent)
-  el += el_krs
-  el += '</div>'
-  return el
-}
