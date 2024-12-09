@@ -63,7 +63,11 @@ async function loadMermaid() {
     console.error("Error initializing Mermaid:", err);
   }
 }
-loadMermaid();
+try {
+  loadMermaid();
+} catch (e) {
+  console.error("Error initializing Mermaid:", e);
+}
       `
     return <script dangerouslySetInnerHTML={{ __html: loadMermaidScript }} />
   } else {
