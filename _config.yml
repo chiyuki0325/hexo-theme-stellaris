@@ -437,7 +437,7 @@ plugins:
     enabled: true
     per_page: false # 启用后无需在文章开头加 mermaid: true 即可启用
     # js: https://unpkg.com/mermaid@9.0.0/dist/mermaid.min.js
-    js: https://cdn.jsdelivr.net/npm/mermaid@v9/dist/mermaid.min.js
+    js: https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.min.js
     # Available themes: default | dark | forest | neutral
     # 如果不填写将遵循博客颜色主题
     theme: neutral
