@@ -114,7 +114,7 @@ const Sidebar = (props) => {
         if (widget && widget.layout) {
           const Widget = require('../widgets/' + widget.layout + '.jsx')
           elements.push(
-            <Widget {...props} {...widget} key={widget.layout} key={name} />
+            <Widget {...props} {...widget} key={name} />
           )
         }
       })
