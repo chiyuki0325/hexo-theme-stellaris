@@ -6,7 +6,7 @@ const Tags = (props) => {
     const { site, url_for } = props
     site.tags.sort('length', -1).each((tag) => {
       elements.push(
-        <a className='tag' href={url_for(tag.path)}>
+        <a className='tag' href={url_for(tag.path)} key={tag.path}>
           <span className='name'>{tag.name}</span>
         </a>
       )

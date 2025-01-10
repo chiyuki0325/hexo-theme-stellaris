@@ -6,7 +6,7 @@ const Categories = (props) => {
     const { site, url_for } = props
     site.categories.sort('path').each((category) => {
       elements.push(
-        <div>
+        <div key={category.path} >
           <a
             className={category.parent ? 'cat child' : 'cat'}
             href={url_for(category.path)}

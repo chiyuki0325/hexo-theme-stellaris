@@ -26,7 +26,7 @@ const Posts = (props) => {
           return post.year === year
         })
         .each((post) => {
-          elements.push(<Post post={post} {...props} />)
+          elements.push(<Post post={post} {...props} key={post.path} />)
         })
       return elements
     }
@@ -55,7 +55,7 @@ const Posts = (props) => {
   })
 
   years.forEach((year) => {
-    elements.push(<Year year={year} {...props} />)
+    elements.push(<Year year={year} {...props} key={year} />)
   })
 
   return elements

@@ -88,7 +88,7 @@ const OpenGraph = (props) => {
   if (theme.head.open_graph && theme.head.open_graph.enabled) {
     return (
       <Fragment>
-        <OpenGraphArguments {...props} {...openGraphArguments(props)} />
+        <OpenGraphArguments {...props} {...openGraphArguments(props)} key="openGraphArguments" />
       </Fragment>
     )
   } else {

@@ -26,14 +26,15 @@ const Page = (props) => {
   }
   const elements = []
   if (page.post_list) {
-    elements.push(<NavBarListPost {...props} />)
+    elements.push(<NavBarListPost {...props} key="nav_bar_list_post"/>)
   }
   if (page.h1 || page.title || (page.content && page.content.length > 0)) {
-    elements.push(<Breadcrumb {...props} />)
+    elements.push(<Breadcrumb {...props} key={`breadcrumb_${page.menu_id}`}/>)
   }
   elements.push(
     <article
       className={`md-text content ${page.layout} ${page.indent ? 'indent' : ''} ${scroll_reveal()}`}
+      key={`article_${page.menu_id}`}
     >
       {(page.h1 ?? page.title) ? <PageTitle {...props} /> : <></>}
       {page.content ? (
@@ -44,7 +45,7 @@ const Page = (props) => {
       <ArticleFooter {...props} />
     </article>
   )
-  elements.push(<Comments {...props} />)
+  elements.push(<Comments {...props} key="comments"/>)
   return elements
 }
 

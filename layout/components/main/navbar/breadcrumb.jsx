@@ -11,9 +11,9 @@ const CreatedUpdatedDate = (props) => {
       {(() => {
         if (page.updated !== page.date) {
           return (
-            <Fragment>
+            <Fragment key={page.updated}>
               ，{__('meta.updated')}&nbsp;
-              <time dateTime={date_xml(page.updated)}>
+              <time dateTime={date_xml(page.updated)} key={page.updated}>
                 {date(page.updated, config.date_format)}
               </time>
             </Fragment>

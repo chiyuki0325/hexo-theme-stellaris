@@ -110,10 +110,10 @@ const OpenGraphArguments = (props) => {
     page.layout === 'post' &&
     page.cover.includes('/')
   ) {
-    result.push(<OG name='og:image' content={page.cover} escape={false} />)
+    result.push(<OG name='og:image' content={page.cover} escape={false} key={page.cover} />)
   } else {
     images.forEach((path) => {
-      result.push(<OG name='og:image' content={path} escape={false} />)
+      result.push(<OG name='og:image' content={path} escape={false} key={path} />)
     })
   }
 
@@ -123,19 +123,19 @@ const OpenGraphArguments = (props) => {
     }
     */
 
-  result.push(<OG name='og:type' content={type} />)
-  result.push(<OG name='og:title' content={title} />)
+  result.push(<OG name='og:type' content={type} key={type} />)
+  result.push(<OG name='og:title' content={title} key={title} />)
 
   if (url) {
-    result.push(<OG name='og:url' content={encodeURL(url)} escape={false} />)
+    result.push(<OG name='og:url' content={encodeURL(url)} escape={false} key={url} />)
   } else {
-    result.push(<OG name='og:url' />)
+    result.push(<OG name='og:url' key='og:url' />)
   }
 
-  result.push(<OG name='og:site_name' content={siteName} />)
+  result.push(<OG name='og:site_name' content={siteName} key={siteName} />)
   if (description) {
     result.push(
-      <OG name='og:description' content={description} escape={false} />
+      <OG name='og:description' content={description} escape={false} key={description} />
     )
   }
 
@@ -145,6 +145,7 @@ const OpenGraphArguments = (props) => {
         name='og:locale'
         content={localeToTerritory(language)}
         escape={false}
+        key={language}
       />
     )
   }
@@ -152,7 +153,7 @@ const OpenGraphArguments = (props) => {
   if (date) {
     if ((isMoment(date) || isDate(date)) && !isNaN(date.valueOf())) {
       result.push(
-        <OG name='article:published_time' content={date.toISOString()} />
+        <OG name='article:published_time' content={date.toISOString()} key={date} />
       )
     }
   }
@@ -160,13 +161,13 @@ const OpenGraphArguments = (props) => {
   if (updated) {
     if ((isMoment(updated) || isDate(updated)) && !isNaN(updated.valueOf())) {
       result.push(
-        <OG name='article:modified_time' content={updated.toISOString()} />
+        <OG name='article:modified_time' content={updated.toISOString()} key={updated} />
       )
     }
   }
 
   if (author) {
-    result.push(<OG name='article:author' content={author} />)
+    result.push(<OG name='article:author' content={author} key={author} />)
   }
 
   if (keywords) {
@@ -178,17 +179,17 @@ const OpenGraphArguments = (props) => {
       })
       .filter(Boolean)
       .forEach((keyword) => {
-        result.push(<Meta name='article:tag' content={keyword} />)
+        result.push(<Meta name='article:tag' content={keyword} key={keyword} />)
       })
   }
 
-  result.push(<OG name='twitter:card' content={twitterCard} />)
+  result.push(<OG name='twitter:card' content={twitterCard} key={twitterCard} />)
 
   if (props.twitter_image) {
     let twitter_image = props.twitter_image
     twitter_image = new URL(twitter_image, url || config.url)
     result.push(
-      <OG name='twitter:image' content={twitter_image} escape={false} />
+      <OG name='twitter:image' content={twitter_image} escape={false} key={twitter_image} />
     )
   } else if (images.length) {
     if (
@@ -197,11 +198,11 @@ const OpenGraphArguments = (props) => {
       page.cover.includes('/')
     ) {
       result.push(
-        <OG name='twitter:image' content={page.cover} escape={false} />
+        <OG name='twitter:image' content={page.cover} escape={false} key={page.cover} />
       )
     } else {
       result.push(
-        <OG name='twitter:image' content={images[0]} escape={false} />
+        <OG name='twitter:image' content={images[0]} escape={false} key={images[0]} />
       )
     }
   }
@@ -210,25 +211,25 @@ const OpenGraphArguments = (props) => {
     let twitterId = props.twitter_id
     if (!twitterId.startsWith('@')) twitterId = `@${twitterId}`
 
-    result.push(<OG name='twitter:creator' content={twitterId} />)
+    result.push(<OG name='twitter:creator' content={twitterId} key={twitterId} />)
   }
 
   if (props.twitter_site) {
     result.push(
-      <OG name='twitter:site' content={props.twitter_site} escape={false} />
+      <OG name='twitter:site' content={props.twitter_site} escape={false} key={props.twitter_site} />
     )
   }
 
   if (props.google_plus) {
-    result.push(<link rel='publisher' href={props.google_plus} />)
+    result.push(<link rel='publisher' href={props.google_plus} key={props.google_plus} />)
   }
 
   if (props.fb_admins) {
-    result.push(<OG name='fb:admins' content={props.fb_admins} />)
+    result.push(<OG name='fb:admins' content={props.fb_admins} key={props.fb_admins} />)
   }
 
   if (props.fb_app_id) {
-    result.push(<OG name='fb:app_id' content={props.fb_app_id} />)
+    result.push(<OG name='fb:app_id' content={props.fb_app_id} key={props.fb_app_id} />)
   }
 
   return result

@@ -46,6 +46,7 @@ const ListCategories = (props) => {
         <a
           className={`${className}-link`}
           href={`${url_for(cat.path)}${suffix}`}
+          key={cat._id}
         >
           {cat.name}
         </a>

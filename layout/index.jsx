@@ -59,19 +59,19 @@ const LayoutPosts = (props) => {
               '-date'
           )
         pinned.forEach((post) => {
-          post_cards.push(<LayoutPostCard post={post} {...props} />)
+          post_cards.push(<LayoutPostCard post={post} {...props} key={post.path} />)
         })
       }
       // Normal posts
       posts.forEach((post) => {
         if (post.pin === undefined) {
-          post_cards.push(<LayoutPostCard post={post} {...props} />)
+          post_cards.push(<LayoutPostCard post={post} {...props} key={post.path} />)
         }
       })
     } else {
       posts.forEach((post) => {
         if (post.pin === undefined) {
-          post_cards.push(<LayoutPostCard post={post} {...props} />)
+          post_cards.push(<LayoutPostCard post={post} {...props} key={post.path} />)
         }
       })
     }
