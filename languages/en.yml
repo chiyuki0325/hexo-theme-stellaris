@@ -41,7 +41,7 @@ footer:
   info_not_open_source: 'This site was deployed by %s using %s.'
   info_open_source: 'This site was deployed by %s using %s. You can find the source code in %s.' #已经改为相关信息
   powered_by_1: 'Powered by '
-  powered_by_2: ''
+  powered_by_2: ' '
   server_render: 'Server-side rendering mode is currently enabled, and some functions may have been automatically disabled.'
 page:
   error:
