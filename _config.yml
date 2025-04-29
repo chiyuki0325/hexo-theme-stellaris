@@ -380,7 +380,7 @@ plugins:
   # 页面滚动动画
   # https://scrollrevealjs.org/api/reveal.html
   scrollreveal:
-    enabled: true
+    enabled: false
     # js: https://fastly.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js
     js: https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/scrollReveal.js/4.0.9/scrollreveal.min.js
     distance: 8px
