@@ -20,10 +20,7 @@ hexo-theme-stellaris 分叉自 [hexo-theme-stellar](https://github.com/xaoxuu/he
   ```bash
   npm install react react-dom hexo-renderer-jsx html-react-parser --save
   ```
-  ```bash
-  npm install node-fetch@2 --save
-  // bilicard 插件所需
-  ```
+
 - 将主题安装为子模块
 
   ```bash
@@ -54,7 +51,7 @@ npm update hexo-theme-stellaris
 
 ### 文档
 
-[点此查看](https://blog.chyk.ink/wiki/stellaris/) Stellaris 主题文档。
+[点此查看](https://blog.chyk.ink/wiki/stellaris/) Stellaris 主题文档。文档正在施工中，欢迎提交贡献。
 
 也可以适当参考 [原主题文档](https://xaoxuu.com/wiki/stellar/)，或对照配置文件的注释。
 
