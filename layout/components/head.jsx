@@ -229,19 +229,6 @@ const InjectHead = (props) => {
   return <>{heads}</>
 }
 
-const ImportKatexCSS = (props) => {
-  const { theme } = props
-  if (theme.plugins.katex && theme.plugins.katex.enabled) {
-    const pageIncludesKatex =
-      props.page.content && props.page.content.includes('class="katex"')
-    if (pageIncludesKatex)
-      return <link rel='stylesheet' href={theme.plugins.katex.css} />
-    else return <></>
-  } else {
-    return <></>
-  }
-}
-
 module.exports = function Head(props) {
   const { stellar_info, env } = props
   return (
@@ -297,8 +284,6 @@ module.exports = function Head(props) {
       <ImportDarkMode {...props} />
       <ImportCSS {...props} />
       <ImportHighlightJSTheme {...props} />
-      <ImportKatexCSS {...props} />
-
       <InjectHead {...props} />
     </head>
   )

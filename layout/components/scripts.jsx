@@ -1,5 +1,6 @@
 const { Fragment } = require('react')
 const CommentsScript = require('./plugins/comments/script.jsx')
+const KatexScripts = require('./plugins/katex/script.jsx')
 const MathJaxScripts = require('./plugins/mathjax/script.jsx')
 const MermaidScripts = require('./plugins/mermaid/script.jsx')
 
@@ -254,6 +255,13 @@ const Scripts = (props) => {
         data-no-instant='true'
       />
       <CommentsScript {...props} />
+      {(() => {
+        if (theme.plugins.katex && theme.plugins.katex.enabled === true) {
+          if (page.content && page.content.includes('class="katex"')) {
+            return <KatexScripts {...props} />
+          }
+        }
+      })()}
       {(() => {
         if (theme.plugins.mathjax.per_page === true || page.mathjax === true)
           return <MathJaxScripts {...props} />
