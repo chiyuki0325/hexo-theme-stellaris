@@ -1,17 +1,22 @@
-// 无需修改的常量
-@import '_defines/const'
+/* 基础变量和定制选项 */
+@import '_defines/main'
 
-// 自定义参数
-@import '_custom'
+/* 通用样式 */
+@import '_common/normalize'
+@import '_common/markdown'
+@import '_common/fonts'
+@import '_common/layout'
+@import '_common/safearea'
 
-// 含自定义参数的常量以及函数
-@import '_defines/theme'
-@import '_defines/func'
+/* 组件样式 */
+@import '_components/index'
 
-// 通用组件
-@import '_common/*'
-// 布局
-@import '_components/*'
-
-// 可选插件
+/* 插件样式 */
 @import '_plugins/index'
+
+/* 代码高亮 */
+@import '_common/highlight'
+@import '_common/darkmode'
+
+/* 自定义样式 */
+@import '_custom'

@@ -69,12 +69,12 @@ const util = {
 const hud = {
   toast: (msg, duration) => {
     duration = isNaN(duration) ? 2000 : duration
-    var el = document.createElement('div')
+    const el = document.createElement('div')
     el.classList.add('toast')
     el.innerHTML = msg
     document.body.appendChild(el)
     setTimeout(function () {
-      var d = 0.5
+      const d = 0.5
       el.style.webkitTransition =
         '-webkit-transform ' + d + 's ease-in, opacity ' + d + 's ease-in'
       el.style.opacity = '0'
@@ -99,34 +99,17 @@ const stellaris = {
   themePlugins: {},
   registerThemePlugin: function (selector, plugin) {
     this.themePlugins[selector] = plugin
-    stellaris.jQuery(() =>
-      $(() => {
-        plugin.init()
-      })
-    )
+    this.onDocReady(() => plugin.init())
   },
   pluginsConfig: {
     fancyBoxSelector: '',
   },
-  jQuery(fn) {
-    const { status } = stellaris.jQueryState
-    if (typeof window.jQuery !== 'undefined' || status === 'loaded') {
+  onDocReady(fn) {
+    if (document.readyState !== 'loading') {
       fn()
-    } else if (status === 'loading') {
-      stellaris.jQueryState.promise.then(fn)
     } else {
-      stellaris.jQueryState.status = 'loading'
-      stellaris.jQueryState.promise = stellar
-        .loadScript(stellar.plugins.jQuery)
-        .then(() => {
-          stellaris.jQueryState.status = 'loaded'
-        })
-        .then(fn)
+      document.addEventListener('DOMContentLoaded', fn)
     }
-  },
-  jQueryState: {
-    status: 'none',
-    promise: null,
   },
   loadCSS: {
     fancyBox: () => {
@@ -239,75 +222,81 @@ const stellaris = {
   },
   init: {
     toc: () => {
-      stellaris.jQuery(() => {
+      stellaris.onDocReady(() => {
         const scrollOffset = 32
-        var segs = []
-        $('article.md-text :header').each(function (idx, node) {
-          segs.push(node)
-        })
-        // 滚动
-        $(document, window).scroll(function (e) {
-          var scrollTop = $(this).scrollTop()
-          var topSeg = null
-          for (var idx in segs) {
-            var seg = $(segs[idx])
-            if (seg.offset().top > scrollTop + scrollOffset) {
+        const segs = Array.from(document.querySelectorAll('article.md-text :header'))
+        
+        // 监听滚动事件
+        const handleScroll = () => {
+          const scrollTop = window.scrollY || document.documentElement.scrollTop
+          let topSeg = null
+          
+          for (const seg of segs) {
+            if (seg.offsetTop > scrollTop + scrollOffset) {
               continue
             }
-            if (!topSeg) {
-              topSeg = seg
-            } else if (seg.offset().top >= topSeg.offset().top) {
+            if (!topSeg || seg.offsetTop >= topSeg.offsetTop) {
               topSeg = seg
             }
           }
+          
           if (topSeg) {
-            $('.toc#toc a.toc-link').removeClass('active')
-            var link = '#' + topSeg.attr('id')
-
-            if (link != '#undefined') {
-              const highlightSelector =
-                '.toc#toc a.toc-link[href="' + encodeURI(link) + '"]'
-              const highlightItem = $(highlightSelector)
-              if (highlightItem.length > 0) {
-                highlightItem.addClass('active')
+            // 清除所有活动链接
+            document.querySelectorAll('.toc#toc a.toc-link').forEach(link => 
+              link.classList.remove('active')
+            )
+            
+            const link = '#' + topSeg.id
+            if (link !== '#undefined') {
+              const highlightSelector = `.toc#toc a.toc-link[href="${encodeURI(link)}"]`
+              const highlightItem = document.querySelector(highlightSelector)
+              
+              if (highlightItem) {
+                highlightItem.classList.add('active')
                 const e0 = document.querySelector('.widgets')
-                const e1 = document.querySelector(highlightSelector)
-                const offsetBottom =
-                  e1.getBoundingClientRect().bottom -
-                  e0.getBoundingClientRect().bottom +
-                  200
-                const offsetTop =
-                  e1.getBoundingClientRect().top -
-                  e0.getBoundingClientRect().top -
-                  64
-                if (offsetTop < 0) {
-                  e0.scrollBy(0, offsetTop)
-                } else if (offsetBottom > 0) {
-                  e0.scrollBy(0, offsetBottom)
+                if (e0) {
+                  const e1 = document.querySelector(highlightSelector)
+                  const offsetBottom = e1.getBoundingClientRect().bottom - 
+                                      e0.getBoundingClientRect().bottom + 200
+                  const offsetTop = e1.getBoundingClientRect().top - 
+                                   e0.getBoundingClientRect().top - 64
+                  
+                  if (offsetTop < 0) {
+                    e0.scrollBy(0, offsetTop)
+                  } else if (offsetBottom > 0) {
+                    e0.scrollBy(0, offsetBottom)
+                  }
                 }
               }
             } else {
-              $('.toc#toc a.toc-link:first').addClass('active')
+              const firstLink = document.querySelector('.toc#toc a.toc-link:first-child')
+              if (firstLink) firstLink.classList.add('active')
             }
           }
-        })
+        }
+        
+        window.addEventListener('scroll', handleScroll, { passive: true })
+        handleScroll() // 初始化调用一次
       })
     },
     sidebar: () => {
-      stellaris.jQuery(() => {
-        $('.toc#toc a.toc-link').click(function (e) {
-          const l_body = document.querySelector('.l_body')
-          l_body.classList.remove('sidebar')
+      stellaris.onDocReady(() => {
+        document.querySelectorAll('.toc#toc a.toc-link').forEach(link => {
+          link.addEventListener('click', () => {
+            const l_body = document.querySelector('.l_body')
+            if (l_body && l_body.classList.contains('mobile') && l_body.classList.contains('sidebar')) {
+              sidebar.toggle()
+            }
+          })
         })
       })
     },
     clickEvents: () => {
-      stellaris.jQuery(() => {
-        const elements = $('.on-click-event')
-        elements.each((e) => {
-          const el = $(elements[e])
-          el.attr('onclick', el.attr('data-on-click'))
-          el.removeAttr('data-on-click')
+      stellaris.onDocReady(() => {
+        const elements = document.querySelectorAll('.on-click-event')
+        elements.forEach((el) => {
+          el.setAttribute('onclick', el.getAttribute('data-on-click'))
+          el.removeAttribute('data-on-click')
         })
       })
     },
@@ -386,12 +375,11 @@ const stellaris = {
     },
     search: () => {
       if (stellar.search.service && stellar.search.service == 'local_search') {
-        stellaris.jQuery(() => {
-          const $inputArea = $('input#search-input')
-          if ($inputArea.length == 0) {
-            return
-          }
-          $inputArea.focus(function () {
+        stellaris.onDocReady(() => {
+          const $inputArea = document.querySelector('input#search-input')
+          if (!$inputArea) return
+          $inputArea.focus()
+          $inputArea.addEventListener('input', function () {
             let path
             if (stellar.search.service in stellar.search) {
               path = stellar.search[stellar.search.service].path
@@ -401,10 +389,10 @@ const stellaris = {
             if (!path.startsWith('/')) {
               path = '/' + path
             }
-            const filter = $inputArea.attr('data-filter') || ''
+            const filter = $inputArea.getAttribute('data-filter') || ''
             searchFunc(path, filter, 'search-input', 'search-result')
           })
-          $inputArea.keydown(function (e) {
+          $inputArea.addEventListener('keydown', function (e) {
             if (e.which == 13) {
               e.preventDefault()
             }
@@ -413,9 +401,9 @@ const stellaris = {
           new MutationObserver(function (mutationsList, observer) {
             if (mutationsList.length == 1) {
               if (mutationsList[0].addedNodes.length) {
-                $('.search-wrapper').removeClass('noresult')
+                document.querySelector('.search-wrapper').classList.remove('noresult')
               } else if (mutationsList[0].removedNodes.length) {
-                $('.search-wrapper').addClass('noresult')
+                document.querySelector('.search-wrapper').classList.add('noresult')
               }
             }
           }).observe(document.querySelector('div#search-result'), {
@@ -495,11 +483,9 @@ const stellaris = {
         Object.keys(stellaris.themePlugins).forEach((selector) => {
           const els = document.querySelectorAll(selector)
           if (els != undefined && els.length > 0) {
-            stellaris.jQuery(() =>
-              $(() => {
-                stellaris.themePlugins[selector].init()
-              })
-            )
+            this.onDocReady(() => {
+              stellaris.themePlugins[selector].init()
+            })
           }
         })
       }
@@ -542,6 +528,62 @@ const stellaris = {
     stellaris.initPlugins()
   },
 }
+
+// 页面加载完成后执行
+stellaris.onDocReady(() => {
+  // 执行初始化
+  stellaris.init.toc()
+  stellaris.init.sidebar()
+  
+  // 加载所需的CSS和插件
+  stellaris.loadNeededCSS()
+  stellaris.loadNeededPlugins()
+  
+  // 检查文章过期提示
+  if (stellar.article?.outdate_month > 0) {
+    const articles = document.querySelectorAll('article.md-text')
+    if (articles.length > 0) {
+      articles.forEach(article => {
+        const date = article.querySelector('.meta .date')
+        if (date) {
+          const dateStr = date.getAttribute('time')
+          if (dateStr) {
+            const judgeOutdated = (postDate, nowDate) => {
+              const limitMonth = stellar.article.outdate_month
+              if (!limitMonth || !postDate || !nowDate) return false
+              
+              let datePost = new Date(postDate)
+              let dateNow = new Date(nowDate)
+              if (!/^\d+$/.test(postDate)) {
+                datePost = new Date(postDate.replace(/-/g, '/'))
+              }
+              if (!/^\d+$/.test(nowDate)) {
+                dateNow = new Date(nowDate.replace(/-/g, '/'))
+              }
+              
+              const differMonths = (dateNow.getFullYear() - datePost.getFullYear()) * 12 + 
+                                  (dateNow.getMonth() - datePost.getMonth())
+              return differMonths >= limitMonth
+            }
+            
+            const now = Date.now()
+            if (judgeOutdated(new Date(dateStr).getTime(), now)) {
+              const warning = document.createElement('div')
+              warning.classList.add('article-outdated')
+              warning.innerHTML = `<i class="fa-solid fa-exclamation-circle" aria-hidden="true"></i> `+
+                                 `本文最后更新于 ${util.diffDate(dateStr, true)}，文中内容可能已过时，请谨慎使用。`
+              
+              const target = article.querySelector('.article-footer')
+              if (target) {
+                target.insertAdjacentElement('beforebegin', warning)
+              }
+            }
+          }
+        }
+      })
+    }
+  }
+})
 
 window.addEventListener('load', stellaris.loadAllPlugins, false)
 window.addEventListener('load', stellaris.initOnFirstLoad, false)

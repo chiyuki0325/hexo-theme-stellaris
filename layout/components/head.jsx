@@ -142,7 +142,7 @@ const ImportDarkMode = (props) => {
         }
         ThemeChange(window.localStorage.getItem('Stellaris.theme'));
     `
-  if (theme.style.darkmode == 'auto-switch') {
+  if (theme.style && theme.style.darkmode == 'auto-switch') {
     return (
       <script
         type='text/javascript'
@@ -195,12 +195,12 @@ const Preconnect = (props) => {
     let preconnects = []
     for (const preconnect of prefetch_and_preconnect) {
       preconnects.push(
-        <link rel='dns-prefetch' href={preconnect} key={preconnect} />,
+        <link rel='dns-prefetch' href={preconnect} key={`dns-${preconnect}`} />,
         <link
           rel='preconnect'
           href={preconnect}
-          crossOrigin='true'
-          key={preconnect}
+          crossOrigin='anonymous'
+          key={`preconnect-${preconnect}`}
         />
       )
     }
@@ -229,13 +229,50 @@ const InjectHead = (props) => {
   return <>{heads}</>
 }
 
+// 添加性能优化相关的meta标签
+const PerformanceMeta = () => {
+  return (
+    <>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+      <meta name="theme-color" content="var(--color-card)" />
+      <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+    </>
+  )
+}
+
+// 添加SEO相关的meta标签
+const SEOMeta = (props) => {
+  const { page, is_post, config, url, url_for, date } = props
+  
+  if (!is_post || !page) return null
+  
+  const canonical = url.replace(/index\.html$/, '')
+  const publishedTime = page.date ? date(page.date, 'YYYY-MM-DD') : ''
+  const modifiedTime = page.updated ? date(page.updated, 'YYYY-MM-DD') : ''
+  
+  return (
+    <>
+      <link rel="canonical" href={canonical} />
+      {publishedTime && <meta property="article:published_time" content={publishedTime} />}
+      {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
+      {page.categories && page.categories.forEach && page.categories.forEach(category => (
+        <meta property="article:section" content={category.name} key={`category-${category.name}`} />
+      ))}
+      {page.tags && page.tags.forEach && page.tags.forEach(tag => (
+        <meta property="article:tag" content={tag.name} key={`tag-${tag.name}`} />
+      ))}
+    </>
+  )
+}
+
 module.exports = function Head(props) {
-  const { stellar_info, env } = props
+  const { stellar_info, env, config } = props
   return (
     <head>
       <meta name='generator' content={`Hexo ${env.version}`} />
       <meta name='hexo-theme' content={stellar_info('tree')} />
       <meta charSet='utf-8' />
+      <PerformanceMeta />
       <Robots {...props} />
       <Preconnect {...props} />
       <meta name='renderer' content='webkit' />
@@ -248,42 +285,19 @@ module.exports = function Head(props) {
         content='black-translucent'
       />
       <meta
-        name='viewport'
-        content='width=device-width, initial-scale=1, maximum-scale=1'
+        name='apple-mobile-web-app-title'
+        content={config.title || 'Stellaris'}
       />
-      <meta
-        name='theme-color'
-        media='(prefers-color-scheme: light) and (max-width: 667px)'
-        content='#eff4f9'
-      />
-      <meta
-        name='theme-color'
-        media='(prefers-color-scheme: light)'
-        content='#f8f8f8'
-      />
-      {/** Higher priority than `#1a1f35`. */}
-      <meta
-        name='theme-color'
-        media='(prefers-color-scheme: dark) and (max-width: 667px)'
-        content='#000000'
-      />
-      <meta
-        name='theme-color'
-        media='(prefers-color-scheme: dark)'
-        content='#202020'
-      />
-
-      <meta name='darkreader-lock' />
-
+      <meta name='format-detection' content='telephone=no' />
       <Title {...props} />
-      <OpenGraph {...props} />
       <Description {...props} />
+      <OpenGraph {...props} />
       <Feed {...props} />
+      <SEOMeta {...props} />
       <FavIcon {...props} />
-
-      <ImportDarkMode {...props} />
       <ImportCSS {...props} />
       <ImportHighlightJSTheme {...props} />
+      <ImportDarkMode {...props} />
       <InjectHead {...props} />
     </head>
   )

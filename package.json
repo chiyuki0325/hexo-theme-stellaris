@@ -3,7 +3,9 @@
   "version": "2.3.4",
   "description": "Powerful, elegant and modern Hexo theme, forked from hexo-theme-stellar.",
   "main": "package.json",
-  "scripts": {},
+  "scripts": {
+    "lint": "prettier --write ."
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/chiyuki0325/hexo-theme-stellaris.git"
@@ -31,5 +33,11 @@
   "homepage": "https://blog.chyk.ink/wiki/stellaris/",
   "devDependencies": {
     "prettier": "3.4.2"
+  },
+  "peerDependencies": {
+    "hexo": "^5.4.0 || ^6.3.0"
+  },
+  "engines": {
+    "node": ">=14.17.3"
   }
 }

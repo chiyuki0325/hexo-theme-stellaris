@@ -1,0 +1,42 @@
+// 常量
+@import 'const'
+@import 'theme'
+@import 'func'
+
+// CSS变量集中定义
+:root {
+  // 颜色系统
+  --color-main: convert(hexo-config('color_scheme.main')) || convert(#0068c4)
+  --color-bg: convert(hexo-config('color_scheme.background')) || #f4f9ff
+  --color-card: convert(hexo-config('color_scheme.card_bg')) || white
+  --color-text: convert(hexo-config('color_scheme.text')) || #333
+  --color-text-p: convert(hexo-config('color_scheme.text_p')) || #666
+  --color-text-meta: convert(hexo-config('color_scheme.text_meta')) || #888
+  --color-text-code: convert(hexo-config('color_scheme.text_code')) || #555
+  
+  // 排版
+  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Lato, Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif
+  --font-family-mono: 'Source Code Pro', 'Courier New', Courier, monospace
+  
+  // 尺寸与间距
+  --width-main: 800px
+  --radius-card: 12px
+  --radius-block: 6px
+  --gap-card: 16px
+  --gap-block: 8px
+  
+  // 动画
+  --transition-time: 0.3s
+}
+
+// 暗黑模式变量
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: convert(hexo-config('color_scheme.dark.background')) || #121212
+    --color-card: convert(hexo-config('color_scheme.dark.card_bg')) || #1e1e1e
+    --color-text: convert(hexo-config('color_scheme.dark.text')) || #eee
+    --color-text-p: convert(hexo-config('color_scheme.dark.text_p')) || #bbb
+    --color-text-meta: convert(hexo-config('color_scheme.dark.text_meta')) || #999
+    --color-text-code: convert(hexo-config('color_scheme.dark.text_code')) || #ddd
+  }
+} 

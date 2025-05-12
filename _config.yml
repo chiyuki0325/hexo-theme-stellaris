@@ -6,6 +6,24 @@ stellar:
   cdn_css: # 如果你使用 CDN，可以上传 /css/main.css 并在此输入对应的链接
   cdn_js: # 如果你使用 CDN，可以上传 /js/main.js 并在此输入对应的链接
 
+# 自定义颜色方案
+color_scheme:
+  main: '#0068c4'        # 主题色
+  background: '#f4f9ff'  # 网站背景色
+  card_bg: 'white'       # 卡片背景色
+  text: '#333'           # 文本色
+  text_p: '#666'         # 段落文本色
+  text_meta: '#888'      # 元信息文本色
+  text_code: '#555'      # 代码文本色
+  # 暗黑模式颜色
+  dark:
+    background: '#121212' # 暗黑模式背景色
+    card_bg: '#1e1e1e'    # 暗黑模式卡片背景色
+    text: '#eee'          # 暗黑模式文本色
+    text_p: '#bbb'        # 暗黑模式段落文本色
+    text_meta: '#999'     # 暗黑模式元信息文本色
+    text_code: '#ddd'     # 暗黑模式代码文本色
+
 server_render:
   status: false # 该值在使用 `hexo s` 通过服务端渲染时会设置为 true
   footer: false # 是否在网页底部显示服务器端渲染提示
