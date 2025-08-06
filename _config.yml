@@ -351,11 +351,9 @@ plugins:
 
   ### 必须加载的核心 JS
   jquery: https://fastly.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js
-  # marked: https://fastly.jsdelivr.net/npm/marked@4.0.2/marked.min.js
-  marked: https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/marked/4.0.2/marked.min.js
+  marked: https://fastly.jsdelivr.net/npm/marked@4.0.2/marked.min.js
   instant_click:
-    # js: https://fastly.jsdelivr.net/npm/instantclick@3.1.0/instantclick.min.js
-    js: https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/instantclick/3.1.0/instantclick.min.js
+    js: https://fastly.jsdelivr.net/npm/instantclick@3.1.0/instantclick.min.js
 
   ### 主题动态布局插件
   stellar:
@@ -373,16 +371,14 @@ plugins:
   # https://www.npmjs.com/package/vanilla-lazyload
   lazyload:
     enabled: true # [hexo clean && hexo s] is required after changing this value.
-    # js: https://fastly.jsdelivr.net/npm/vanilla-lazyload@17.3.1/dist/lazyload.min.js
-    js: https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/vanilla-lazyload/17.3.1/lazyload.min.js
+    js: https://fastly.jsdelivr.net/npm/vanilla-lazyload@17.3.1/dist/lazyload.min.js
     transition: blur # blur, fade
 
   # 页面滚动动画
   # https://scrollrevealjs.org/api/reveal.html
   scrollreveal:
     enabled: false
-    # js: https://fastly.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js
-    js: https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/scrollReveal.js/4.0.9/scrollreveal.min.js
+    js: https://fastly.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js
     distance: 8px
     duration: 500 # ms
     interval: 100 # ms
